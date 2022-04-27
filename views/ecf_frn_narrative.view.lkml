@@ -11,11 +11,13 @@ view: ecf_frn_narrative {
 
   dimension: application_number {
     type: string
+    hidden: yes
     sql: ${TABLE}.app_number ;;
   }
 
   dimension: district_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.district_name ;;
   }
 
@@ -35,6 +37,7 @@ view: ecf_frn_narrative {
 
   dimension: frn {
     type: string
+    hidden: yes
     sql: ${TABLE}.frn ;;
   }
 

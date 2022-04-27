@@ -235,12 +235,7 @@ view: districts {
   set: detail {
     fields: [
       nces_district_id,
-      district_name,
-      full_district_name,
-      district_legal_name,
-      district_county_name,
-      district_location_state_name,
-      district_mailing_state_name
+      district_name
     ]
   }
 }

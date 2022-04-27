@@ -11,6 +11,7 @@ view: ecf_frn {
 
   dimension: application_number {
     type: number
+    hidden: yes
     sql: ${TABLE}.application_number ;;
   }
 

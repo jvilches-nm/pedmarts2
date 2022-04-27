@@ -30,7 +30,7 @@ explore: ecf_ben {
   join: districts {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${districts.district_code}=${ecf_ben.district_code} ;;
+    sql_on: ${districts.district_code}=${ecf_ben.ecf_district_code} ;;
   }
   join: ecf_application_data {
     relationship: many_to_one

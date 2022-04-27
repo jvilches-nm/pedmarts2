@@ -20,7 +20,6 @@ view: student_digital_resources {
 
   dimension: device_provider_cd {
     type: string
-    hidden: yes
     sql: ${TABLE}.DEVICE_PROVIDER_CD ;;
   }
 
@@ -36,6 +35,7 @@ view: student_digital_resources {
 
   dimension: district_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.DISTRICT_KEY ;;
   }
 
@@ -97,6 +97,7 @@ view: student_digital_resources {
 
   dimension: modified_indicator {
     type: string
+    hidden: yes
     sql: ${TABLE}.MODIFIED_INDICATOR ;;
   }
 
@@ -117,6 +118,7 @@ view: student_digital_resources {
 
   dimension: reporting_date_period_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.REPORTING_DATE_PERIOD_KEY ;;
   }
 
@@ -140,6 +142,7 @@ view: student_digital_resources {
 
   dimension: student_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.STUDENT_KEY ;;
   }
 

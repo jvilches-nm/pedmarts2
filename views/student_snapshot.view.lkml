@@ -3,6 +3,7 @@ view: student_snapshot {
 
   dimension: alternate_student_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Alternate_Student_ID ;;
   }
 
@@ -283,6 +284,7 @@ view: student_snapshot {
 
   dimension: location_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Code ;;
   }
 
@@ -347,6 +349,7 @@ view: student_snapshot {
 
   dimension: period_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.Period_Key ;;
   }
 
@@ -496,7 +499,7 @@ view: student_snapshot {
     sql: CONVERT(INT,DATEDIFF(day,${TABLE}.Student_Birth_date,${TABLE}.Student_Snapshot_Date))/365  ;;
   }
 
-  dimension: student_first_name {
+  dimension: student_name_first {
     type: string
     sql: ${TABLE}.Student_First_Name ;;
   }
@@ -524,6 +527,7 @@ view: student_snapshot {
 
   dimension: student_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_ID ;;
   }
 
@@ -543,7 +547,7 @@ view: student_snapshot {
     sql: ${TABLE}.Student_Key ;;
   }
 
-  dimension: student_last_name {
+  dimension: student_name_last {
     type: string
     sql: ${TABLE}.Student_Last_Name ;;
   }
@@ -559,22 +563,22 @@ view: student_snapshot {
     sql: ${TABLE}.Student_Lives_With_Code ;;
   }
 
-  dimension: student_middle_initial {
+  dimension: student_name_middle {
     type: string
     sql: ${TABLE}.Student_Middle_Initial ;;
   }
 
-  dimension: student_name {
+  dimension: student_name_full {
     type: string
     sql: ${TABLE}.Student_Name ;;
   }
 
-  dimension: student_race_1_ethnicity {
+  dimension: student_race_1 {
     type: string
     sql: ${TABLE}.Student_Race_1_Ethnicity ;;
   }
 
-  dimension: student_race_1_ethnicity_code {
+  dimension: student_race_1_code {
     type: string
     sql: ${TABLE}.Student_Race_1_Ethnicity_Code ;;
   }
@@ -658,7 +662,7 @@ view: student_snapshot {
                when month(${TABLE}.Student_Snapshot_Date)=12 then '80 Day'
                when month(${TABLE}.Student_Snapshot_Date)=3 then '120 Day'
                when month(${TABLE}.Student_Snapshot_date)=6 then 'End of Year'
-               else 'Uknown' end;;
+               else 'Unknown' end;;
   }
 
   dimension: snapshot_period_order {
@@ -694,6 +698,6 @@ view: student_snapshot {
 
   measure: count {
     type: count
-    drill_fields: [student_first_name, student_last_name, student_name, guardian_name]
+    drill_fields: [student_name_full, student_grade_level]
   }
 }

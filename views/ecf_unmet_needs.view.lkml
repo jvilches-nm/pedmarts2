@@ -11,6 +11,7 @@ view: ecf_unmet_needs {
 
   dimension: application_number {
     type: string
+    hidden: yes
     sql: ${TABLE}.app_number ;;
   }
 
