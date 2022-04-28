@@ -1,4 +1,5 @@
 view: ecf_unmet_needs {
+  label: "ECF Unmet Needs"
   sql_table_name: ecf.ecf_unmet_needs ;;
   drill_fields: [application_number]
 

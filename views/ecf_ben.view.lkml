@@ -1,5 +1,5 @@
 view: ecf_ben {
-  label: "Emergency Connectivity Fund"
+  label: "ECF"
   sql_table_name: ecf.ecf_ben ;;
   drill_fields: [ecf_district_name, ctc_category]
 

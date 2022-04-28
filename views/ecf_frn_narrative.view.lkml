@@ -1,4 +1,5 @@
 view: ecf_frn_narrative {
+  label: "ECF Funding Request Narrative"
   sql_table_name: ecf.ecf_frn_narrative ;;
   drill_fields: [id]
 

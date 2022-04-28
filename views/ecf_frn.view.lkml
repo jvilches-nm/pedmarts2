@@ -1,4 +1,5 @@
 view: ecf_frn {
+  label: "ECF Funding Request"
   sql_table_name: ecf.ecf_frn ;;
   drill_fields: [id]
 

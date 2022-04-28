@@ -27,11 +27,21 @@ explore: student_digital_resources {
  }
 
 explore: ecf_ben {
-  join: districts {
+  label: "Emergency Connectivity Funding"
+  join: locations {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${districts.district_code}=${ecf_ben.ecf_district_code} ;;
+    sql_on: ${locations.district_code}=${ecf_ben.ecf_district_code} and
+            ${locations.location_id} = ${ecf_ben.ecf_location_code} and
+            ${locations.school_year}='2021-2022';;
   }
+
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${districts.district_code}=${ecf_ben.ecf_district_code} and ${districts.school_year}='2021-2022';;
+  }
+
   join: ecf_application_data {
     relationship: many_to_one
     type: inner

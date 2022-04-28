@@ -1,4 +1,5 @@
 view: ecf_application_data {
+  label: "ECF Applications"
   sql_table_name: ecf.ecf_application_data ;;
   drill_fields: [application_number, total_funding_request]
 
