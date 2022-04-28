@@ -36,8 +36,8 @@ view: ecf_ben {
     sql: right('000' + cast(${TABLE}.location_id as varchar), 3) ;;
   }
 
-  dimension: ecf_student_count {
-    type: number
+  measure: ecf_student_count {
+    type: sum
     sql: ${TABLE}.student_count ;;
   }
 
