@@ -200,30 +200,30 @@ view: districts {
 
   dimension: martinez_yazzie_focus_district {
     type: string
-    sql: case when ${TABLE}.District_Code = '046' then "Yes"
-         case when ${TABLE}.District_Code = '001' then "Yes"
-         case when ${TABLE}.District_Code = '061' then "Yes"
-         case when ${TABLE}.District_Code = '062' then "Yes"
-         case when ${TABLE}.District_Code = '055' then "Yes"
-         case when ${TABLE}.District_Code = '019' then "Yes"
-         case when ${TABLE}.District_Code = '043' then "Yes"
-         case when ${TABLE}.District_Code = '088' then "Yes"
-         case when ${TABLE}.District_Code = '018' then "Yes"
-         case when ${TABLE}.District_Code = '063' then "Yes"
-         case when ${TABLE}.District_Code = '007' then "Yes"
-         case when ${TABLE}.District_Code = '017' then "Yes"
-         case when ${TABLE}.District_Code = '086' then "Yes"
-         case when ${TABLE}.District_Code = '075' then "Yes"
-         case when ${TABLE}.District_Code = '081' then "Yes"
-         case when ${TABLE}.District_Code = '077' then "Yes"
-         case when ${TABLE}.District_Code = '072' then "Yes"
-         case when ${TABLE}.District_Code = '083' then "Yes"
-         case when ${TABLE}.District_Code = '071' then "Yes"
-         case when ${TABLE}.District_Code = '023' then "Yes"
-         case when ${TABLE}.District_Code = '076' then "Yes"
-         case when ${TABLE}.District_Code = '049' then "Yes"
-         case when ${TABLE}.District_Code = '089' then "Yes"
-         else "No" end ;;
+    sql: case when ${TABLE}.District_Code = '046' then 'Yes'
+         case when ${TABLE}.District_Code = '001' then 'Yes'
+         case when ${TABLE}.District_Code = '061' then 'Yes'
+         case when ${TABLE}.District_Code = '062' then 'Yes'
+         case when ${TABLE}.District_Code = '055' then 'Yes'
+         case when ${TABLE}.District_Code = '019' then 'Yes'
+         case when ${TABLE}.District_Code = '043' then 'Yes'
+         case when ${TABLE}.District_Code = '088' then 'Yes'
+         case when ${TABLE}.District_Code = '018' then 'Yes'
+         case when ${TABLE}.District_Code = '063' then 'Yes'
+         case when ${TABLE}.District_Code = '007' then 'Yes'
+         case when ${TABLE}.District_Code = '017' then 'Yes'
+         case when ${TABLE}.District_Code = '086' then 'Yes'
+         case when ${TABLE}.District_Code = '075' then 'Yes'
+         case when ${TABLE}.District_Code = '081' then 'Yes'
+         case when ${TABLE}.District_Code = '077' then 'Yes'
+         case when ${TABLE}.District_Code = '072' then 'Yes'
+         case when ${TABLE}.District_Code = '083' then 'Yes'
+         case when ${TABLE}.District_Code = '071' then 'Yes'
+         case when ${TABLE}.District_Code = '023' then 'Yes'
+         case when ${TABLE}.District_Code = '076' then 'Yes'
+         case when ${TABLE}.District_Code = '049' then 'Yes'
+         case when ${TABLE}.District_Code = '089' then 'Yes'
+         else 'No' end ;;
   }
 
   measure: count {
