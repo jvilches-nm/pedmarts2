@@ -696,6 +696,60 @@ view: student_snapshot {
     sql: ${TABLE}.Years_in_US_Schools ;;
   }
 
+  dimension: martinez_yazzie_at_risk_student {
+    type: string
+    sql: case when ${economically_disadvantaged_status_code}=1 then 'Yes'
+              when ${economically_disadvantaged_status_code}=2 then 'Yes'
+              when ${economically_disadvantaged_status_code}=3 then 'Yes'
+              when ${food_program_eligibility_code}='F' then 'Yes'
+              when ${food_program_eligibility_code}='R' then 'Yes'
+              when ${english_proficiency_code}=1 then 'Yes'
+              when ${student_race_ethnicity_derived}="American Indian/Alaskan Native" then 'Yes'
+              when ${special_ed_status_code}="Y" then 'Yes'
+              else 'No' end;;
+  }
+
+  measure: at_risk_economically_disadvantaged_count {
+    type: sum
+    sql: case when ${economically_disadvantaged_status_code}=1 then 1
+              when ${economically_disadvantaged_status_code}=2 then 1
+              when ${economically_disadvantaged_status_code}=3 then 1
+              when ${food_program_eligibility_code}='F' then 1
+              when ${food_program_eligibility_code}='R' then 1
+              else 0 end;;
+  }
+
+  measure: at_risk_english_learner_count {
+    type: sum
+    sql: case when ${english_proficiency_code}=1 then 1
+              else 0 end;;
+  }
+
+  measure: at_risk_native_count {
+    type: sum
+    sql: case when ${student_race_ethnicity_derived}="American Indian/Alaskan Native" then 1
+      else 0 end;;
+  }
+
+  measure: at_risk_special_ed_count {
+    type: sum
+    sql: case when ${special_ed_status_code}="Y" then 1
+      else 0 end;;
+  }
+
+  measure: martinez_yazzie_at_risk_count {
+    type: sum
+    sql: case when ${economically_disadvantaged_status_code}=1 then 1
+              when ${economically_disadvantaged_status_code}=2 then 1
+              when ${economically_disadvantaged_status_code}=3 then 1
+              when ${food_program_eligibility_code}='F' then 1
+              when ${food_program_eligibility_code}='R' then 1
+              when ${english_proficiency_code}=1 then 1
+              when ${student_race_ethnicity_derived}="American Indian/Alaskan Native" then 1
+              when ${special_ed_status_code}="Y" then 1
+              else 0 end;;
+  }
+
   measure: count {
     type: count
     drill_fields: [student_name_full, student_grade_level]

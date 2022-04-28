@@ -146,6 +146,24 @@ view: student_digital_resources {
     sql: ${TABLE}.STUDENT_KEY ;;
   }
 
+  measure: no_internet_access_count {
+    type: sum
+    sql: case when ${internet_access_ind}='No' then 1 else 0 end;;
+  }
+
+  measure: inadequate_internet_access_count {
+    type: sum
+    sql: case when ${internet_access_ind}='Yes' and ${internet_perf_cd}='02' then 1
+              when ${internet_access_ind}='Yes' and ${internet_perf_cd}='03' then 1
+              else 0 end ;;
+  }
+
+  measure: no_district_provided_device_count {
+    type: sum
+    sql: case when ${prim_learn_device_type_cd}='10' then 1
+              else 0 end ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
