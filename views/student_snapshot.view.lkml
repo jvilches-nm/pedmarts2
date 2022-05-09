@@ -696,6 +696,16 @@ view: student_snapshot {
     sql: ${TABLE}.Years_in_US_Schools ;;
   }
 
+  dimension: IED_race {
+    type: string
+    sql: case when ${student_race_1_code}= "I" then "American Indian/Alaskan Native"
+              when ${student_race_2_code}="I" then "American Indian/Alaskan Native"
+              when ${student_race_3_code}="I" then "American Indian/Alaskan Native"
+              when ${student_race_4_code}="I" then "American Indian/Alaskan Native"
+              when ${student_race_5_code}="I" then "American Indian/Alaskan Native"
+              else ${student_race_ethnicity_derived} end;;
+  }
+
   dimension: martinez_yazzie_at_risk_student {
     type: string
     sql: case when ${economically_disadvantaged_status_code}=1 then 'Yes'

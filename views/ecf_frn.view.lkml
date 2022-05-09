@@ -1,12 +1,17 @@
 view: ecf_frn {
   label: "ECF Funding Request"
-  sql_table_name: ecf.ecf_frn ;;
-  drill_fields: [id]
+  derived_table: {
+     sql: select min(id) id, application_number, frn, service_type, total_qty, total_cost, product_type, product_make, product_model, connection_type, download, upload, firewall_included
+from ecf.ecf_frn
+group by
+application_number, frn, service_type, total_qty, total_cost, product_type, product_make, product_model, connection_type, download, upload, firewall_included ;;
+  }
+
+  drill_fields: [application_number, frn, service_type, total_qty, total_cost]
 
   dimension: id {
     primary_key: yes
     hidden: yes
-    type: number
     sql: ${TABLE}.id ;;
   }
 
