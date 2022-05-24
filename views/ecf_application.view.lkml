@@ -27,14 +27,14 @@ view: ecf_application {
     sql: ${TABLE}.application_number ;;
   }
 
-  dimension: application_total_funding_request_amount {
-    type: number
+  measure: application_total_funding_request_amount {
+    type: sum
     value_format: "$#,##0.00"
     sql: ${TABLE}.application_total_funding_request_amount ;;
   }
 
-  dimension: application_total_student_count {
-    type: number
+  measure: application_total_student_count {
+    type: max
     sql: ${TABLE}.application_total_student_count ;;
   }
 
