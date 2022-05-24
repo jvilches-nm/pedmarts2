@@ -1,5 +1,6 @@
 view: ecf_funding_line_item {
   sql_table_name: ecf.ecf_funding_line_item ;;
+  label: "ECF Funding Request Line Item"
 
   dimension: bandwidth_download {
     type: number
@@ -23,6 +24,7 @@ view: ecf_funding_line_item {
 
   dimension: funding_item_total_cost {
     type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.funding_item_total_cost ;;
   }
 
@@ -45,6 +47,7 @@ view: ecf_funding_line_item {
 
   dimension: monthly_unit_cost {
     type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.monthly_unit_cost ;;
   }
 
@@ -65,6 +68,7 @@ view: ecf_funding_line_item {
 
   dimension: one_time_unit_cost {
     type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.one_time_unit_cost ;;
   }
 

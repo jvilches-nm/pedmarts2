@@ -1,5 +1,6 @@
 view: ecf_billed_entity {
   sql_table_name: ecf.ecf_billed_entity ;;
+  label: "ECF Billed Entity"
 
   dimension: billed_entity_number {
     type: number

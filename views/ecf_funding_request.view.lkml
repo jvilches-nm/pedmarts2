@@ -1,6 +1,6 @@
 view: ecf_funding_request {
   sql_table_name: ecf.ecf_funding_request ;;
-
+  label: "ECF Funding Request"
   dimension: application_number {
     type: string
     hidden: yes
@@ -35,11 +35,13 @@ view: ecf_funding_request {
 
   dimension: funding_total_amount_approved {
     type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.funding_total_amount_approved ;;
   }
 
   dimension: funding_total_amount_requested {
     type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.funding_total_amount_requested ;;
   }
 

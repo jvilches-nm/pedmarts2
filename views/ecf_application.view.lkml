@@ -1,5 +1,6 @@
 view: ecf_application {
   sql_table_name: ecf.ecf_application ;;
+  label: "ECF Application"
 
   dimension_group: application_certified {
     type: time
@@ -28,6 +29,7 @@ view: ecf_application {
 
   dimension: application_total_funding_request_amount {
     type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.application_total_funding_request_amount ;;
   }
 
