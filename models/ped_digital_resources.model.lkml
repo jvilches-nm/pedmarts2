@@ -2,6 +2,20 @@ connection: "dm02"
 
 include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 
+explore: student_snapshot {
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.location_key} = ${districts.location_key} and
+      ${student_snapshot.school_year_end_date} = ${districts.school_year_date} ;;
+  }
+
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.district_key} = ${districts.district_key} and
+      ${student_snapshot.school_year_end_date} = ${districts.school_year_date};;
+  }}
 
 explore: student_digital_resources {
    join: student_snapshot {
@@ -26,41 +40,36 @@ explore: student_digital_resources {
    }
  }
 
-explore: ecf_ben {
+explore: ecf_billed_entity {
   label: "Emergency Connectivity Funding"
   join: locations {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${locations.district_code}=${ecf_ben.ecf_district_code} and
-            ${locations.location_id} = ${ecf_ben.ecf_location_code} and
+    sql_on: ${locations.district_code}=${ecf_billed_entity.district_id} and
+            ${locations.location_id} = ${ecf_billed_entity.location_id} and
             ${locations.school_year}='2021-2022';;
   }
 
   join: districts {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${districts.district_code}=${ecf_ben.ecf_district_code} and ${districts.school_year}='2021-2022';;
+    sql_on: ${districts.district_code}=${ecf_billed_entity.district_id} and ${districts.school_year}='2021-2022';;
   }
 
-  join: ecf_application_data {
+  join: ecf_application {
     relationship: many_to_one
     type: inner
-    sql_on: ${ecf_application_data.ben}=${ecf_ben.ben} ;;
+    sql_on: ${ecf_application.billed_entity_number}=${ecf_billed_entity.billed_entity_number} ;;
   }
-  join: ecf_unmet_needs {
+
+  join: ecf_funding_request {
     relationship: many_to_one
     type: inner
-    sql_on: ${ecf_unmet_needs.application_number} = ${ecf_application_data.application_number} ;;
+    sql_on: ${ecf_funding_request.application_number}=${ecf_application.application_number} ;;
   }
-  join: ecf_frn {
+  join: ecf_funding_line_item {
     relationship: many_to_one
     type: inner
-    sql_on: ${ecf_frn.application_number}=${ecf_application_data.application_number} ;;
-  }
-  join: ecf_frn_narrative {
-    relationship: many_to_one
-    type: inner
-    sql_on: ${ecf_frn_narrative.application_number}=${ecf_frn.application_number} and
-            ${ecf_frn_narrative.frn}=${ecf_frn.frn};;
+    sql_on: ${ecf_funding_request.funding_request_number}=${ecf_funding_line_item.funding_request_number};;
   }
 }
