@@ -15,12 +15,12 @@ explore: student_snapshot {
     relationship: many_to_one
     type: inner
     sql_on: ${student_snapshot.district_key} = ${districts.district_key} and
-            ${student_snapshot.period_key} = ${districts.period_key} ;;
+            ${student_snapshot.school_year_end_date} = ${districts.school_year_date} ;;
   }
   join: locations {
     relationship: many_to_one
     type: inner
     sql_on: ${student_snapshot.location_key} = ${locations.location_key} and
-            ${student_snapshot.period_key} = ${locations.period_key} ;;
+            ${student_snapshot.school_year_end_date} = ${locations.school_year_date} ;;
   }
 }
