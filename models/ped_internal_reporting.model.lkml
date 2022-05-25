@@ -14,13 +14,13 @@ explore: student_snapshot {
   join: districts {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.district_key} = ${districts.district_key}
+    sql_on: ${student_snapshot.district_key} = ${districts.district_key} and
             ${student_snapshot.period_key} = ${districts.period_key} ;;
   }
   join: locations {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.location_key} = ${locations.location_key}
+    sql_on: ${student_snapshot.location_key} = ${locations.location_key} and
             ${student_snapshot.period_key} = ${locations.period_key} ;;
   }
 }
