@@ -22,6 +22,32 @@ view: ecf_funding_request {
     sql: ${TABLE}.funding_request_nickname ;;
   }
 
+  dimension: teacher_request {
+    type: string
+    description: "Funding request is for teachers - Yes/No"
+    sql: case when funding_request_nickname LIKE "%teacher%" then "Yes"
+              when funding_request_nickname LIKE "%instructor%" then "Yes"
+              when funding_request_nickname LIKE "%educator%" then "Yes"
+              when funding_request_nickname LIKE "%professor%" then "Yes"
+              when funding_request_nickname LIKE "%faculty%" then "Yes"
+              when funding_request_nickname LIKE "%staff%" then "Yes"
+              when funding_narrative LIKE "%teacher%" then "Yes"
+              when funding_narrative LIKE "%instructor%" then "Yes"
+              when funding_narrative LIKE "%educator%" then "Yes"
+              when funding_narrative LIKE "%professor%" then "Yes"
+              when funding_narrative LIKE "%faculty%" then "Yes"
+              when funding_narrative LIKE "%staff%" then "Yes"
+              else "No" end ;;
+  }
+
+  dimension: student_request {
+    type: string
+    description: "Funding request is for students - Yes/No"
+    sql:  case when funding_request_nickname LIKE "%student%" then "Yes"
+               when funding_narrative like "%student%" then "Yes"
+               else "No" end;;
+  }
+
   dimension: funding_request_number {
     type: string
     primary_key: yes
@@ -33,14 +59,14 @@ view: ecf_funding_request {
     sql: ${TABLE}.funding_request_status ;;
   }
 
-  dimension: funding_total_amount_approved {
-    type: number
+  measure: funding_total_amount_approved {
+    type: sum
     value_format: "$#,##0.00"
     sql: ${TABLE}.funding_total_amount_approved ;;
   }
 
-  dimension: funding_total_amount_requested {
-    type: number
+  measure: funding_total_amount_requested {
+    type: sum
     value_format: "$#,##0.00"
     sql: ${TABLE}.funding_total_amount_requested ;;
   }

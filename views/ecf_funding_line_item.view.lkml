@@ -22,8 +22,8 @@ view: ecf_funding_line_item {
     sql: ${TABLE}.firewall ;;
   }
 
-  dimension: funding_item_total_cost {
-    type: number
+  measure: funding_item_total_cost {
+    type: sum
     value_format: "$#,##0.00"
     sql: ${TABLE}.funding_item_total_cost ;;
   }
@@ -40,13 +40,13 @@ view: ecf_funding_line_item {
     sql: ${TABLE}.funding_request_number ;;
   }
 
-  dimension: monthly_quantity {
-    type: number
+  measure: monthly_quantity {
+    type: sum
     sql: ${TABLE}.monthly_quantity ;;
   }
 
-  dimension: monthly_unit_cost {
-    type: number
+  measure: monthly_unit_cost {
+    type: sum
     value_format: "$#,##0.00"
     sql: ${TABLE}.monthly_unit_cost ;;
   }
@@ -66,14 +66,14 @@ view: ecf_funding_line_item {
     sql: ${TABLE}.network_equipment_type ;;
   }
 
-  dimension: one_time_unit_cost {
-    type: number
+  measure: one_time_unit_cost {
+    type: sum
     value_format: "$#,##0.00"
     sql: ${TABLE}.one_time_unit_cost ;;
   }
 
-  dimension: one_time_unit_quantity {
-    type: number
+  measure: one_time_unit_quantity {
+    type: sum
     sql: ${TABLE}.one_time_unit_quantity ;;
   }
 
