@@ -712,11 +712,11 @@ view: student_snapshot {
 
   dimension: student_race_indian_eduction {
     type: string
-    sql: case when ${student_race_1_code}='I' then "American Indian/Alaskan Native"
-              when ${student_race_2_code}='I' then "American Indian/Alaskan Native"
-              when ${student_race_3_code}='I' then "American Indian/Alaskan Native"
-              when ${student_race_4_code}='I' then "American Indian/Alaskan Native"
-              when ${student_race_5_code}='I' then "American Indian/Alaskan Native"
+    sql: case when ${student_race_1_code}='I' then 'American Indian/Alaskan Native'
+              when ${student_race_2_code}='I' then 'American Indian/Alaskan Native'
+              when ${student_race_3_code}='I' then 'American Indian/Alaskan Native'
+              when ${student_race_4_code}='I' then 'American Indian/Alaskan Native'
+              when ${student_race_5_code}='I' then 'American Indian/Alaskan Native'
               else ${student_race_ethnicity_derived} end;;
   }
 
@@ -729,7 +729,7 @@ view: student_snapshot {
               when ${food_program_eligibility_code}='R' then 'Yes'
               when ${english_proficiency_code}=1 then 'Yes'
               when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes'
-              when ${special_ed_status_code}="Y" then 'Yes'
+              when ${special_ed_status_code}='Y' then 'Yes'
               else 'No' end;;
   }
 
@@ -757,7 +757,7 @@ view: student_snapshot {
 
   measure: at_risk_special_ed_count {
     type: sum
-    sql: case when ${special_ed_status_code}="Y" then 1
+    sql: case when ${special_ed_status_code}='Y' then 1
       else 0 end;;
   }
 
