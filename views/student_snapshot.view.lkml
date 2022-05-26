@@ -722,12 +722,12 @@ view: student_snapshot {
 
   dimension: at_risk_student_martinez_yazzie {
     type: string
-    sql: case when ${economically_disadvantaged_status_code}=1 then 'Yes'
-              when ${economically_disadvantaged_status_code}=2 then 'Yes'
-              when ${economically_disadvantaged_status_code}=3 then 'Yes'
+    sql: case when ${economically_disadvantaged_status_code}='1' then 'Yes'
+              when ${economically_disadvantaged_status_code}='2' then 'Yes'
+              when ${economically_disadvantaged_status_code}='3' then 'Yes'
               when ${food_program_eligibility_code}='F' then 'Yes'
               when ${food_program_eligibility_code}='R' then 'Yes'
-              when ${english_proficiency_code}=1 then 'Yes'
+              when ${english_proficiency_code}='1' then 'Yes'
               when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes'
               when ${special_ed_status_code}='Y' then 'Yes'
               else 'No' end;;
@@ -735,9 +735,9 @@ view: student_snapshot {
 
   measure: at_risk_economically_disadvantaged_count {
     type: sum
-    sql: case when ${economically_disadvantaged_status_code}=1 then 1
-              when ${economically_disadvantaged_status_code}=2 then 1
-              when ${economically_disadvantaged_status_code}=3 then 1
+    sql: case when ${economically_disadvantaged_status_code}='1' then 1
+              when ${economically_disadvantaged_status_code}='2' then 1
+              when ${economically_disadvantaged_status_code}='3' then 1
               when ${food_program_eligibility_code}='F' then 1
               when ${food_program_eligibility_code}='R' then 1
               else 0 end;;
@@ -745,7 +745,7 @@ view: student_snapshot {
 
   measure: at_risk_english_learner_count {
     type: sum
-    sql: case when ${english_proficiency_code}=1 then 1
+    sql: case when ${english_proficiency_code}='1' then 1
               else 0 end;;
   }
 
@@ -763,12 +763,12 @@ view: student_snapshot {
 
   measure: at_risk_martinez_yazzie_count {
     type: sum
-    sql: case when ${economically_disadvantaged_status_code}=1 then 1
-              when ${economically_disadvantaged_status_code}=2 then 1
-              when ${economically_disadvantaged_status_code}=3 then 1
+    sql: case when ${economically_disadvantaged_status_code}='1' then 1
+              when ${economically_disadvantaged_status_code}='2' then 1
+              when ${economically_disadvantaged_status_code}='3' then 1
               when ${food_program_eligibility_code}='F' then 1
               when ${food_program_eligibility_code}='R' then 1
-              when ${english_proficiency_code}=1 then 1
+              when ${english_proficiency_code}='1' then 1
               when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1
               when ${special_ed_status_code}='Y' then 1
               else 0 end;;
