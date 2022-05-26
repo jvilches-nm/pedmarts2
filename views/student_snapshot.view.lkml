@@ -728,7 +728,7 @@ view: student_snapshot {
               when ${food_program_eligibility_code}='F' then 'Yes'
               when ${food_program_eligibility_code}='R' then 'Yes'
               when ${english_proficiency_code}=1 then 'Yes'
-              when ${student_race_ethnicity_derived}="American Indian/Alaskan Native" then 'Yes'
+              when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes'
               when ${special_ed_status_code}="Y" then 'Yes'
               else 'No' end;;
   }
@@ -751,7 +751,7 @@ view: student_snapshot {
 
   measure: at_risk_native_count {
     type: sum
-    sql: case when ${student_race_ethnicity_derived}="American Indian/Alaskan Native" then 1
+    sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1
       else 0 end;;
   }
 
@@ -769,7 +769,7 @@ view: student_snapshot {
               when ${food_program_eligibility_code}='F' then 1
               when ${food_program_eligibility_code}='R' then 1
               when ${english_proficiency_code}=1 then 1
-              when ${student_race_ethnicity_derived}="American Indian/Alaskan Native" then 1
+              when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1
               when ${special_ed_status_code}="Y" then 1
               else 0 end;;
   }
