@@ -712,11 +712,11 @@ view: student_snapshot {
 
   dimension: student_race_indian_eduction {
     type: string
-    sql: case when ${student_race_1_code}= "I" then "American Indian/Alaskan Native"
-              when ${student_race_2_code}="I" then "American Indian/Alaskan Native"
-              when ${student_race_3_code}="I" then "American Indian/Alaskan Native"
-              when ${student_race_4_code}="I" then "American Indian/Alaskan Native"
-              when ${student_race_5_code}="I" then "American Indian/Alaskan Native"
+    sql: case when ${student_race_1_code}='I' then "American Indian/Alaskan Native"
+              when ${student_race_2_code}='I' then "American Indian/Alaskan Native"
+              when ${student_race_3_code}='I' then "American Indian/Alaskan Native"
+              when ${student_race_4_code}='I' then "American Indian/Alaskan Native"
+              when ${student_race_5_code}='I' then "American Indian/Alaskan Native"
               else ${student_race_ethnicity_derived} end;;
   }
 
@@ -770,17 +770,17 @@ view: student_snapshot {
               when ${food_program_eligibility_code}='R' then 1
               when ${english_proficiency_code}=1 then 1
               when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1
-              when ${special_ed_status_code}="Y" then 1
+              when ${special_ed_status_code}='Y' then 1
               else 0 end;;
   }
 
   measure: student_race_indian_eduction_count {
     type: sum
-    sql: case when ${student_race_1_code}= "I" then 1
-              when ${student_race_2_code}="I" then 1
-              when ${student_race_3_code}="I" then 1
-              when ${student_race_4_code}="I" then 1
-              when ${student_race_5_code}="I" then 1
+    sql: case when ${student_race_1_code}='I' then 1
+              when ${student_race_2_code}='I' then 1
+              when ${student_race_3_code}='I' then 1
+              when ${student_race_4_code}='I' then 1
+              when ${student_race_5_code}='I' then 1
               else 0 end;;
   }
 

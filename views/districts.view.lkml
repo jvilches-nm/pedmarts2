@@ -223,8 +223,8 @@ view: districts {
     type: string
     sql: case when ${TABLE}.District_Code in ('001', '064', '061', '066', '067', '062', '054', '055',
                                               '065', '043', '088', '056', '063', '017', '086', '075',
-                                              '077', '072', '083', '036', '071', '076', '047', '089') then "Yes"
-              else "No" end;;
+                                              '077', '072', '083', '036', '071', '076', '047', '089') then 'Yes'
+              else 'No' end;;
   }
 
   dimension: martinez_yazzie_focus_district {

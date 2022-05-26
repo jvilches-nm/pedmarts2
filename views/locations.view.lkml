@@ -12,7 +12,7 @@ view: locations {
   dimension: alternative_school {
     type: string
     description: "Location is an alternative shcool - Yes/No"
-    sql: case when ${TABLE}.Alternative_School_Indicator='Y' then "Yes" else "No" end ;;
+    sql: case when ${TABLE}.Alternative_School_Indicator='Y' then 'Yes' else 'No' end ;;
   }
 
   dimension: ayp_additional_indicator_type {
@@ -470,12 +470,12 @@ view: locations {
 
   dimension: indian_education_focus_charter {
     type: string
-    sql: case when ${TABLE}.District_Code in ('573', '578', '568', '552') then "Yes"
-              when ${TABLE}.location_name_long='DREAM DINE' then "Yes"
-              when ${TABLE}.location_name_long='GORDON BERNELL CHARTER' then "Yes"
-              when ${TABLE}.location_name_long='SAN DIEGO RIVERSIDE' then "Yes"
-              when ${TABLE}.location_name_long='VISTA GRANDE HIGH SCHOOL  ' then "Yes"
-              else "No" end;;
+    sql: case when ${TABLE}.District_Code in ('573', '578', '568', '552') then 'Yes'
+              when ${TABLE}.location_name_long='DREAM DINE' then 'Yes'
+              when ${TABLE}.location_name_long='GORDON BERNELL CHARTER' then 'Yes'
+              when ${TABLE}.location_name_long='SAN DIEGO RIVERSIDE' then 'Yes'
+              when ${TABLE}.location_name_long='VISTA GRANDE HIGH SCHOOL' then 'Yes'
+              else 'No' end;;
   }
 
   measure: count {
