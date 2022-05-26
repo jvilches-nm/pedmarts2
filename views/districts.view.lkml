@@ -4,6 +4,7 @@ view: districts {
 
   dimension: nces_district_id {
     type: string
+    description: "NCES District ID"
     sql: ${TABLE}.NCES_District_ID ;;
   }
 
@@ -14,11 +15,13 @@ view: districts {
 
   dimension: charter_status_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Charter_Status_Code ;;
   }
 
   dimension: district_agency_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Agency_Type ;;
   }
 
@@ -45,7 +48,7 @@ view: districts {
     sql: cast(${TABLE}.DISTRICT_KEY as varchar) + "-" + cast(${TABLE}.PERIOD_KEY as varchar) ;;
   }
 
-  dimension: district_legal_name {
+  dimension: district_name_legal {
     type: string
     sql: ${TABLE}.District_Legal_Name ;;
   }
@@ -78,6 +81,7 @@ view: districts {
 
   dimension: district_location_state_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Location_State_Name ;;
   }
 
@@ -86,28 +90,43 @@ view: districts {
     sql: ${TABLE}.District_Location_Zip_Code ;;
   }
 
+  dimension: district_location_address_full {
+    type: string
+    sql: ${TABLE}.District_Location_Address_1+", "+ ${TABLE}.District_Location_City+", "+ ${TABLE}.District_Location_State_Code+" "+${TABLE}.District_Location_Zip_Code;;
+  }
+
+  dimension: district_mailing_address_full {
+    type: string
+    sql: ${TABLE}.District_Mailing_Address_1+", "+ ${TABLE}.District_Mailing_City+", "+ ${TABLE}.District_Mailing_State_Code+" "+${TABLE}.District_Mailing_Zip_Code;;
+  }
+
   dimension: district_mailing_address_1 {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Mailing_Address_1 ;;
   }
 
   dimension: district_mailing_city {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Mailing_City ;;
   }
 
   dimension: district_mailing_state_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Mailing_State_Code ;;
   }
 
   dimension: district_mailing_state_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Mailing_State_Name ;;
   }
 
   dimension: district_mailing_zip_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Mailing_Zip_Code ;;
   }
 
@@ -139,10 +158,11 @@ view: districts {
 
   dimension: district_street_address {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Street_Address ;;
   }
 
-  dimension: full_district_name {
+  dimension: district_name_full {
     type: string
     sql: ${TABLE}.Full_District_Name ;;
   }
@@ -195,7 +215,16 @@ view: districts {
 
   dimension: state_district_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.State_District_Code ;;
+  }
+
+  dimension: indian_education_focus_district {
+    type: string
+    sql: case when ${TABLE}.District_Code in ('001', '064', '061', '066', '067', '062', '054', '055',
+                                              '065', '043', '088', '056', '063', '017', '086', '075',
+                                              '077', '072', '083', '036', '071', '076', '047', '089') then "Yes"
+              else "No" end;;
   }
 
   dimension: martinez_yazzie_focus_district {

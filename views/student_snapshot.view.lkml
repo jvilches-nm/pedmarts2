@@ -166,7 +166,7 @@ view: student_snapshot {
     sql: ${TABLE}.Foreign_Exchange_Student ;;
   }
 
-  dimension: foster_care_ind {
+  dimension: foster_care {
     type: string
     sql: ${TABLE}.FOSTER_CARE_IND ;;
   }
@@ -184,16 +184,19 @@ view: student_snapshot {
 
   dimension: grade_01_location_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Grade_01_Location_ID ;;
   }
 
   dimension: grade_02_location_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Grade_02_Location_ID ;;
   }
 
   dimension: grade_k_location_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Grade_K_Location_ID ;;
   }
 
@@ -214,6 +217,7 @@ view: student_snapshot {
 
   dimension: graduation_year_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Graduation_Year_Code ;;
   }
 
@@ -231,11 +235,13 @@ view: student_snapshot {
 
   dimension: guardian_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Guardian_Name ;;
   }
 
   dimension: guardian_name_alternate {
     type: string
+    hidden: yes
     sql: ${TABLE}.Guardian_Name_Alternate ;;
   }
 
@@ -250,7 +256,7 @@ view: student_snapshot {
     sql: ${TABLE}.Home_Language_Code ;;
   }
 
-  dimension: home_schooled_ind {
+  dimension: home_schooled {
     type: string
     sql: ${TABLE}.Home_Schooled_Ind ;;
   }
@@ -339,10 +345,11 @@ view: student_snapshot {
 
   dimension: parental_status_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Parental_Status_Code ;;
   }
 
-  dimension: parental_status_desc {
+  dimension: parental_status {
     type: string
     sql: ${TABLE}.Parental_Status_Desc ;;
   }
@@ -403,7 +410,6 @@ view: student_snapshot {
     description: "The two years that the school year spans"
     sql: cast(YEAR(${TABLE}.School_Year)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.School_Year) as varchar) ;;
   }
-
 
   dimension: section_504_status {
     type: string
@@ -580,6 +586,7 @@ view: student_snapshot {
 
   dimension: student_race_1_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_Race_1_Ethnicity_Code ;;
   }
 
@@ -590,6 +597,7 @@ view: student_snapshot {
 
   dimension: student_race_2_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_Race_2_Code ;;
   }
 
@@ -600,6 +608,7 @@ view: student_snapshot {
 
   dimension: student_race_3_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_Race_3_Code ;;
   }
 
@@ -610,6 +619,7 @@ view: student_snapshot {
 
   dimension: student_race_4_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_Race_4_Code ;;
   }
 
@@ -620,6 +630,7 @@ view: student_snapshot {
 
   dimension: student_race_5_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_Race_5_Code ;;
   }
 
@@ -635,6 +646,7 @@ view: student_snapshot {
 
   dimension: student_race_ethnicity_subgroup_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_Race_Ethnicity_Subgroup_Code ;;
   }
 
@@ -678,6 +690,7 @@ view: student_snapshot {
   dimension: student_snapshot_key {
     type: number
     primary_key: yes
+    hidden: yes
     sql: ${TABLE}.Student_Snapshot_Key ;;
   }
 
@@ -688,6 +701,7 @@ view: student_snapshot {
 
   dimension: student_special_program_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_Special_Program_Code ;;
   }
 
@@ -696,7 +710,7 @@ view: student_snapshot {
     sql: ${TABLE}.Years_in_US_Schools ;;
   }
 
-  dimension: IED_race {
+  dimension: student_race_indian_eduction {
     type: string
     sql: case when ${student_race_1_code}= "I" then "American Indian/Alaskan Native"
               when ${student_race_2_code}="I" then "American Indian/Alaskan Native"
@@ -706,7 +720,7 @@ view: student_snapshot {
               else ${student_race_ethnicity_derived} end;;
   }
 
-  dimension: martinez_yazzie_at_risk_student {
+  dimension: at_risk_student_martinez_yazzie {
     type: string
     sql: case when ${economically_disadvantaged_status_code}=1 then 'Yes'
               when ${economically_disadvantaged_status_code}=2 then 'Yes'
@@ -747,7 +761,7 @@ view: student_snapshot {
       else 0 end;;
   }
 
-  measure: martinez_yazzie_at_risk_count {
+  measure: at_risk_martinez_yazzie_count {
     type: sum
     sql: case when ${economically_disadvantaged_status_code}=1 then 1
               when ${economically_disadvantaged_status_code}=2 then 1
@@ -759,6 +773,17 @@ view: student_snapshot {
               when ${special_ed_status_code}="Y" then 1
               else 0 end;;
   }
+
+  measure: student_race_indian_eduction_count {
+    type: sum
+    sql: case when ${student_race_1_code}= "I" then 1
+              when ${student_race_2_code}="I" then 1
+              when ${student_race_3_code}="I" then 1
+              when ${student_race_4_code}="I" then 1
+              when ${student_race_5_code}="I" then 1
+              else 0 end;;
+  }
+
 
   measure: count {
     type: count

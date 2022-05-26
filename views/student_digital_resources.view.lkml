@@ -13,22 +13,23 @@ view: student_digital_resources {
     sql: ${TABLE}.DEVICE_ACCESS_CD ;;
   }
 
-  dimension: device_access_desc {
+  dimension: device_access {
     type: string
     sql: ${TABLE}.DEVICE_ACCESS_DESC ;;
   }
 
   dimension: device_provider_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.DEVICE_PROVIDER_CD ;;
   }
 
-  dimension: device_provider_desc {
+  dimension: device_provider {
     type: string
     sql: ${TABLE}.DEVICE_PROVIDER_DESC ;;
   }
 
-  dimension: device_sufficiency_ind {
+  dimension: device_sufficiency {
     type: string
     sql: ${TABLE}.DEVICE_SUFFICIENCY_IND ;;
   }
@@ -41,35 +42,39 @@ view: student_digital_resources {
 
   dimension: internet_access_barrier_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.INTERNET_ACCESS_BARRIER_CD ;;
   }
 
-  dimension: internet_access_barrier_desc {
+  dimension: internet_access_barrier {
     type: string
     sql: ${TABLE}.INTERNET_ACCESS_BARRIER_DESC ;;
   }
 
-  dimension: internet_access_ind {
+  dimension: internet_access {
     type: string
+    description: "Student has internet access - Yes/No"
     sql: ${TABLE}.INTERNET_ACCESS_IND ;;
   }
 
   dimension: internet_access_type_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.INTERNET_ACCESS_TYPE_CD ;;
   }
 
-  dimension: internet_access_type_desc {
+  dimension: internet_access_type {
     type: string
     sql: ${TABLE}.INTERNET_ACCESS_TYPE_DESC ;;
   }
 
   dimension: internet_perf_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.INTERNET_PERF_CD ;;
   }
 
-  dimension: internet_perf_desc {
+  dimension: internet_performance {
     type: string
     sql: ${TABLE}.INTERNET_PERF_DESC ;;
   }
@@ -103,15 +108,17 @@ view: student_digital_resources {
 
   dimension: plan_execution_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.PLAN_EXECUTION_ID ;;
   }
 
   dimension: prim_learn_device_type_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.PRIM_LEARN_DEVICE_TYPE_CD ;;
   }
 
-  dimension: prim_learn_device_type_desc {
+  dimension: primary_learning_device_type {
     type: string
     sql: ${TABLE}.PRIM_LEARN_DEVICE_TYPE_DESC ;;
   }
@@ -122,12 +129,13 @@ view: student_digital_resources {
     sql: ${TABLE}.REPORTING_DATE_PERIOD_KEY ;;
   }
 
-  dimension: school_provided_device_ind {
+  dimension: school_provided_device {
     type: string
+    description: "Student has a school-provided device - Yes/No"
     sql: ${TABLE}.SCHOOL_PROVIDED_DEVICE_IND ;;
   }
 
-  dimension: school_year_date {
+  dimension: school_year_end_date {
     type: date
     hidden: yes
     sql: ${TABLE}.SCHOOL_YEAR ;;
@@ -148,13 +156,13 @@ view: student_digital_resources {
 
   measure: no_internet_access_count {
     type: sum
-    sql: case when ${internet_access_ind}='No' then 1 else 0 end;;
+    sql: case when ${internet_access}='No' then 1 else 0 end;;
   }
 
   measure: inadequate_internet_access_count {
     type: sum
-    sql: case when ${internet_access_ind}='Yes' and ${internet_perf_cd}='02' then 1
-              when ${internet_access_ind}='Yes' and ${internet_perf_cd}='03' then 1
+    sql: case when ${internet_access}='Yes' and ${internet_perf_cd}='02' then 1
+              when ${internet_access}='Yes' and ${internet_perf_cd}='03' then 1
               else 0 end ;;
   }
 

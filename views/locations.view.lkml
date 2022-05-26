@@ -468,6 +468,16 @@ view: locations {
     sql: ${TABLE}.Virtual_Location_Code ;;
   }
 
+  dimension: indian_education_focus_charter {
+    type: string
+    sql: case when ${TABLE}.District_Code in ('573', '578', '568', '552') then "Yes"
+              when ${TABLE}.location_name_long='DREAM DINE' then "Yes"
+              when ${TABLE}.location_name_long='GORDON BERNELL CHARTER' then "Yes"
+              when ${TABLE}.location_name_long='SAN DIEGO RIVERSIDE' then "Yes"
+              when ${TABLE}.location_name_long='VISTA GRANDE HIGH SCHOOL  ' then "Yes"
+              else "No" end;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
