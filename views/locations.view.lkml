@@ -1,49 +1,71 @@
 view: locations {
   sql_table_name: stars.locations ;;
-  drill_fields: [school_category, school_level, common_location_name]
+  drill_fields: [nces_school_id,
+      district_school_code,
+      location_name_full,
+      school_type,
+      school_level,
+      grade_level_range,
+      school_year,
+      location_status]
 
-  dimension: prior_state_location_id {
+  dimension: alternative_school {
     type: string
-    sql: ${TABLE}.Prior_State_Location_ID ;;
-  }
-
-  dimension: alternative_school_indicator {
-    type: string
-    sql: ${TABLE}.Alternative_School_Indicator ;;
+    description: "Location is an alternative shcool - Yes/No"
+    sql: case when ${TABLE}.Alternative_School_Indicator='Y' then "Yes" else "No" end ;;
   }
 
   dimension: ayp_additional_indicator_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.AYP_Additional_Indicator_Type ;;
   }
 
   dimension: ayp_grade_level_range {
     type: string
+    hidden: yes
     sql: ${TABLE}.AYP_Grade_Level_Range ;;
   }
 
-  dimension: boarding_school_indicator {
+  dimension: boarding_school {
     type: string
+    description: "Location is a boarding school - yes/no"
     sql: ${TABLE}.Boarding_School_Indicator ;;
   }
 
   dimension: charter_school {
     type: string
-    sql: ${TABLE}.Charter_School ;;
+    description: "School is a charter school - yes/no"
+    sql: case when ${TABLE}.Charter_School='Y' then 'Yes' else 'No' end ;;
+  }
+
+  dimension: school_type {
+    type: string
+    description: "School type - District School, State Charter, District Charter, Off-Site Location, BIA School, etc."
+    sql: case when ${TABLE}.Charter_School='Y' then
+                   case when ${district_code}>='500' then 'State Charter' else 'District Charter' end
+              else
+                   case when ${location_organization_type}='Public' then 'District School'
+                        when ${location_organization_type}='Off-site' then 'Off-Site Location'
+                        else ${location_organization_type}+' School' end
+          end;;
+
   }
 
   dimension: charter_school_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Charter_School_Code ;;
   }
 
-  dimension: common_location_name {
+  dimension: location_name_common {
     type: string
     sql: ${TABLE}.Common_Location_Name ;;
   }
 
   dimension: district_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 
@@ -52,13 +74,19 @@ view: locations {
     sql: ${TABLE}.District_Code + '-' + ${TABLE}.location_id ;;
   }
 
+  dimension: prior_district_school_code {
+    type: string
+    sql: case when ${TABLE}.Prior_State_District_ID is not null then ${TABLE}.Prior_State_District_ID +'-'+${TABLE}.Prior_State_Location_ID
+         else ${TABLE}.Prior_State_District_ID end;;
+  }
+
   dimension: district_key {
     type: number
     hidden: yes
     sql: ${TABLE}.DISTRICT_KEY ;;
   }
 
-  dimension: full_location_name {
+  dimension: location_name_full {
     type: string
     sql: ${TABLE}.Full_Location_Name ;;
   }
@@ -68,18 +96,26 @@ view: locations {
     sql: ${TABLE}.Grade_Level_Range ;;
   }
 
-  dimension: loc_county_name {
+  dimension: location_county_name {
     type: string
     sql: ${TABLE}.Loc_County_Name ;;
   }
 
+  dimension: location_address_full {
+    type: string
+    description: "Full street address, city, state, zip"
+    sql: ${TABLE}.location_street_address +", "+ ${TABLE}.Location_Address_City +', '+ ${TABLE}.Location_Address_State_Code +' '+${TABLE}.Location_Address_Zip_Code;;
+  }
+
   dimension: location_address_1 {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Address_1 ;;
   }
 
   dimension: location_address_2 {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Address_2 ;;
   }
 
@@ -100,36 +136,43 @@ view: locations {
 
   dimension: location_administrator_email_address {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Administrator_Email_Address ;;
   }
 
   dimension: location_administrator_first_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Administrator_First_Name ;;
   }
 
   dimension: location_administrator_last_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Administrator_Last_Name ;;
   }
 
   dimension: location_administrator_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Administrator_Name ;;
   }
 
   dimension: location_administrator_position_title {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Administrator_Position_Title ;;
   }
 
   dimension: location_close {
     type: date
+    description: "Date location closed"
     sql: ${TABLE}.Location_Close_Date ;;
   }
 
   dimension: location_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_ID ;;
   }
 
@@ -152,13 +195,14 @@ view: locations {
     sql: ${TABLE}.Location_Latitude ;;
   }
 
-  dimension: location_legal_name {
+  dimension: location_name_legal {
     type: string
     sql: ${TABLE}.Location_Legal_Name ;;
   }
 
   dimension: location_locale {
     type: string
+    description: "Locale description such as Rural, City, Suburb, Town, etc."
     sql: ${TABLE}.Location_Locale ;;
   }
 
@@ -182,27 +226,37 @@ view: locations {
 
   dimension: location_mailing_address_1 {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Mailing_Address_1 ;;
   }
 
   dimension: location_mailing_city {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Mailing_City ;;
   }
 
   dimension: location_mailing_state_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Mailing_State_Code ;;
   }
 
   dimension: location_mailing_state_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Mailing_State_Name ;;
   }
 
   dimension: location_mailing_zip_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_Mailing_Zip_Code ;;
+  }
+
+  dimension: location_mailing_address_full {
+    type: string
+    sql: ${TABLE}.Location_Mailing_Address_1 +", "+ ${TABLE}.Location_Mailing_City +", "+ ${TABLE}.Location_Mailing_State_Code + " "+${TABLE}.Location_Mailing_Zip_Code;;
   }
 
   dimension: location_main_phone_number {
@@ -217,7 +271,7 @@ view: locations {
 
   dimension: location_open {
     type: date
-
+    description: "Date the location opened"
     sql: ${TABLE}.Location_Open_Date ;;
   }
 
@@ -226,18 +280,20 @@ view: locations {
     sql: ${TABLE}.Location_Organization_Subtype ;;
   }
 
-  dimension: location_organization_type_code {
+  dimension: location_organization_type {
     type: string
     sql: ${TABLE}.Location_Organization_Type_Code ;;
   }
 
   dimension: location_state_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_State_Name ;;
   }
 
   dimension: location_status {
     type: string
+    description: "Status of the location during the selected school year."
     sql: ${TABLE}.Location_Status ;;
   }
 
@@ -256,7 +312,7 @@ view: locations {
     sql: ${TABLE}.Location_Status_Date ;;
   }
 
-  dimension: location_street_address {
+  dimension: location_address_street {
     type: string
     sql: ${TABLE}.Location_Street_Address ;;
   }
@@ -290,6 +346,7 @@ view: locations {
 
   dimension: math_proficiency_target_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Math_Proficiency_Target_Code ;;
   }
 
@@ -332,16 +389,19 @@ view: locations {
 
   dimension: poverty_level {
     type: number
+    description: "Poverty level factor - up to 2018 only"
     sql: ${TABLE}.Poverty_Level ;;
   }
 
   dimension: prior_state_district_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Prior_State_District_ID ;;
   }
 
   dimension: school_category {
     type: string
+    hidden: yes
     sql: ${TABLE}.School_Category ;;
   }
 
@@ -362,7 +422,7 @@ view: locations {
     sql: ${TABLE}.School_Level_Code ;;
   }
 
-  dimension: school_year_date {
+  dimension: school_year_end_date {
     type: date
     sql: ${TABLE}.School_Year ;;
   }
@@ -376,6 +436,7 @@ view: locations {
 
   dimension: state_location_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.State_Location_ID ;;
   }
 
@@ -415,27 +476,14 @@ view: locations {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      prior_state_location_id,
-      location_legal_name,
-      full_location_name,
-      common_location_name,
-      loc_county_name,
-      location_administrator_first_name,
-      location_administrator_last_name,
-      location_administrator_name,
-      location_mailing_state_name,
-      location_state_name,
-      locations.location_legal_name,
-      locations.full_location_name,
-      locations.common_location_name,
-      locations.loc_county_name,
-      locations.location_administrator_first_name,
-      locations.location_administrator_last_name,
-      locations.location_administrator_name,
-      locations.location_mailing_state_name,
-      locations.location_state_name,
-      locations.prior_state_location_id,
-      locations.count
+      nces_school_id,
+      district_school_code,
+      location_name_full,
+      school_type,
+      school_level,
+      grade_level_range,
+      school_year,
+      location_status
     ]
   }
 }

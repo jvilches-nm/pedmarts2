@@ -7,14 +7,14 @@ explore: student_snapshot {
     relationship: many_to_one
     type: inner
     sql_on: ${student_snapshot.location_key} = ${districts.location_key} and
-      ${student_snapshot.school_year_end_date} = ${districts.school_year_date} ;;
+      ${student_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
   }
 
   join: districts {
     relationship: many_to_one
     type: inner
     sql_on: ${student_snapshot.district_key} = ${districts.district_key} and
-      ${student_snapshot.school_year_end_date} = ${districts.school_year_date};;
+      ${student_snapshot.school_year_end_date} = ${districts.school_year_end_date};;
   }}
 
 explore: student_digital_resources {
@@ -29,14 +29,14 @@ explore: student_digital_resources {
      relationship: many_to_one
      type: inner
      sql_on: ${student_digital_resources.location_key} = ${districts.location_key} and
-            ${student_digital_resources.school_year_date} = ${districts.school_year_date} ;;
+            ${student_digital_resources.school_year_date} = ${districts.school_year_end_date} ;;
    }
 
    join: districts {
      relationship: many_to_one
      type: inner
      sql_on: ${student_digital_resources.district_key} = ${districts.district_key} and
-            ${student_digital_resources.school_year_date} = ${districts.school_year_date};;
+            ${student_digital_resources.school_year_date} = ${districts.school_year_end_date};;
    }
  }
 

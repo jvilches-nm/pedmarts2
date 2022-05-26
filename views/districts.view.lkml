@@ -180,7 +180,7 @@ view: districts {
     sql: ${TABLE}.PERIOD_KEY ;;
   }
 
-  dimension: school_year_date {
+  dimension: school_year_end_date {
     hidden: yes
     type: date
     sql: ${TABLE}.School_Year ;;
