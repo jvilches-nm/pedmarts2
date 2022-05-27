@@ -68,63 +68,63 @@ view: ecf_application {
     sql: ${TABLE}.fcc_registration_number ;;
   }
 
-  dimension: lack_both_remaining {
-    type: number
+  measure: lack_both_remaining {
+    type: max
     sql: ${TABLE}.lack_both_remaining ;;
   }
 
-  dimension: lack_both_start {
-    type: number
+  measure: lack_both_start {
+    type: max
     sql: ${TABLE}.lack_both_start ;;
   }
 
-  dimension: lack_devices_remaining {
-    type: number
+  measure: lack_devices_remaining {
+    type: max
     sql: ${TABLE}.lack_devices_remaining ;;
   }
 
-  dimension: lack_devices_start {
-    type: number
+  measure: lack_devices_start {
+    type: max
     sql: ${TABLE}.lack_devices_start ;;
   }
 
-  dimension: lack_services_remaining {
-    type: number
+  measure: lack_services_remaining {
+    type: max
     sql: ${TABLE}.lack_services_remaining ;;
   }
 
-  dimension: lack_services_start {
-    type: number
+  measure: lack_services_start {
+    type: max
     sql: ${TABLE}.lack_services_start ;;
   }
 
-  dimension: provided_both {
-    type: number
+  measure: provided_both {
+    type: max
     sql: ${TABLE}.provided_both ;;
   }
 
-  dimension: provided_devices {
-    type: number
+  measure: provided_devices {
+    type: max
     sql: ${TABLE}.provided_devices ;;
   }
 
-  dimension: provided_services {
-    type: number
+  measure: provided_services {
+    type: max
     sql: ${TABLE}.provided_services ;;
   }
 
-  dimension: requested_both {
-    type: number
+  measure: requested_both {
+    type: max
     sql: ${TABLE}.requested_both ;;
   }
 
-  dimension: requested_devices {
-    type: number
+  measure: requested_devices {
+    type: max
     sql: ${TABLE}.requested_devices ;;
   }
 
-  dimension: requested_services {
-    type: number
+  measure: requested_services {
+    type: max
     sql: ${TABLE}.requested_services ;;
   }
 
