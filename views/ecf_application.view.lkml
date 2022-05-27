@@ -16,6 +16,14 @@ view: ecf_application {
     sql: ${TABLE}.application_certified ;;
   }
 
+  dimension: snapshot_period {
+    type: string
+    sql: case when MONTH(${TABLE}.application_certified) in (9, 10, 11) then '40 Day'
+              when MONTH(${TABLE}.application_certified) in (12, 1, 2) then '80 Day'
+              when MONTH(${TABLE}.application_certified) in (3, 4, 5) then '120 Day'
+              when MONTH(${TABLE}.application_certified) in (6, 7, 8) then 'EOY' else '' end;;
+  }
+
   dimension: application_nickname {
     type: string
     sql: ${TABLE}.application_nickname ;;
