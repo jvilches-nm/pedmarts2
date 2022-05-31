@@ -75,7 +75,7 @@ view: ecf_funding_request {
   measure: service_funding_amount_requested {
     type: sum
     value_format: "$#,##0.00"
-    sql: case when ${TABLE}.service_type='Service' then ${TABLE}.funding_total_amount_requested else 0.0 end;;
+    sql: case when ${TABLE}.service_type='Services' then ${TABLE}.funding_total_amount_requested else 0.0 end;;
   }
 
   measure: device_funding_amount_requested {
@@ -87,7 +87,7 @@ view: ecf_funding_request {
   measure: service_funding_amount_approved {
     type: sum
     value_format: "$#,##0.00"
-    sql: case when ${TABLE}.service_type='Service' then ${TABLE}.funding_total_amount_approved else 0.0 end;;
+    sql: case when ${TABLE}.service_type='Services' then ${TABLE}.funding_total_amount_approved else 0.0 end;;
   }
 
   measure: device_funding_amount_approved {
