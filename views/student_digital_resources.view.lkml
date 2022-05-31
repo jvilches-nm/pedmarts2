@@ -154,6 +154,19 @@ view: student_digital_resources {
     sql: ${TABLE}.STUDENT_KEY ;;
   }
 
+  dimension: adequate_internet_access {
+    type: string
+    sql: case when ${internet_access}='Yes' and ${internet_perf_cd}='02' then 'No'
+              when ${internet_access}='Yes' and ${internet_perf_cd}='03' then 'No'
+              else 'Yes' end ;;
+  }
+
+  dimension: district_provided_device {
+    type: string
+    sql: case when ${prim_learn_device_type_cd}='10' then 'No'
+      else 'Yes' end ;;
+  }
+
   measure: no_internet_access_count {
     type: sum
     sql: case when ${internet_access}='No' then 1 else 0 end;;

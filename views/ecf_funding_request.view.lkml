@@ -71,6 +71,32 @@ view: ecf_funding_request {
     sql: ${TABLE}.funding_total_amount_requested ;;
   }
 
+
+  measure: service_funding_amount_requested {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: case when ${TABLE}.service_type='Service' then ${TABLE}.funding_total_amount_requested else 0.0 end;;
+  }
+
+  measure: device_funding_amount_requested {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: case when ${TABLE}.service_type='Equipment' then ${TABLE}.funding_total_amount_requested else 0.0 end;;
+  }
+
+  measure: service_funding_amount_approved {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: case when ${TABLE}.service_type='Service' then ${TABLE}.funding_total_amount_approved else 0.0 end;;
+  }
+
+  measure: device_funding_amount_approved {
+    type: sum
+    value_format: "$#,##0.00"
+    sql: case when ${TABLE}.service_type='Equipment' then ${TABLE}.funding_total_amount_approved else 0.0 end;;
+  }
+
+
   dimension_group: service_end {
     type: time
     timeframes: [
