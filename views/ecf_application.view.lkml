@@ -42,7 +42,7 @@ view: ecf_application {
   }
 
   measure: application_total_student_count {
-    type: max
+    type: sum_distinct
     sql: ${TABLE}.application_total_student_count ;;
   }
 
