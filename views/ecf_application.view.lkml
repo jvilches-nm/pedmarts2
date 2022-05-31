@@ -43,6 +43,7 @@ view: ecf_application {
 
   measure: application_total_student_count {
     type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.application_total_student_count ;;
   }
 
@@ -77,62 +78,74 @@ view: ecf_application {
   }
 
   measure: lack_both_remaining {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_both_remaining ;;
   }
 
   measure: lack_both_start {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_both_start ;;
   }
 
   measure: lack_devices_remaining {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_devices_remaining ;;
   }
 
   measure: lack_devices_start {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_devices_start ;;
   }
 
   measure: lack_services_remaining {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_services_remaining ;;
   }
 
   measure: lack_services_start {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_services_start ;;
   }
 
   measure: provided_both {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.provided_both ;;
   }
 
   measure: provided_devices {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.provided_devices ;;
   }
 
   measure: provided_services {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.provided_services ;;
   }
 
   measure: requested_both {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.requested_both ;;
   }
 
   measure: requested_devices {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.requested_devices ;;
   }
 
   measure: requested_services {
-    type: max
+    type: sum_distinct
+    sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.requested_services ;;
   }
 
