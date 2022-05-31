@@ -12,11 +12,6 @@ view: ecf_funding_line_item {
     sql: ${TABLE}.bandwidth_upload ;;
   }
 
-  dimension: connection_type {
-    type: string
-    sql: ${TABLE}.connection_type ;;
-  }
-
   dimension: firewall {
     type: string
     sql: ${TABLE}.firewall ;;
@@ -42,28 +37,39 @@ view: ecf_funding_line_item {
 
   measure: monthly_quantity {
     type: sum
+    hidden: yes
     sql: ${TABLE}.monthly_quantity ;;
   }
 
   measure: monthly_unit_cost {
     type: sum
+    hidden: yes
     value_format: "$#,##0.00"
     sql: ${TABLE}.monthly_unit_cost ;;
   }
 
   dimension: months_of_service {
     type: number
+    hidden: yes
     sql: ${TABLE}.months_of_service ;;
   }
 
-  dimension: network_equipment_make_model {
+  dimension: product_equipment_make {
     type: string
-    sql: ${TABLE}.network_equipment_make_model ;;
+    label: "Product or Equipment Make"
+    sql: case when ${TABLE}.network_equipment_type is null then ${TABLE}.product_make else ${TABLE}.network_equipment_type end ;;
   }
 
-  dimension: network_equipment_type {
+  dimension: product_equipment_model {
     type: string
-    sql: ${TABLE}.network_equipment_type ;;
+    label: "Product or Equipment Model"
+    sql: case when ${TABLE}.network_equipment_make_model is null then ${TABLE}.product_model else ${TABLE}.network_equipment_make_model end ;;
+  }
+
+  dimension: product_connection_type {
+    type: string
+    label: "Product or Connection Type"
+    sql: case when ${TABLE}.connection_type is null then ${TABLE}.product_type else ${TABLE}.connection_type end;;
   }
 
   measure: one_time_unit_cost {
@@ -74,26 +80,36 @@ view: ecf_funding_line_item {
 
   measure: one_time_unit_quantity {
     type: sum
+    hidden: yes
     sql: ${TABLE}.one_time_unit_quantity ;;
+  }
+
+  measure: product_service_quantity {
+    type: sum
+    sql: COALESCE(${TABLE}.one_time_unit_quantity,0)+COALESCE(${TABLE}.monthly_quantity,0) ;;
   }
 
   dimension: product_make {
     type: string
+    hidden: yes
     sql: ${TABLE}.product_make ;;
   }
 
   dimension: product_model {
     type: string
+    hidden: yes
     sql: ${TABLE}.product_model ;;
   }
 
   dimension: product_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.product_type ;;
   }
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: []
   }
 }
