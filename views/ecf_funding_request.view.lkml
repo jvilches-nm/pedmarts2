@@ -1,6 +1,15 @@
 view: ecf_funding_request {
   sql_table_name: ecf.ecf_funding_request ;;
+
   label: "ECF Funding Request"
+
+  drill_fields: [funding_narrative, teacher_request, student_request, ecf_funding_line_item.funding_line_item_number,
+ecf_funding_line_item.funding_item_total_cost,
+ecf_funding_line_item.product_service_quantity,
+ecf_funding_line_item.product_connection_type,
+ecf_funding_line_item.product_equipment_make,
+ecf_funding_line_item.product_equipment_model]
+
   dimension: application_number {
     type: string
     hidden: yes
