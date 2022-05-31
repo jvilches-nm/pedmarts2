@@ -2,8 +2,9 @@ view: ecf_application {
   sql_table_name: ecf.ecf_application ;;
   label: "ECF Application"
 
-  drill_fields: [application_number, application_certified_date, ecf_funding_request.funding_request_nickname, ecf_funding_request.funding_narrative, ecf_funding_request.teacher_request,
-    ecf_funding_requst.student_request, ecf_funding_line_item.funding_line_item_number,
+  drill_fields: [application_number, application_certified_date, ecf_funding_request.funding_request_nickname, ecf_funding_request.funding_narrative,
+    ecf_funding_request.teacher_request,
+    ecf_funding_request.student_request, ecf_funding_line_item.funding_line_item_number,
     ecf_funding_line_item.funding_item_total_cost,
     ecf_funding_line_item.product_service_quantity,
     ecf_funding_line_item.product_connection_type,
