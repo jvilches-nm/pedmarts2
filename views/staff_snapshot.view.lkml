@@ -18,6 +18,7 @@ view: staff_snapshot {
 
   dimension: batch_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.BATCH_ID ;;
   }
 
@@ -47,6 +48,7 @@ view: staff_snapshot {
 
   dimension: district_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.DISTRICT_KEY ;;
   }
 

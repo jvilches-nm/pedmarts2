@@ -3,6 +3,7 @@ view: attendance_summary {
 
   dimension: batch_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.BATCH_ID ;;
   }
 
@@ -95,14 +96,13 @@ view: attendance_summary {
 
   dimension: period_ed_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.PERIOD_ED_KEY ;;
   }
 
   dimension_group: period_end_dt {
     type: time
     timeframes: [
-      raw,
-      time,
       date,
       week,
       month,
@@ -114,14 +114,13 @@ view: attendance_summary {
 
   dimension: period_sd_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.PERIOD_SD_KEY ;;
   }
 
   dimension_group: period_start_dt {
     type: time
     timeframes: [
-      raw,
-      time,
       date,
       week,
       month,
@@ -133,6 +132,7 @@ view: attendance_summary {
 
   dimension: pk_period_ed_key_ind {
     type: string
+    hidden: yes
     sql: ${TABLE}.PK_PERIOD_ED_KEY_IND ;;
   }
 
@@ -162,15 +162,8 @@ view: attendance_summary {
     sql: ${TABLE}.SCHED_PERIOD_NBR ;;
   }
 
-  dimension_group: school_year_end {
-    type: time
-    timeframes: [
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: school_year_end_date {
+    type: date
     sql: ${TABLE}.SCHOOL_YEAR ;;
   }
 
