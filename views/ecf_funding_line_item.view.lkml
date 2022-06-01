@@ -2,6 +2,14 @@ view: ecf_funding_line_item {
   sql_table_name: ecf.ecf_funding_line_item ;;
   label: "ECF Funding Request Line Item"
 
+  drill_fields: [ecf_funding_request.funding_request_nickname, ecf_funding_request.funding_narrative, ecf_funding_request.teacher_request, ecf_funding_request.student_request,
+    ecf_funding_line_item.funding_line_item_number,
+    ecf_funding_line_item.funding_item_total_cost,
+    ecf_funding_line_item.product_service_quantity,
+    ecf_funding_line_item.product_connection_type,
+    ecf_funding_line_item.product_equipment_make,
+    ecf_funding_line_item.product_equipment_model]
+
   dimension: bandwidth_download {
     type: number
     sql: ${TABLE}.bandwidth_download ;;

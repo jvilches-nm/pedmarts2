@@ -33,7 +33,7 @@ ecf_funding_line_item.product_equipment_model]
 
   dimension: teacher_request {
     type: string
-    description: "Funding request is for teachers - Yes/No"
+    description: "Funding request is for teachers - Yes/Not Specified"
     sql: case when funding_request_nickname LIKE '%teacher%' then 'Yes'
               when funding_request_nickname LIKE '%instructor%' then 'Yes'
               when funding_request_nickname LIKE '%educator%' then 'Yes'
@@ -46,15 +46,15 @@ ecf_funding_line_item.product_equipment_model]
               when funding_narrative LIKE '%professor%' then 'Yes'
               when funding_narrative LIKE '%faculty%' then 'Yes'
               when funding_narrative LIKE '%staff%' then 'Yes'
-              else 'No' end ;;
+              else 'Not Specified' end ;;
   }
 
   dimension: student_request {
     type: string
-    description: "Funding request is for students - Yes/No"
+    description: "Funding request is for students - Yes/Not Specified"
     sql:  case when funding_request_nickname LIKE '%student%' then 'Yes'
                when funding_narrative like '%student%' then 'Yes'
-               else 'No' end;;
+               else 'Not Specified' end;;
   }
 
   dimension: funding_request_number {
