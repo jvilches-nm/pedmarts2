@@ -641,7 +641,33 @@ view: student_snapshot {
 
   dimension: student_race_ethnicity_subgroup {
     type: string
-    sql: ${TABLE}.Student_Race_Ethnicity_Subgroup ;;
+    sql: case ${TABLE}.Student_Race_Ethnicity_Subgroup_Code
+          WHEN '00' THEN 'Not Applicable'
+          WHEN '01' THEN 'Acoma'
+          WHEN '02' THEN 'Cochiti'
+          WHEN '03' THEN 'Isleta'
+          WHEN '04' THEN 'Jemez'
+          WHEN '05' THEN 'Jicarilla Apache'
+          WHEN '06' THEN 'Laguna'
+          WHEN '07' THEN 'Mescalero Apache'
+          WHEN '08' THEN 'Nambe'
+          WHEN '09' THEN 'Navajo'
+          WHEN '10' THEN 'Picuris'
+          WHEN '11' THEN 'Pojoaque'
+          WHEN '12' THEN 'San Felipe'
+          WHEN '13' THEN 'San IIdefonso'
+          WHEN '14' THEN 'Ohkay Owingeh (formerly San Juan)'
+          WHEN '15' THEN 'Sandia'
+          WHEN '16' THEN 'Santa Ana'
+          WHEN '17' THEN 'Santa Clara'
+          WHEN '18' THEN 'Santo Domingo'
+          WHEN '19' THEN 'Taos'
+          WHEN '20' THEN 'Tesuque'
+          WHEN '21' THEN 'Zia'
+          WHEN '22' THEN 'Zuni'
+          WHEN '23' THEN 'Other'
+          ELSE 'Unknown'
+         END;;
   }
 
   dimension: student_race_ethnicity_subgroup_code {
