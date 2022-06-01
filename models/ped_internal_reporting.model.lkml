@@ -84,3 +84,24 @@ explore: staff_snapshot {
       ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
 }
+
+explore: staff_assignment_snapshot {
+  join: staff_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_assignment_snapshot.staff_key}=${staff_snapshot.staff_key} and
+            ${staff_assignment_snapshot.staff_snapshot_date}=${staff_snapshot.snapshot_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_assignment_snapshot.district_key} = ${districts.district_key} and
+      ${staff_assignment_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_assignment_snapshot.location_key} = ${locations.location_key} and
+      ${staff_assignment_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
+}

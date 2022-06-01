@@ -736,7 +736,7 @@ view: student_snapshot {
     sql: ${TABLE}.Years_in_US_Schools ;;
   }
 
-  dimension: student_race_indian_eduction {
+  dimension: student_race_indian_education {
     type: string
     sql: case when ${student_race_1_code}='I' then 'American Indian/Alaskan Native'
               when ${student_race_2_code}='I' then 'American Indian/Alaskan Native'
@@ -809,7 +809,6 @@ view: student_snapshot {
               when ${student_race_5_code}='I' then 1
               else 0 end;;
   }
-
 
   measure: count {
     type: count

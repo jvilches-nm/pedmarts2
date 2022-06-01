@@ -460,6 +460,25 @@ view: staff_snapshot {
     sql: ${TABLE}.YEARS_SERVICE ;;
   }
 
+  measure: staff_race_indian_eduction_count {
+    type: sum
+    sql: case when ${race1_code}='I' then 1
+              when ${race2_code}='I' then 1
+              when ${race3_code}='I' then 1
+              when ${race4_code}='I' then 1
+              when ${race5_code}='I' then 1
+              else 0 end;;
+  }
+  dimension: staff_race_indian_education {
+    type: string
+    sql: case when ${race1_code}='I' then 'American Indian/Alaskan Native'
+              when ${race2_code}='I' then 'American Indian/Alaskan Native'
+              when ${race3_code}='I' then 'American Indian/Alaskan Native'
+              when ${race4_code}='I' then 'American Indian/Alaskan Native'
+              when ${race5_code}='I' then 'American Indian/Alaskan Native'
+              else ${rptg_race_ethnicity_desc} end;;
+  }
+
   measure: count {
     type: count
     drill_fields: [staff_name_full]
