@@ -10,6 +10,51 @@ datagroup: ped_bi_default_datagroup {
 
 persist_with: ped_bi_default_datagroup
 
+explore: attendance_summary {
+  join: student_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${attendance_summary.student_key} = ${student_snapshot.student_key} and
+            ${attendance_summary.snapshot_period} = ${student_snapshot.snapshot_period};;
+  }
+
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${attendance_summary.district_key} = ${districts.district_key} and
+      ${attendance_summary.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${attendance_summary.location_key} = ${locations.location_key} and
+      ${attendance_summary.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
+}
+
+explore: programs_fact {
+  label: "Programs"
+  join: student_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${programs_fact.student_key} = ${student_snapshot.student_key} and
+      ${programs_fact.program_start_date} = ${student_snapshot.student_snapshot_date};;
+  }
+
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${programs_fact.district_key} = ${districts.district_key} and
+      ${programs_fact.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${programs_fact.location_key} = ${locations.location_key} and
+      ${programs_fact.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
+}
+
 explore: student_snapshot {
   join: districts {
     relationship: many_to_one
@@ -22,5 +67,20 @@ explore: student_snapshot {
     type: inner
     sql_on: ${student_snapshot.location_key} = ${locations.location_key} and
             ${student_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
+}
+
+explore: staff_snapshot {
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.district_key} = ${districts.district_key} and
+      ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.location_key} = ${locations.location_key} and
+      ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
 }

@@ -45,18 +45,21 @@ view: attendance_summary {
 
   dimension: fte_percent {
     type: number
+    hidden: yes
     label: "FTE Percentage"
     sql: ${TABLE}.FTE_PERCENT ;;
   }
 
   dimension: grade_lvl_cd {
     type: string
+    hidden: yes
     label: "Grade Level Code"
     sql: ${TABLE}.GRADE_LVL_CD ;;
   }
 
   dimension: grade_lvl_desc {
     type: string
+    hidden: yes
     label: "Grade Level Description"
     sql: ${TABLE}.GRADE_LVL_DESC ;;
   }
@@ -144,26 +147,31 @@ view: attendance_summary {
 
   dimension: row_indicator {
     type: string
+    hidden: yes
     sql: ${TABLE}.ROW_INDICATOR ;;
   }
 
-  dimension: sched_period_attend_nbr {
-    type: number
+  measure: sched_period_attend_nbr {
+    type: sum
+    label: "Scheduled Periods Attended"
     sql: ${TABLE}.SCHED_PERIOD_ATTEND_NBR ;;
   }
 
-  dimension: sched_period_excused_nbr {
-    type: number
+  measure: sched_period_excused_nbr {
+    type: sum
+    label: "Scheduled Periods Excused"
     sql: ${TABLE}.SCHED_PERIOD_EXCUSED_NBR ;;
   }
 
-  dimension: sched_period_nbr {
-    type: number
+  measure: sched_period_nbr {
+    type: sum
+    label: "Scheduled Periods"
     sql: ${TABLE}.SCHED_PERIOD_NBR ;;
   }
 
   dimension: school_year_end_date {
     type: date
+    hidden: yes
     sql: ${TABLE}.SCHOOL_YEAR ;;
   }
 
@@ -186,8 +194,31 @@ view: attendance_summary {
     sql: ${TABLE}.STUDENT_KEY ;;
   }
 
+  dimension: snapshot_period {
+    type: string
+    label: "Snapshot Period"
+    order_by_field: snapshot_period_order
+    description: "Defines the count for which the snapshot was taken, for example 40 Day, 80 Day, 120 Day, End of Year"
+    sql:  case when month(${TABLE}.period_end_dt)=10 then '40 Day'
+               when month(${TABLE}.period_end_dt)=12 then '80 Day'
+               when month(${TABLE}.period_end_dt)=3 then '120 Day'
+               when month(${TABLE}.period_end_dt)=6 then 'End of Year'
+               else 'Unknown' end;;
+  }
+
+  dimension: snapshot_period_order {
+    type: number
+    hidden: yes
+    sql: case when month(${TABLE}.period_end_dt)=10 then 1
+               when month(${TABLE}.period_end_dt)=12 then 2
+               when month(${TABLE}.period_end_dt)=3 then 3
+               when month(${TABLE}.period_end_dt)=6 then 4
+               else 5 end;;
+  }
+
   measure: count {
     type: count
+    hidden: yes
     drill_fields: []
   }
 }
