@@ -256,6 +256,7 @@ view: staff_assignment_snapshot {
 
   dimension_group: staff_snapshot {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,

@@ -17,6 +17,12 @@ explore: attendance_summary {
     sql_on: ${attendance_summary.student_key} = ${student_snapshot.student_key} and
             ${attendance_summary.snapshot_period} = ${student_snapshot.snapshot_period};;
   }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+            ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
 
   join: districts {
     relationship: many_to_one
@@ -40,7 +46,12 @@ explore: programs_fact {
     sql_on: ${programs_fact.student_key} = ${student_snapshot.student_key} and
       ${programs_fact.program_start_date} = ${student_snapshot.student_snapshot_date};;
   }
-
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
   join: districts {
     relationship: many_to_one
     type: inner
@@ -68,6 +79,12 @@ explore: student_snapshot {
     sql_on: ${student_snapshot.location_key} = ${locations.location_key} and
             ${student_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+            ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
 }
 
 explore: staff_snapshot {
@@ -83,6 +100,12 @@ explore: staff_snapshot {
     sql_on: ${staff_snapshot.location_key} = ${locations.location_key} and
       ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.school_year_end_date}=${period.school_year_end_date} and
+            ${staff_snapshot.snapshot_date}=${period.period_start_date};;
+  }
 }
 
 explore: staff_assignment_snapshot {
@@ -92,6 +115,12 @@ explore: staff_assignment_snapshot {
     sql_on: ${staff_assignment_snapshot.staff_key}=${staff_snapshot.staff_key} and
             ${staff_assignment_snapshot.staff_snapshot_date}=${staff_snapshot.snapshot_date};;
   }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${staff_snapshot.snapshot_date}=${period.period_start_date};;
+   }
   join: districts {
     relationship: many_to_one
     type: inner

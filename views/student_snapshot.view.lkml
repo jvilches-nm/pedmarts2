@@ -693,6 +693,7 @@ view: student_snapshot {
 
   dimension: snapshot_period {
     type: string
+    hidden: yes
     label: "Snapshot Period"
     order_by_field: snapshot_period_order
     description: "Defines the count for which the snapshot was taken, for example 40 Day, 80 Day, 120 Day, End of Year"
