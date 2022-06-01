@@ -269,8 +269,6 @@ view: staff_snapshot {
     sql: ${TABLE}.SCHOOL_YEAR ;;
   }
 
-
-
   dimension_group: snapshot {
     type: time
     hidden: yes
@@ -334,6 +332,12 @@ view: staff_snapshot {
       year
     ]
     sql: ${TABLE}.STAFF_BIRTHDATE ;;
+  }
+
+  dimension: staff_age {
+    type: number
+    description: "Staff age at the time of the snapshot."
+    sql: CONVERT(INT,DATEDIFF(day,${TABLE}.staff_birthdate,${TABLE}.Snapshot_Date))/365  ;;
   }
 
   dimension: staff_city {
