@@ -424,6 +424,7 @@ view: staff_snapshot {
 
   dimension: supervisor {
     type: string
+    hidden: yes
     sql: ${TABLE}.SUPERVISOR ;;
   }
 
