@@ -85,3 +85,9 @@ explore: ecf_billed_entity {
     sql_on: ${ecf_funding_request.funding_request_number}=${ecf_funding_line_item.funding_request_number};;
   }
 }
+
+map_layer: my_neighborhood_layer {
+  file: "/Map_Shapefiles/dist_map.topojson"
+  property_key: "name"
+
+}

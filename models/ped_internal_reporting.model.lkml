@@ -134,3 +134,9 @@ explore: staff_assignment_snapshot {
       ${staff_assignment_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
 }
+
+map_layer: my_neighborhood_layer {
+  file: "/Map_Shapefiles/dist_map.topojson"
+  property_key: "name"
+
+}
