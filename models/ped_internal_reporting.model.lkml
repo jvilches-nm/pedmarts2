@@ -87,6 +87,23 @@ explore: student_snapshot {
   }
 }
 
+explore: student_consolidated {
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_consolidated.district_key} = ${districts.district_key} and
+      ${student_consolidated.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_consolidated.location_key} = ${locations.location_key} and
+      ${student_consolidated.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
+}
+
+
+
 explore: staff_snapshot {
   join: districts {
     relationship: many_to_one
