@@ -1,6 +1,8 @@
 view: student_digital_resources {
   sql_table_name: stars.student_digital_resources ;;
 
+  drill_fields: [districts.district_name, locations.location_name_full, school_year, period.snapshot_period, no_internet_access_count, inadequate_internet_access_count, no_district_provided_device_count]
+
   dimension: batch_id {
     type: number
     hidden: yes

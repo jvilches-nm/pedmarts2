@@ -40,8 +40,8 @@ explore: student_digital_resources {
    join: locations {
      relationship: many_to_one
      type: inner
-     sql_on: ${student_digital_resources.location_key} = ${districts.location_key} and
-            ${student_digital_resources.school_year_end_date} = ${districts.school_year_end_date} ;;
+     sql_on: ${student_digital_resources.location_key} = ${locations.location_key} and
+            ${student_digital_resources.school_year_end_date} = ${locations.school_year_end_date} ;;
    }
 
    join: districts {
