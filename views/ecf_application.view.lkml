@@ -88,74 +88,74 @@ view: ecf_application {
   }
 
   measure: lack_both_remaining {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_both_remaining ;;
   }
 
   measure: lack_both_start {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_both_start ;;
   }
 
   measure: lack_devices_remaining {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_devices_remaining ;;
   }
 
   measure: lack_devices_start {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_devices_start ;;
   }
 
   measure: lack_services_remaining {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_services_remaining ;;
   }
 
   measure: lack_services_start {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.lack_services_start ;;
   }
 
   measure: provided_both {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.provided_both ;;
   }
 
   measure: provided_devices {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.provided_devices ;;
   }
 
   measure: provided_services {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.provided_services ;;
   }
 
   measure: requested_both {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.requested_both ;;
   }
 
   measure: requested_devices {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.requested_devices ;;
   }
 
   measure: requested_services {
-    type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    type: max
+    #sql_distinct_key: ${billed_entity_number} ;;
     sql: ${TABLE}.requested_services ;;
   }
 

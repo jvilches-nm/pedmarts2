@@ -102,7 +102,49 @@ explore: student_consolidated {
   }
 }
 
+explore: license_user_endorsements {
+  join: license_user_info {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: $license_user_endorsements.staff_id = $license_user_info.staff_id ;;
+  }
+}
 
+explore: license_user_info {}
+
+explore: course_instruct_staff_student_snapshot {
+  label: "Course Snapshot"
+  join: staff_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${course_instruct_staff_student_snapshot.staff_key_primary_instructor} = ${staff_snapshot.staff_key}
+    and ${course_instruct_staff_student_snapshot.staff_snapshot_date} = ${staff_snapshot.snapshot_date};;
+  }
+  join: student_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${course_instruct_staff_student_snapshot.student_key}=${student_snapshot.student_key}
+    and ${course_instruct_staff_student_snapshot.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${course_instruct_staff_student_snapshot.location_key} = ${locations.location_key}
+      and ${course_instruct_staff_student_snapshot.school_year_date} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${course_instruct_staff_student_snapshot.district_key} = ${districts.district_key}
+      and ${course_instruct_staff_student_snapshot.school_year_date} = ${districts.school_year_end_date};;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${course_instruct_staff_student_snapshot.school_year_date}=${period.school_year_end_date} and
+      ${course_instruct_staff_student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
+}
 
 explore: staff_snapshot {
   join: districts {
