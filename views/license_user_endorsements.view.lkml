@@ -62,7 +62,7 @@ view: license_user_endorsements {
   }
 
   dimension: exp_date {
-    type: string
+    type: date
     sql: ${TABLE}.expDate ;;
   }
 
@@ -78,6 +78,7 @@ view: license_user_endorsements {
 
   dimension: last_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.lastName ;;
   }
 
@@ -87,22 +88,24 @@ view: license_user_endorsements {
   }
 
   dimension: license_updated_on {
-    type: string
+    type: date
     sql: ${TABLE}.licenseUpdatedOn ;;
   }
 
   dimension: mi {
     type: string
+    hidden: yes
     sql: ${TABLE}.MI ;;
   }
 
   dimension: staff_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.staffID ;;
   }
 
   dimension: start_date {
-    type: string
+    type: date
     sql: ${TABLE}.startDate ;;
   }
 

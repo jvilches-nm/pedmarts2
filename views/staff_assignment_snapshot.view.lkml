@@ -8,21 +8,25 @@ view: staff_assignment_snapshot {
 
   dimension: assignment {
     type: string
+    description: "Assignment"
     sql: ${TABLE}.Assignment ;;
   }
 
   dimension: assignment_category {
     type: string
+    description: "Assignment Category"
     sql: ${TABLE}.Assignment_Category ;;
   }
 
   dimension: assignment_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assignment_Code ;;
   }
 
-  dimension_group: assignment_date {
+  dimension_group: assignment_snapshot {
     type: time
+    description: "Assignment Snapshot Date"
     timeframes: [
       date,
       week,
@@ -68,6 +72,7 @@ view: staff_assignment_snapshot {
 
   dimension_group: end {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -152,6 +157,7 @@ view: staff_assignment_snapshot {
 
   dimension_group: original_hire {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -164,6 +170,7 @@ view: staff_assignment_snapshot {
 
   dimension: percentage_of_time_assigned {
     type: number
+    description: "Percentage of time allocated to this assignment"
     sql: ${TABLE}.Percentage_of_Time_Assigned ;;
   }
 
@@ -198,6 +205,7 @@ view: staff_assignment_snapshot {
 
   dimension_group: school_year_end {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -210,11 +218,13 @@ view: staff_assignment_snapshot {
 
   dimension: school_year {
     type: string
+    hidden: yes
     sql: ${TABLE}.School_Year_Designation ;;
   }
 
   dimension_group: staff_exit {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -227,6 +237,7 @@ view: staff_assignment_snapshot {
 
   dimension: staff_exit_reason {
     type: string
+    hidden: yes
     sql: ${TABLE}.Staff_Exit_Reason ;;
   }
 
@@ -269,6 +280,7 @@ view: staff_assignment_snapshot {
 
   dimension_group: start {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -281,6 +293,7 @@ view: staff_assignment_snapshot {
 
   dimension_group: start_date_current_year {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -305,11 +318,13 @@ view: staff_assignment_snapshot {
 
   dimension: total_years_of_experience {
     type: number
+    hidden: yes
     sql: ${TABLE}.Total_Years_of_Experience ;;
   }
 
   dimension: total_years_of_experience_in_district {
     type: number
+    hidden: yes
     sql: ${TABLE}.Total_Years_of_Experience_in_District ;;
   }
 

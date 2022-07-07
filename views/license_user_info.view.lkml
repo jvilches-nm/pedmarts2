@@ -3,6 +3,7 @@ view: license_user_info {
 
   dimension: address {
     type: string
+    hidden: yes
     sql: ${TABLE}.Address ;;
   }
 
@@ -23,16 +24,19 @@ view: license_user_info {
 
   dimension: email {
     type: string
+    hidden: yes
     sql: ${TABLE}.Email ;;
   }
 
   dimension: first_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.firstName ;;
   }
 
   dimension: gender {
     type: string
+    hidden: yes
     sql: ${TABLE}.Gender ;;
   }
 
@@ -43,26 +47,31 @@ view: license_user_info {
 
   dimension: last_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.lastName ;;
   }
 
   dimension: mi {
     type: string
+    hidden: yes
     sql: ${TABLE}.MI ;;
   }
 
   dimension: phone_no {
     type: string
+    hidden: yes
     sql: ${TABLE}.phoneNo ;;
   }
 
   dimension: postal_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.postalCode ;;
   }
 
   dimension: staff_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.staffID ;;
   }
 

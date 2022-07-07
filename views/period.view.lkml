@@ -12,12 +12,14 @@ view: period {
 
   dimension: snapshot_period {
     type: string
+    description: "Snapshot period: 40D / 80D / 120D / EOY"
     order_by_field: sort_seq
     sql: ${TABLE}.PERIOD_LEVEL ;;
   }
 
   dimension_group: period_start {
     type: time
+    description: "Start date of the period"
     timeframes: [
       date,
       week,
@@ -30,14 +32,14 @@ view: period {
 
   dimension: school_year {
     type: string
+    description: "The two calendar years that the school year spans."
     sql: ${TABLE}.REPORT_SCHOOL_YEAR ;;
   }
 
   dimension_group: school_year_end {
     type: time
+    description: "Last day of the school year"
     timeframes: [
-      raw,
-      time,
       date,
       week,
       month,

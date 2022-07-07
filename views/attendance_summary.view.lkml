@@ -9,6 +9,7 @@ view: attendance_summary {
 
   measure: days_absent_total {
     type: sum
+    hidden: yes
     label: "Days Absent Total"
     sql: ${TABLE}.DAYS_ABSENT_TOTAL ;;
   }
@@ -16,23 +17,27 @@ view: attendance_summary {
   measure: days_absent_unexc {
     type: sum
     label: "Days Absent Unexcused"
+    description: "Number of days student was absent without leave at the location during the attendance period."
     sql: ${TABLE}.DAYS_ABSENT_UNEXC ;;
   }
 
   measure: days_enrolled {
     type: sum
     label: "Days Enrolled"
+    description: "Number of days student was marked as enrolled at the location during the attendance period."
     sql: ${TABLE}.DAYS_ENROLLED ;;
   }
 
   measure: days_present {
     type: sum
     label: "Days Present"
+    description: "Number of days student was marked as present at the location during the attendance period."
     sql: ${TABLE}.DAYS_PRESENT ;;
   }
 
   measure: days_tardy {
     type: sum
+    hidden: yes
     label: "Days Tardy"
     sql: ${TABLE}.DAYS_TARDY ;;
   }
@@ -105,6 +110,8 @@ view: attendance_summary {
 
   dimension_group: period_end_dt {
     type: time
+    label: "Attendance Period End"
+    description: "Attendance period end date"
     timeframes: [
       date,
       week,
@@ -123,6 +130,8 @@ view: attendance_summary {
 
   dimension_group: period_start_dt {
     type: time
+    label: "Attendance Period Start"
+    description: "Attendance period start date"
     timeframes: [
       date,
       week,
@@ -154,18 +163,21 @@ view: attendance_summary {
   measure: sched_period_attend_nbr {
     type: sum
     label: "Scheduled Periods Attended"
+    description: "Total number of class periods scheduled over the reporting period where the student was marked as present."
     sql: ${TABLE}.SCHED_PERIOD_ATTEND_NBR ;;
   }
 
   measure: sched_period_excused_nbr {
     type: sum
     label: "Scheduled Periods Excused"
+    description: "Total number of class periods scheduled over the reporting period where the student was marked as absent with an excuse."
     sql: ${TABLE}.SCHED_PERIOD_EXCUSED_NBR ;;
   }
 
   measure: sched_period_nbr {
     type: sum
-    label: "Scheduled Periods"
+    label: "Scheduled Periods Enrolled"
+    description: "Total number of class periods scheduled over the reporting period where the student was marked as enrolled."
     sql: ${TABLE}.SCHED_PERIOD_NBR ;;
   }
 
@@ -178,6 +190,7 @@ view: attendance_summary {
   dimension: school_year {
     type: string
     label: "School Year"
+    hidden: yes
     description: "The two years that the school year spans"
     sql: cast(YEAR(${TABLE}.SCHOOL_YEAR)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.SCHOOL_YEAR) as varchar) ;;
   }
@@ -197,6 +210,7 @@ view: attendance_summary {
   dimension: snapshot_period {
     type: string
     label: "Snapshot Period"
+    hidden: yes
     order_by_field: snapshot_period_order
     description: "Defines the count for which the snapshot was taken, for example 40 Day, 80 Day, 120 Day, End of Year"
     sql:  case when month(${TABLE}.period_end_dt)=10 then '40 Day'

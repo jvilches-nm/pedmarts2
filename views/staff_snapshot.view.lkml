@@ -3,11 +3,13 @@ view: staff_snapshot {
 
   dimension: alt_contract_days {
     type: number
+    hidden: yes
     sql: ${TABLE}.ALT_CONTRACT_DAYS ;;
   }
 
   dimension: baccalaureate_degree_institution {
     type: string
+    description: "Institution at which a baccalaureate degree was earned."
     sql: ${TABLE}.Baccalaureate_Degree_Institution ;;
   }
 
@@ -25,9 +27,9 @@ view: staff_snapshot {
 
   dimension_group: curr_svc {
     type: time
+    label: "Current School Year Service Start"
+    description: "Staff member's start date for teh current school year"
     timeframes: [
-      raw,
-      time,
       date,
       week,
       month,
@@ -39,6 +41,8 @@ view: staff_snapshot {
 
   dimension: degree_earned {
     type: string
+    label: "Highest Degree Earned"
+    description: "Highest degree earned by the staff member: Doctorate / Educational Specialist / Masters / Bachelors / Assosciate / Non-Degree"
     sql: ${TABLE}.DEGREE_EARNED ;;
   }
 
@@ -56,6 +60,8 @@ view: staff_snapshot {
 
   dimension: emp_elig_verification {
     type: string
+    label: "Employment Eligibility Verification"
+    description: "Vertication of employment eligibility (if applicable): J1 VISA / Temporary Work Visa"
     sql: ${TABLE}.EMP_ELIG_VERIFICATION ;;
   }
 
@@ -73,11 +79,13 @@ view: staff_snapshot {
 
   dimension: ethnic_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.ETHNIC_DESC ;;
   }
 
   dimension_group: exit {
     type: time
+    description: "Date teacher exited"
     timeframes: [
       date,
       week,
@@ -90,6 +98,7 @@ view: staff_snapshot {
 
   dimension: highest_degree_institution {
     type: string
+    description: "Institution at which the highest level degree was awarded."
     sql: ${TABLE}.Highest_Degree_Institution ;;
   }
 
@@ -101,16 +110,20 @@ view: staff_snapshot {
 
   dimension: hispanic {
     type: string
+    description: "Staff member is hispanic - Yes/No"
     sql: ${TABLE}.HISPANIC_IND ;;
   }
 
   dimension: level_aggr {
     type: string
+    hidden: yes
     sql: ${TABLE}.LEVEL_AGGR ;;
   }
 
   dimension: local_contract {
     type: string
+    label: "National Certified"
+    description: "Teacher is national board certified: Y/N"
     sql: ${TABLE}.LOCAL_CONTRACT ;;
   }
 
@@ -143,11 +156,14 @@ view: staff_snapshot {
 
   dimension: multiracial {
     type: string
+    description: "Staff member has chosen more than one race: Yes/No"
     sql: ${TABLE}.MULTIRACIAL_IND ;;
   }
 
   dimension_group: orig_hire {
     type: time
+    label: "Original Hire"
+    description: "Original hire date"
     timeframes: [
       date,
       week,
@@ -160,6 +176,7 @@ view: staff_snapshot {
 
   dimension: pay_step_level {
     type: number
+    hidden: yes
     sql: ${TABLE}.PAY_STEP_LEVEL ;;
   }
 
@@ -183,11 +200,13 @@ view: staff_snapshot {
 
   dimension: primary_loc_nm {
     type: string
+    hidden: yes
     sql: ${TABLE}.PRIMARY_LOC_NM ;;
   }
 
   dimension: qualification_stat {
     type: string
+    hidden: yes
     sql: ${TABLE}.QUALIFICATION_STAT ;;
   }
 
@@ -199,6 +218,7 @@ view: staff_snapshot {
 
   dimension: race1 {
     type: string
+    description: "First race selection"
     sql: ${TABLE}.RACE1_LONG_DESC ;;
   }
 
@@ -210,6 +230,7 @@ view: staff_snapshot {
 
   dimension: race2 {
     type: string
+    description: "Second race selection"
     sql: ${TABLE}.RACE2_LONG_DESC ;;
   }
 
@@ -221,6 +242,7 @@ view: staff_snapshot {
 
   dimension: race3 {
     type: string
+    description: "Third race selection"
     sql: ${TABLE}.RACE3_LONG_DESC ;;
   }
 
@@ -232,6 +254,7 @@ view: staff_snapshot {
 
   dimension: race4 {
     type: string
+    description: "Fourth race selection"
     sql: ${TABLE}.RACE4_LONG_DESC ;;
   }
 
@@ -243,6 +266,7 @@ view: staff_snapshot {
 
   dimension: race5 {
     type: string
+    description: "Fifth race selection"
     sql: ${TABLE}.RACE5_LONG_DESC ;;
   }
 
@@ -254,11 +278,14 @@ view: staff_snapshot {
 
   dimension: rptg_race_ethnicity_desc {
     type: string
+    label: "Race/Ethnicity Derived"
+    description: "Derived race/ethnicity for federal reporting"
     sql: ${TABLE}.RPTG_RACE_ETHNICITY_DESC ;;
   }
 
   dimension_group: school_year_end {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -288,6 +315,7 @@ view: staff_snapshot {
     type: string
     label: "School Year"
     description: "The two years that the school year spans"
+    hidden: yes
     sql: cast(YEAR(${TABLE}.SCHOOL_YEAR)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.SCHOOL_YEAR) as varchar) ;;
   }
 
@@ -316,6 +344,7 @@ view: staff_snapshot {
 
   dimension: staff_base_zip {
     type: string
+    hidden: yes
     sql: ${TABLE}.STAFF_BASE_ZIP ;;
   }
 
@@ -342,6 +371,7 @@ view: staff_snapshot {
 
   dimension: staff_city {
     type: string
+    hidden: yes
     sql: ${TABLE}.STAFF_CITY ;;
   }
 
@@ -353,11 +383,14 @@ view: staff_snapshot {
 
   dimension: staff_name_first {
     type: string
+    description: "Staff first name"
     sql: ${TABLE}.STAFF_FIRST_NM ;;
   }
 
   dimension: staff_gender {
     type: string
+    label: "Gender"
+    description: "Staff gender: Male/Female"
     sql: ${TABLE}.STAFF_GENDER ;;
   }
 
@@ -381,21 +414,26 @@ view: staff_snapshot {
 
   dimension: staff_name_last {
     type: string
+    description: "Staff last name"
     sql: ${TABLE}.STAFF_LAST_NM ;;
   }
 
   dimension: staff_name_middle {
     type: string
+    description: "Staff middle initial"
     sql: ${TABLE}.STAFF_MID_INIT ;;
   }
 
   dimension: staff_name_full {
     type: string
+    description: "Staff name: last, first"
     sql: ${TABLE}.STAFF_NAME ;;
   }
 
   dimension: staff_qualif_desc {
     type: string
+    label: "Staff Qualification"
+    description: "Qualification status of the staff member: Certified Personnel / Non-certified Personnel / Substitute Teacher (Long Term) / Substitute Teacher (Short Term) / Contracted Related Service Provider"
     sql: ${TABLE}.STAFF_QUALIF_DESC ;;
   }
 
@@ -408,6 +446,7 @@ view: staff_snapshot {
 
   dimension: staff_state {
     type: string
+    hidden: yes
     sql: ${TABLE}.STAFF_STATE ;;
   }
 
@@ -419,6 +458,8 @@ view: staff_snapshot {
 
   dimension: subgroup {
     type: string
+    label: "Tribal Affiliation"
+    description: "Tribal affiliation"
     sql: ${TABLE}.SUBGROUP_LONG_DESC ;;
   }
 
@@ -430,6 +471,7 @@ view: staff_snapshot {
 
   dimension_group: tenure {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -448,26 +490,35 @@ view: staff_snapshot {
 
   dimension: termination_desc {
     type: string
+    label: "Exit Reason"
+    description: "Termination reason"
     sql: ${TABLE}.TERMINATION_DESC ;;
   }
 
   measure: total_annual_salary {
     type: sum
+    label: "Annual Salary"
+    description: "Base salary of the staff member budgeted for the current year."
     sql: ${TABLE}.TOT_ANNUAL_SALARY ;;
   }
 
   dimension: years_district {
     type: number
+    label: "Years in District"
+    description: "Number of years the staff member has as a teacher or principal in their current school district."
     sql: ${TABLE}.YEARS_DISTRICT ;;
   }
 
   dimension: years_service {
     type: number
+    label: "Years of Experience"
+    description: "Total years of experience in any school district in any state - applies to teachers and principals."
     sql: ${TABLE}.YEARS_SERVICE ;;
   }
 
   measure: staff_race_indian_eduction_count {
     type: sum
+    description: "Count of Native American staff per Indian Education Dept rules."
     sql: case when ${race1_code}='I' then 1
               when ${race2_code}='I' then 1
               when ${race3_code}='I' then 1
@@ -477,6 +528,7 @@ view: staff_snapshot {
   }
   dimension: staff_race_indian_education {
     type: string
+    description: "Derived race of the staff member Native American per Indian Education Dept rules"
     sql: case when ${race1_code}='I' then 'American Indian/Alaskan Native'
               when ${race2_code}='I' then 'American Indian/Alaskan Native'
               when ${race3_code}='I' then 'American Indian/Alaskan Native'

@@ -424,11 +424,13 @@ view: locations {
 
   dimension: school_year_end_date {
     type: date
+    hidden: yes
     sql: ${TABLE}.School_Year ;;
   }
 
   dimension: school_year {
     type: string
+    hidden: yes
     label: "School Year"
     description: "The two years that the school year spans"
     sql: cast(YEAR(${TABLE}.School_year)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.School_Year) as varchar) ;;

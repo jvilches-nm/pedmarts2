@@ -76,18 +76,10 @@ view: programs_fact {
     sql: ${TABLE}.MODIFIED_INDICATOR ;;
   }
 
-  dimension_group: orig_start {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: orig_start {
+    type: date
+    label: "Original Start Date"
+    description: "Original start date within the current school year that the student becan receiving CEIS, 3Y/4Y, or FACE services."
     sql: ${TABLE}.ORIG_START_DATE ;;
   }
 
@@ -249,6 +241,7 @@ view: programs_fact {
 
   dimension: program {
     type: string
+    description: "Name of the program"
     sql: ${TABLE}.Program ;;
   }
 
@@ -299,11 +292,13 @@ view: programs_fact {
 
   dimension: program_code {
     type: string
+    description: "Code identifying the program"
     sql: ${TABLE}."Program ID" ;;
   }
 
   dimension: program_intensity {
     type: string
+    description: "Number of program hours for the student participating in a BEP program - 1, 2 or 3 hours"
     sql: ${TABLE}.PROGRAM_INTENSITY ;;
   }
 
@@ -321,6 +316,7 @@ view: programs_fact {
 
   dimension_group: program_start {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
@@ -357,6 +353,7 @@ view: programs_fact {
 
   dimension_group: school_year_end {
     type: time
+    hidden: yes
     timeframes: [
       date,
       week,
