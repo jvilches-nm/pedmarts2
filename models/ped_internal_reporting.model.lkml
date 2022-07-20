@@ -87,6 +87,27 @@ explore: student_snapshot {
   }
 }
 
+explore: discipline {
+  join: student_consolidated {
+    relationship:many_to_one
+    type:inner
+    sql_on: ${discipline.student_key} = ${student_consolidated.student_key}
+        and ${discipline.school_year_date} = ${student_consolidated.school_year_end_date} ;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${discipline.district_key} = ${districts.district_key} and
+      ${discipline.school_year_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${discipline.location_key} = ${locations.location_key} and
+      ${discipline.school_year_date} = ${locations.school_year_end_date} ;;
+  }
+}
+
 explore: student_consolidated {
   join: districts {
     relationship: many_to_one
