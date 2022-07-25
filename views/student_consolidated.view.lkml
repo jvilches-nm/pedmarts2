@@ -809,8 +809,9 @@
     sql: ${TABLE}.Years_in_US_Schools ;;
   }
 
-  dimension: student_race_indian_education {
+  dimension: student_race_IED {
     type: string
+    label: "Race - IED Definition"
     description: "Student's race as defined by the Indian Education department - if any of the five race fields contains American Indian/Alaskan Native, then this field will indicate that, otherwise it uses the derived race/ethnicity."
     sql: case when ${student_race_1_code}='I' then 'American Indian/Alaskan Native'
               when ${student_race_2_code}='I' then 'American Indian/Alaskan Native'
@@ -880,9 +881,10 @@
               else 0 end;;
   }
 
-  measure: student_race_indian_eduction_count {
+  measure: american_indian_IED_count {
     type: sum
-    description: "Count of students who are American Indian as defined by the Indian Education department"
+    label: "American Indian IED Count"
+    description: "Count of students who are American Indian as defined by the Indian Education Department"
     sql: case when ${student_race_1_code}='I' then 1
               when ${student_race_2_code}='I' then 1
               when ${student_race_3_code}='I' then 1
