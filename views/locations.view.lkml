@@ -60,6 +60,7 @@ view: locations {
 
   dimension: location_name_common {
     type: string
+    description: "Short school name"
     sql: ${TABLE}.Common_Location_Name ;;
   }
 
@@ -461,6 +462,7 @@ view: locations {
 
   dimension: virtual_location {
     type: string
+    description: "Location is virtual - Yes/No"
     sql: ${TABLE}.Virtual_Location ;;
   }
 

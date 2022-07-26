@@ -10,6 +10,7 @@ view: districts {
 
   dimension: charter_status {
     type: string
+    description: "Charter status - Y/N"
     sql: ${TABLE}.Charter_Status ;;
   }
 
@@ -27,11 +28,13 @@ view: districts {
 
   dimension: district_code {
     type: string
+    description: "Three digit district code"
     sql: cast(${TABLE}.District_Code as varchar);;
   }
 
   dimension: district_county_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_County_Name ;;
   }
 
@@ -50,11 +53,13 @@ view: districts {
 
   dimension: district_name_legal {
     type: string
+    description: "Full legal district name"
     sql: ${TABLE}.District_Legal_Name ;;
   }
 
   dimension: district_locale {
     type: string
+    description: "Shows if the district is flagged as rural"
     sql: ${TABLE}.District_Locale ;;
   }
 
@@ -66,16 +71,19 @@ view: districts {
 
   dimension: district_location_address_1 {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Location_Address_1 ;;
   }
 
   dimension: district_location_city {
     type: string
+    description: "City of the district office"
     sql: ${TABLE}.District_Location_City ;;
   }
 
   dimension: district_location_state_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Location_State_Code ;;
   }
 
@@ -87,16 +95,19 @@ view: districts {
 
   dimension: district_location_zip_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Location_Zip_Code ;;
   }
 
   dimension: district_location_address_full {
     type: string
+    description: "Full address of the district office location"
     sql: ${TABLE}.District_Location_Address_1+", "+ ${TABLE}.District_Location_City+", "+ ${TABLE}.District_Location_State_Code+" "+${TABLE}.District_Location_Zip_Code;;
   }
 
   dimension: district_mailing_address_full {
     type: string
+    description: "Full mailing address for the district"
     sql: ${TABLE}.District_Mailing_Address_1+", "+ ${TABLE}.District_Mailing_City+", "+ ${TABLE}.District_Mailing_State_Code+" "+${TABLE}.District_Mailing_Zip_Code;;
   }
 
@@ -132,11 +143,13 @@ view: districts {
 
   dimension: district_main_phone_number {
     type: string
+    description: "Main phone number for the district"
     sql: ${TABLE}.District_Main_Phone_Number ;;
   }
 
   dimension: district_name {
     type: string
+    description: "District name - use this field to display district boundary map data"
     map_layer_name: my_neighborhood_layer
     sql: ${TABLE}.District_Name ;;
   }
@@ -155,6 +168,7 @@ view: districts {
 
   dimension: district_operational_status {
     type: string
+    description: "Status of the district - open/closed/future/new"
     sql: ${TABLE}.District_Operational_Status ;;
   }
 
@@ -166,6 +180,7 @@ view: districts {
 
   dimension: district_organization_type {
     type: string
+    description: "Type of district"
     sql: ${TABLE}.District_Organization_Type ;;
   }
 
@@ -177,6 +192,7 @@ view: districts {
 
   dimension: district_name_full {
     type: string
+    hidden: yes
     sql: ${TABLE}.Full_District_Name ;;
   }
 
