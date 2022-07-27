@@ -53,12 +53,14 @@ explore: programs_fact {
   }
   join: districts {
     relationship: many_to_one
+    view_label: "Program District"
     type: inner
     sql_on: ${programs_fact.district_key} = ${districts.district_key} and
       ${programs_fact.school_year_end_date} = ${districts.school_year_end_date} ;;
   }
   join: locations {
     relationship: many_to_one
+    view_label: "Program Location"
     type: inner
     sql_on: ${programs_fact.location_key} = ${locations.location_key} and
       ${programs_fact.school_year_end_date} = ${locations.school_year_end_date} ;;
