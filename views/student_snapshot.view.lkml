@@ -888,7 +888,10 @@ view: student_snapshot {
               when ${student_race_5_code}='I' then 1
               else 0 end;;
   }
-
+  measure: percent_of_student_count {
+    type: percent_of_total
+    sql: ${count} ;;
+  }
   measure: count {
     type: count
     drill_fields: [student_name_full, grade_level, districts.district_name_full, locations.location_name_full]
