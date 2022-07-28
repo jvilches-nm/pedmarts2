@@ -151,6 +151,34 @@ explore: license_user_endorsements {
   }
 }
 
+explore: license_user_info {
+  view_label: "Staff License"
+  join: staff_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${license_user_info.staff_id} = ${staff_snapshot.staff_id};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.district_key} = ${districts.district_key} and
+      ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.location_key} = ${locations.location_key} and
+      ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${staff_snapshot.snapshot_date}=${period.period_start_date};;
+  }
+}
+
+
 explore: course_instruct_staff_student_snapshot {
   label: "Course Snapshot"
   join: staff_snapshot {
