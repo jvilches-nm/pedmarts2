@@ -583,7 +583,7 @@
 
   dimension: student_id {
     type: string
-    hidden: yes
+    description: "Student ID"
     sql: ${TABLE}.Student_ID ;;
   }
 

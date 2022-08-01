@@ -1,10 +1,10 @@
 view: assessment {
   sql_table_name: stars.assessment ;;
-  drill_fields: [state_assessment_id]
+  drill_fields: [assessment_id, assessment_name]
 
   dimension: state_assessment_id {
-    primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.State_Assessment_ID ;;
   }
 
@@ -43,52 +43,60 @@ view: assessment {
 
   dimension: achievement_level_group {
     type: string
+    hidden: yes
     sql: ${TABLE}.Achievement_Level_Group ;;
   }
 
   dimension: ai_standard_error_of_measurement {
     type: number
+    hidden: yes
     sql: ${TABLE}.AI_Standard_Error_of_Measurement ;;
   }
 
   dimension: ai_subtest_aggregated {
     type: string
+    hidden: yes
     sql: ${TABLE}.AI_Subtest_Aggregated ;;
   }
 
   dimension: assessment_accountable_district_level_status_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Accountable_District_Level_Status_Code ;;
   }
 
   dimension: assessment_accountable_school_level_status_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Accountable_School_Level_Status_Code ;;
   }
 
   dimension: assessment_accountable_state_level_status_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Accountable_State_Level_Status_Code ;;
   }
 
   dimension: assessment_category {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Category ;;
   }
 
   dimension: assessment_group {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Group ;;
   }
 
   dimension: assessment_id {
     type: string
-    # hidden: yes
     sql: ${TABLE}.Assessment_ID ;;
   }
 
   dimension: assessment_id_school_year {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_ID_School_Year ;;
   }
 
@@ -99,16 +107,18 @@ view: assessment {
 
   dimension: assessment_name {
     type: string
-    sql: ${TABLE}.Assessment_Name ;;
+    sql: coalesce (${TABLE}.Assessment_Name, ${TABLE}.Assessment_ID_School_Year)  ;;
   }
 
   dimension: assessment_status {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Status ;;
   }
 
   dimension: assessment_status_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Status_Code ;;
   }
 
@@ -120,16 +130,19 @@ view: assessment {
 
   dimension: assessment_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Type ;;
   }
 
   dimension: assessment_vendor {
     type: string
+    hidden: yes
     sql: ${TABLE}.Assessment_Vendor ;;
   }
 
   dimension: converted_score {
     type: number
+    hidden: yes
     sql: ${TABLE}.Converted_Score ;;
   }
 
@@ -171,21 +184,25 @@ view: assessment {
 
   dimension: math_participation_status {
     type: string
+    hidden: yes
     sql: ${TABLE}.Math_Participation_Status ;;
   }
 
   dimension: math_participation_status_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Math_Participation_Status_Code ;;
   }
 
   dimension: math_proficiency_target {
     type: string
+    hidden: yes
     sql: ${TABLE}.Math_Proficiency_Target ;;
   }
 
   dimension: math_proficiency_target_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Math_Proficiency_Target_Code ;;
   }
 
@@ -281,16 +298,19 @@ view: assessment {
 
   dimension: number_of_subtest_items {
     type: number
+    hidden: yes
     sql: ${TABLE}.Number_of_Subtest_Items ;;
   }
 
   dimension: numeric_primary_subtest_score_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.Numeric_Primary_Subtest_Score_Type ;;
   }
 
   dimension: percentage_score {
     type: number
+    hidden: yes
     sql: ${TABLE}.Percentage_Score ;;
   }
 
@@ -321,6 +341,7 @@ view: assessment {
 
   dimension: persistently_dangerous_status {
     type: string
+    hidden: yes
     sql: ${TABLE}.Persistently_Dangerous_Status ;;
   }
 
@@ -332,11 +353,13 @@ view: assessment {
 
   dimension: primary_achievement_level_sort_sequence {
     type: number
+    hidden: yes
     sql: ${TABLE}.Primary_Achievement_Level_Sort_Sequence ;;
   }
 
   dimension: primary_numeric_score {
     type: number
+    hidden: yes
     sql: ${TABLE}.Primary_Numeric_Score ;;
   }
 
@@ -347,11 +370,13 @@ view: assessment {
 
   dimension: primary_subtest_score_type_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Primary_Subtest_Score_Type_Code ;;
   }
 
   dimension: quantile_score_alpha {
     type: string
+    hidden: yes
     sql: ${TABLE}.Quantile_Score_Alpha ;;
   }
 
@@ -362,11 +387,13 @@ view: assessment {
 
   dimension: reporting_achievement_group {
     type: string
+    hidden: yes
     sql: ${TABLE}.Reporting_Achievement_Group ;;
   }
 
   dimension: reporting_assessment_status {
     type: string
+    hidden: yes
     sql: ${TABLE}.Reporting_Assessment_Status ;;
   }
 

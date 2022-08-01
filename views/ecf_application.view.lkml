@@ -53,7 +53,7 @@ view: ecf_application {
 
   measure: application_total_student_count {
     type: sum_distinct
-    sql_distinct_key: ${billed_entity_number} ;;
+    sql_distinct_key: ${application_number} ;;
     sql: ${TABLE}.application_total_student_count ;;
   }
 
