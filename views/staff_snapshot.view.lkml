@@ -518,23 +518,17 @@ view: staff_snapshot {
 
   measure: staff_race_indian_eduction_count {
     type: sum
-    description: "Count of Native American staff per Indian Education Dept rules."
+    label: "American Indian Staff - IED Count"
+    description: "Count of Native American staff per Indian Education Dept rules - Race 1 is American Indian/Alaskan Native."
     sql: case when ${race1_code}='I' then 1
-              when ${race2_code}='I' then 1
-              when ${race3_code}='I' then 1
-              when ${race4_code}='I' then 1
-              when ${race5_code}='I' then 1
               else 0 end;;
   }
   dimension: staff_race_indian_education {
     type: string
-    description: "Derived race of the staff member Native American per Indian Education Dept rules"
-    sql: case when ${race1_code}='I' then 'American Indian/Alaskan Native'
-              when ${race2_code}='I' then 'American Indian/Alaskan Native'
-              when ${race3_code}='I' then 'American Indian/Alaskan Native'
-              when ${race4_code}='I' then 'American Indian/Alaskan Native'
-              when ${race5_code}='I' then 'American Indian/Alaskan Native'
-              else ${rptg_race_ethnicity_desc} end;;
+    label: "Staff Race - IED Definition"
+    description: "Derived race of the staff member Native American per Indian Education Dept rules - Hispanic if Hispanic indicator is Yes and Race 1 is Caucasian otherwise Race 1."
+    sql: case when ${race1_code}='C' and ${hispanic}='Yes' then 'Hispanic'
+              else ${race1} end;;
   }
 
   measure: count {

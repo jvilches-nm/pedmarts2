@@ -816,13 +816,9 @@ view: student_snapshot {
   dimension: student_race_IED {
     type: string
     label: "Race - IED Definition"
-    description: "Student's race as defined by the Indian Education Department - if any of the five race fields contains American Indian/Alaskan Native, then this field will indicate that, otherwise it uses the derived race/ethnicity."
-    sql: case when ${student_race_1_code}='I' then 'American Indian/Alaskan Native'
-              when ${student_race_2_code}='I' then 'American Indian/Alaskan Native'
-              when ${student_race_3_code}='I' then 'American Indian/Alaskan Native'
-              when ${student_race_4_code}='I' then 'American Indian/Alaskan Native'
-              when ${student_race_5_code}='I' then 'American Indian/Alaskan Native'
-              else ${student_race_ethnicity_derived} end;;
+    description: "Student's race as defined by the Indian Education Department - If Race 1 is Caucasian and the Hispanic indicator is Yes then Hispanic, otherwise Race 1."
+    sql: case when ${student_race_1_code}='C' and ${student_hispanic_indicator}='Yes' then 'Hispanic'
+              else ${student_race_1} end;;
   }
 
   dimension: at_risk_student_martinez_yazzie {
@@ -888,12 +884,8 @@ view: student_snapshot {
   measure: american_indian_IED_count {
     type: sum
     label: "American Indian IED Count"
-    description: "Count of students who are American Indian as defined by the Indian Education Department"
+    description: "Count of students who are American Indian as defined by the Indian Education Department - Race 1 is American Indian/Alaskan Native"
     sql: case when ${student_race_1_code}='I' then 1
-              when ${student_race_2_code}='I' then 1
-              when ${student_race_3_code}='I' then 1
-              when ${student_race_4_code}='I' then 1
-              when ${student_race_5_code}='I' then 1
               else 0 end;;
   }
   measure: percent_of_student_count {
