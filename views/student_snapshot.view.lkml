@@ -412,17 +412,25 @@ view: student_snapshot {
     sql: ${TABLE}.Primary_Disability_Code ;;
   }
 
-  dimension: primary_language {
-    type: string
-    label: "BEP Program Language"
-    description: "Language if student is part of a BEP program (Bilingual Multicultural Education Program)"
-    sql: ${TABLE}.Primary_Language ;;
-  }
-
   dimension: primary_language_code {
     type: string
     hidden: yes
     sql: ${TABLE}.Primary_Language_Code ;;
+  }
+
+  dimension: primary_language {
+    type: string
+    label: "BEP Program Language"
+    description: "Language if student is part of a BEP program (Bilingual Multicultural Education Program)"
+    sql: case ${primary_language_code} when '03' then 'Hmong; mong'
+    when '04' then 'Chinese (includes Cantonese; Mandarin; Chaozhou; Lahu; Taiwanese; Teochew; Toishanese)'
+    when '07' then 'Laotian (includes Khmu)'
+    when '08' then 'Navajo; Navaho (Diné)'
+    when '11' then 'Creoles French-based'
+    when '12' then 'Arabic (spoken in numerous countries including Algeria; Egypt; Iran; Iraq; Yemen)'
+    when '24' then 'Sign Languages - American'
+    when '25' then 'Sign Languages - English-based'
+    when '91' then 'Swahili (includes Kizigua)' else ${TABLE}.Primary_Language end;;
   }
 
   dimension: retained {
