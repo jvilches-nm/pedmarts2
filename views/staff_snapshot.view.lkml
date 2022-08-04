@@ -28,7 +28,7 @@ view: staff_snapshot {
   dimension_group: curr_svc {
     type: time
     label: "Current School Year Service Start"
-    description: "Staff member's start date for teh current school year"
+    description: "Staff member's start date for the current school year"
     timeframes: [
       date,
       week,
