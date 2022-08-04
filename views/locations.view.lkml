@@ -475,9 +475,8 @@ view: locations {
   dimension: indian_education_focus_charter {
     type: string
     label: "IED Focus Charter"
-    description: "Charter school is a focus charter for the Indian Education Department"
-    sql: case when ${TABLE}.District_Code in ('573', '578', '568', '552') then 'Yes'
-              when ${TABLE}.location_name_long='DREAM DINE' then 'Yes'
+    description: "Local charter school is a focus charter for the Indian Education Department"
+    sql: case when ${TABLE}.location_name_long='DREAM DINE' then 'Yes'
               when ${TABLE}.location_name_long='GORDON BERNELL CHARTER' then 'Yes'
               when ${TABLE}.location_name_long='SAN DIEGO RIVERSIDE' then 'Yes'
               when ${TABLE}.location_name_long='VISTA GRANDE HIGH SCHOOL' then 'Yes'

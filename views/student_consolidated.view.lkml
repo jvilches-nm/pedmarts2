@@ -439,6 +439,23 @@
           when '91' then 'Swahili (includes Kizigua)' else ${TABLE}.Primary_Language end;;
   }
 
+  dimension: bep_program_language_category {
+    type: string
+    label: "BEP Program Language Category"
+    description: "Grouping of languages for students in BEP programs - American Indian, Spanish, Sign Language"
+    sql: case ${primary_language_code} when '01' then 'Spanish'
+          when '08' then 'American Indian'
+          when '16' then 'American Indian'
+          when '17' then 'American Indian'
+          when '18' then 'American Indian'
+          when '19' then 'American Indian'
+          when '20' then 'American Indian'
+          when '21' then 'American Indian'
+          when '24' then 'Sign Language'
+          when '25' then 'Sign Language'
+          else 'Other' end;;
+  }
+
   dimension: retained {
     type: string
     description: "Repeating Last Year: Yes - Retained/No - Not retained (promoted to next grade)"
