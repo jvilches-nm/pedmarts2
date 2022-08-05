@@ -603,7 +603,6 @@ view: student_snapshot {
 
   dimension: student_id {
     type: string
-    hidden: yes
     sql: ${TABLE}.Student_ID ;;
   }
 
