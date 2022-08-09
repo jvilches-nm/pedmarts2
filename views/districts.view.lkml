@@ -253,7 +253,7 @@ view: districts {
     label: "IED Focus District"
     description: "District is a focus district for the Indian Education Department"
     sql: case when ${TABLE}.District_Code in ('001', '064', '061', '066', '067', '062', '054', '055',
-                                              '065', '043', '088', '056', '063', '017', '086', '075',
+                                              '065', '043', '088', '056', '063', '086', '075',
                                               '077', '072', '083', '036', '071', '076', '047', '089',
                                               '573', '578', '568', '552', '562') then 'Yes'
               else 'No' end;;
