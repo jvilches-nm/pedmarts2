@@ -4,7 +4,7 @@
             (select ss.* from stars.student_snapshot ss
                inner join (select school_year, period_key, student_id, max(student_key) max_student_key from stars.student_snapshot
                            group by school_year, period_key, student_id) x on x.school_year=ss.school_year and x.period_key=ss.period_key and x.student_id=ss.student_id and x.max_student_key=ss.student_key) y
-               inner join (select school_year, student_id, max(period_key) max_period_key from stars.student_snapshot s, stars.period p where p.period_key=stars.period_key and p.period_level in ('40D', '80D', '120D')
+               inner join (select school_year, student_id, max(s.period_key) max_period_key from stars.student_snapshot s, stars.period p where p.period_key=stars.period_key and p.period_level in ('40D', '80D', '120D')
                          group by school_year, student_id) z on z.school_year=y.school_year and z.student_id=y.student_id and z.max_period_key=y.period_key ;;
    }
 
