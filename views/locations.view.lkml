@@ -1,5 +1,8 @@
 view: locations {
-  sql_table_name: stars.locations ;;
+  derived_table: {
+    sql: select * from stars.locations where location_organization_type not in ('BIA', 'Home School', 'Private') ;;
+  }
+
   drill_fields: [nces_school_id,
       district_school_code,
       location_name_full,

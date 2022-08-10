@@ -1,5 +1,7 @@
 view: districts {
-  sql_table_name: stars.districts ;;
+  derived_table: {
+    sql: select * from stars.districts where district_organization_type in ('State Charter', 'State District', 'State Supported') ;;
+  }
   drill_fields: [nces_district_id, district_name]
 
   dimension: nces_district_id {
