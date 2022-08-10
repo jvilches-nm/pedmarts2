@@ -1,6 +1,6 @@
 view: locations {
   derived_table: {
-    sql: select * from stars.locations where location_organization_type not in ('BIA', 'Home School', 'Private') ;;
+    sql: select * from stars.locations where Location_Organization_Type_Code not in ('BIA', 'Home School', 'Private') ;;
   }
 
   drill_fields: [nces_school_id,
