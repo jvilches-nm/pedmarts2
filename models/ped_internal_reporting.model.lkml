@@ -287,7 +287,8 @@ explore: school_enroll {
   join: student_consolidated {
     relationship: many_to_one
     type: inner
-    sql_on: ${school_enroll.student_id}= ${student_consolidated.student_id};;
+    sql_on: ${school_enroll.student_id}= ${student_consolidated.student_id}
+       and ${school_enroll.school_year_end_date} = ${student_consolidated.school_year_end_date};;
   }
   join: locations {
     relationship: many_to_one
@@ -303,6 +304,28 @@ explore: school_enroll {
       and ${school_enroll.school_year_end_date} = ${districts.school_year_end_date};;
   }
 }
+
+explore: student_attendance {
+  join: student_consolidated {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_attendance.student_key}= ${student_consolidated.student_key}
+       and $student_attendance.school_year_end_date}= ${student_consolidated.school_year_end_date};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${student_attendance.location_key} = ${locations.location_key}
+      and ${student_attendance.school_year_end_date} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${student_attendance.district_key} = ${districts.district_key}
+      and ${student_attendance.school_year_end_date} = ${districts.school_year_end_date};;
+  }
+}
+
 
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map.topojson"
