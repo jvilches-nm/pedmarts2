@@ -1,6 +1,6 @@
 view: assessment {
   sql_table_name: stars.assessment ;;
-  drill_fields: [assessment_id, assessment_name]
+  drill_fields: [assessment_name, school_year, ]
 
   dimension: state_assessment_id {
     type: string
@@ -41,55 +41,8 @@ view: assessment {
     sql: ${TABLE}.Achievement_Level_Default_Value_Indicator ;;
   }
 
-  dimension: achievement_level_group {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Achievement_Level_Group ;;
-  }
 
-  dimension: ai_standard_error_of_measurement {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.AI_Standard_Error_of_Measurement ;;
-  }
-
-  dimension: ai_subtest_aggregated {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.AI_Subtest_Aggregated ;;
-  }
-
-  dimension: assessment_accountable_district_level_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Accountable_District_Level_Status_Code ;;
-  }
-
-  dimension: assessment_accountable_school_level_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Accountable_School_Level_Status_Code ;;
-  }
-
-  dimension: assessment_accountable_state_level_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Accountable_State_Level_Status_Code ;;
-  }
-
-  dimension: assessment_category {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Category ;;
-  }
-
-  dimension: assessment_group {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Group ;;
-  }
-
-  dimension: assessment_id {
+  dimension: assessment_identifier {
     type: string
     sql: ${TABLE}.Assessment_ID ;;
   }
@@ -110,40 +63,10 @@ view: assessment {
     sql: coalesce (${TABLE}.Assessment_Name, ${TABLE}.Assessment_ID_School_Year)  ;;
   }
 
-  dimension: assessment_status {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Status ;;
-  }
-
-  dimension: assessment_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Status_Code ;;
-  }
-
   dimension: assessment_student_snapshot_key {
     type: number
     hidden: yes
     sql: ${TABLE}.Assessment_Student_Snapshot_Key ;;
-  }
-
-  dimension: assessment_type {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Type ;;
-  }
-
-  dimension: assessment_vendor {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Assessment_Vendor ;;
-  }
-
-  dimension: converted_score {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.Converted_Score ;;
   }
 
   dimension: district_code {
@@ -180,30 +103,6 @@ view: assessment {
     type: number
     hidden: yes
     sql: ${TABLE}.Location_Key ;;
-  }
-
-  dimension: math_participation_status {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Math_Participation_Status ;;
-  }
-
-  dimension: math_participation_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Math_Participation_Status_Code ;;
-  }
-
-  dimension: math_proficiency_target {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Math_Proficiency_Target ;;
-  }
-
-  dimension: math_proficiency_target_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Math_Proficiency_Target_Code ;;
   }
 
   dimension_group: modified_date_assessment_achdet {
@@ -296,29 +195,9 @@ view: assessment {
     sql: ${TABLE}.modified_date_ASSMNT_SCORE_MODEL ;;
   }
 
-  dimension: number_of_subtest_items {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.Number_of_Subtest_Items ;;
-  }
-
-  dimension: numeric_primary_subtest_score_type {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Numeric_Primary_Subtest_Score_Type ;;
-  }
-
-  dimension: percentage_score {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.Percentage_Score ;;
-  }
-
-  dimension_group: period_end {
+  dimension_group: assessment {
     type: time
     timeframes: [
-      raw,
-      time,
       date,
       week,
       month,
@@ -336,31 +215,8 @@ view: assessment {
 
   dimension: period_level {
     type: string
+    hidden: yes
     sql: ${TABLE}.Period_Level ;;
-  }
-
-  dimension: persistently_dangerous_status {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Persistently_Dangerous_Status ;;
-  }
-
-  dimension: persistently_dangerous_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Persistently_Dangerous_Status_Code ;;
-  }
-
-  dimension: primary_achievement_level_sort_sequence {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.Primary_Achievement_Level_Sort_Sequence ;;
-  }
-
-  dimension: primary_numeric_score {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.Primary_Numeric_Score ;;
   }
 
   dimension: primary_subtest_score_type {
@@ -368,53 +224,9 @@ view: assessment {
     sql: ${TABLE}.Primary_Subtest_Score_Type ;;
   }
 
-  dimension: primary_subtest_score_type_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Primary_Subtest_Score_Type_Code ;;
-  }
-
-  dimension: quantile_score_alpha {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Quantile_Score_Alpha ;;
-  }
-
   dimension: raw_score {
     type: number
     sql: ${TABLE}.Raw_Score ;;
-  }
-
-  dimension: reporting_achievement_group {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Reporting_Achievement_Group ;;
-  }
-
-  dimension: reporting_assessment_status {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Reporting_Assessment_Status ;;
-  }
-
-  dimension: results_for_cluster_level {
-    type: string
-    sql: ${TABLE}.Results_for_Cluster_Level ;;
-  }
-
-  dimension: results_for_question_level {
-    type: string
-    sql: ${TABLE}.Results_for_Question_Level ;;
-  }
-
-  dimension: results_for_skill_level {
-    type: string
-    sql: ${TABLE}.Results_for_Skill_Level ;;
-  }
-
-  dimension: results_for_subtest_level {
-    type: string
-    sql: ${TABLE}.Results_for_Subtest_Level ;;
   }
 
   dimension: scaled_score {
@@ -422,17 +234,13 @@ view: assessment {
     sql: ${TABLE}.Scaled_Score ;;
   }
 
-  dimension_group: school_year {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: results_for_subtest_level {
+    type: string
+    sql: ${TABLE}.Results_for_Subtest_Level ;;
+  }
+
+  dimension: school_year {
+    type: date
     sql: ${TABLE}.School_Year ;;
   }
 
@@ -441,18 +249,9 @@ view: assessment {
     sql: ${TABLE}.Scoring_Model ;;
   }
 
-  dimension: scoring_model_category {
-    type: string
-    sql: ${TABLE}.Scoring_Model_Category ;;
-  }
-
-  dimension: scoring_model_category_sort_sequence {
-    type: number
-    sql: ${TABLE}.Scoring_Model_Category_Sort_Sequence ;;
-  }
-
   dimension: scoring_model_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Scoring_Model_Code ;;
   }
 
@@ -464,27 +263,13 @@ view: assessment {
 
   dimension: scoring_model_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Scoring_Model_Name ;;
-  }
-
-  dimension: scoring_model_sort_sequence {
-    type: number
-    sql: ${TABLE}.Scoring_Model_Sort_Sequence ;;
-  }
-
-  dimension: secondary_achievement_level_sort_sequence {
-    type: number
-    sql: ${TABLE}.Secondary_Achievement_Level_Sort_Sequence ;;
   }
 
   dimension: special_ed_assessment {
     type: string
     sql: ${TABLE}.Special_Ed_Assessment ;;
-  }
-
-  dimension: standard_error_of_measurement {
-    type: number
-    sql: ${TABLE}.Standard_Error_of_Measurement ;;
   }
 
   dimension: student_id {
@@ -505,134 +290,28 @@ view: assessment {
     sql: ${TABLE}.Student_Name ;;
   }
 
-  dimension: subtest_administration {
-    type: string
-    sql: ${TABLE}.Subtest_Administration ;;
-  }
-
-  dimension: subtest_aggregated {
-    type: string
-    sql: ${TABLE}.Subtest_Aggregated ;;
-  }
-
   dimension: subtest_description {
     type: string
     sql: ${TABLE}.Subtest_Description ;;
   }
 
-  dimension: subtest_form {
-    type: string
-    sql: ${TABLE}.Subtest_Form ;;
-  }
-
-  dimension: subtest_grade_level {
-    type: string
-    sql: ${TABLE}.Subtest_Grade_Level ;;
-  }
-
-  dimension: subtest_identifiers {
+  dimension: subtest {
     type: string
     sql: ${TABLE}.Subtest_Identifiers ;;
   }
 
-  dimension: subtest_key {
-    type: number
-    sql: ${TABLE}.Subtest_Key ;;
-  }
 
   dimension: subtest_language {
     type: string
-    sql: ${TABLE}.Subtest_Language ;;
-  }
-
-  dimension: subtest_language_code {
-    type: string
-    sql: ${TABLE}.Subtest_Language_Code ;;
-  }
-
-  dimension: subtest_level {
-    type: string
-    sql: ${TABLE}.Subtest_Level ;;
-  }
-
-  dimension: subtest_max_score {
-    type: number
-    sql: ${TABLE}.Subtest_Max_Score ;;
-  }
-
-  dimension: subtest_name {
-    type: string
-    sql: ${TABLE}.Subtest_Name ;;
-  }
-
-  dimension: subtest_quality_rating {
-    type: string
-    sql: ${TABLE}.Subtest_Quality_Rating ;;
-  }
-
-  dimension: subtest_quality_rating_code {
-    type: string
-    sql: ${TABLE}.Subtest_Quality_Rating_Code ;;
-  }
-
-  dimension: subtest_sort_sequence {
-    type: number
-    sql: ${TABLE}.Subtest_Sort_Sequence ;;
+    sql: case ${TABLE}.Subtest_Language when 'E' then 'English'
+                                        when 'S' then 'Spanish'
+                                        else ${TABLE}.Subtest_Language;;
   }
 
   dimension: subtest_subject_area {
     type: string
-    sql: ${TABLE}.Subtest_Subject_Area ;;
-  }
-
-  dimension: subtest_subject_area_code {
-    type: string
-    sql: ${TABLE}.Subtest_Subject_Area_Code ;;
-  }
-
-  dimension_group: test_assignment {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.Test_Assignment_Date ;;
-  }
-
-  dimension: test_booklet_id {
-    type: string
-    sql: ${TABLE}.Test_Booklet_ID ;;
-  }
-
-  dimension: test_key {
-    type: number
     hidden: yes
-    sql: ${TABLE}.Test_Key ;;
-  }
-
-  dimension: test_language_key {
-    type: number
-    sql: ${TABLE}.Test_Language_Key ;;
-  }
-
-  dimension: testing_accommodation {
-    type: string
-    sql: ${TABLE}.Testing_Accommodation ;;
-  }
-
-  dimension: title_i_status_code {
-    type: string
-    sql: ${TABLE}.Title_I_Status_Code ;;
-  }
-
-  dimension: use_in_accountability {
-    type: string
-    sql: ${TABLE}.Use_In_Accountability ;;
+    sql: ${TABLE}.Subtest_Subject_Area ;;
   }
 
   measure: count {
@@ -656,4 +335,319 @@ view: assessment {
       assessment.count
     ]
   }
+
+  #------------------------------------------------
+  dimension: achievement_level_group {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Achievement_Level_Group ;;
+  }
+  dimension: ai_standard_error_of_measurement {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.AI_Standard_Error_of_Measurement ;;
+  }
+  dimension: ai_subtest_aggregated {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.AI_Subtest_Aggregated ;;
+  }
+  dimension: assessment_accountable_district_level_status_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Accountable_District_Level_Status_Code ;;
+  }
+  dimension: assessment_accountable_school_level_status_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Accountable_School_Level_Status_Code ;;
+  }
+  dimension: assessment_accountable_state_level_status_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Accountable_State_Level_Status_Code ;;
+  }
+  dimension: assessment_category {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Category ;;
+  }
+  dimension: assessment_group {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Group ;;
+  }
+
+  dimension: assessment_status {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Status ;;
+  }
+  dimension: assessment_status_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Status_Code ;;
+  }
+  dimension: assessment_type {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Type ;;
+  }
+  dimension: assessment_vendor {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Assessment_Vendor ;;
+  }
+  dimension: converted_score {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Converted_Score ;;
+  }
+  dimension: math_participation_status {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Math_Participation_Status ;;
+  }
+  dimension: math_participation_status_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Math_Participation_Status_Code ;;
+  }
+  dimension: math_proficiency_target {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Math_Proficiency_Target ;;
+  }
+  dimension: math_proficiency_target_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Math_Proficiency_Target_Code ;;
+  }
+  dimension: number_of_subtest_items {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Number_of_Subtest_Items ;;
+  }
+  dimension: numeric_primary_subtest_score_type {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Numeric_Primary_Subtest_Score_Type ;;
+  }
+  dimension: percentage_score {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Percentage_Score ;;
+  }
+  dimension: persistently_dangerous_status {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Persistently_Dangerous_Status ;;
+  }
+  dimension: persistently_dangerous_status_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Persistently_Dangerous_Status_Code ;;
+  }
+  dimension: primary_achievement_level_sort_sequence {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Primary_Achievement_Level_Sort_Sequence ;;
+  }
+  dimension: primary_numeric_score {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Primary_Numeric_Score ;;
+  }
+  dimension: primary_subtest_score_type_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Primary_Subtest_Score_Type_Code ;;
+  }
+  dimension: quantile_score_alpha {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Quantile_Score_Alpha ;;
+  }
+  dimension: reporting_achievement_group {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Reporting_Achievement_Group ;;
+  }
+  dimension: reporting_assessment_status {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Reporting_Assessment_Status ;;
+  }
+  dimension: results_for_cluster_level {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Results_for_Cluster_Level ;;
+  }
+  dimension: results_for_question_level {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Results_for_Question_Level ;;
+  }
+  dimension: results_for_skill_level {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Results_for_Skill_Level ;;
+  }
+  dimension: scoring_model_category {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Scoring_Model_Category ;;
+  }
+  dimension: scoring_model_category_sort_sequence {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Scoring_Model_Category_Sort_Sequence ;;
+  }
+
+  dimension: scoring_model_sort_sequence {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Scoring_Model_Sort_Sequence ;;
+  }
+  dimension: secondary_achievement_level_sort_sequence {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Secondary_Achievement_Level_Sort_Sequence ;;
+  }
+  dimension: standard_error_of_measurement {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Standard_Error_of_Measurement ;;
+  }
+
+  dimension: subtest_administration {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Administration ;;
+  }
+
+  dimension: subtest_aggregated {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Aggregated ;;
+  }
+
+
+  dimension: subtest_form {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Form ;;
+  }
+
+  dimension: subtest_grade_level {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Grade_Level ;;
+  }
+
+  dimension: subtest_key {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Subtest_Key ;;
+  }
+
+  dimension: subtest_language_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Language_Code ;;
+  }
+
+  dimension: subtest_level {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Level ;;
+  }
+
+  dimension: subtest_max_score {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Subtest_Max_Score ;;
+  }
+
+  dimension: subtest_name {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Name ;;
+  }
+
+  dimension: subtest_quality_rating {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Quality_Rating ;;
+  }
+
+  dimension: subtest_quality_rating_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Quality_Rating_Code ;;
+  }
+
+  dimension: subtest_sort_sequence {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Subtest_Sort_Sequence ;;
+  }
+
+  dimension: subtest_subject_area_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Subtest_Subject_Area_Code ;;
+  }
+
+  dimension_group: test_assignment {
+    type: time
+    hidden: yes
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.Test_Assignment_Date ;;
+  }
+
+  dimension: test_booklet_id {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Test_Booklet_ID ;;
+  }
+
+  dimension: test_key {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Test_Key ;;
+  }
+
+  dimension: test_language_key {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.Test_Language_Key ;;
+  }
+
+  dimension: testing_accommodation {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Testing_Accommodation ;;
+  }
+
+  dimension: title_i_status_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Title_I_Status_Code ;;
+  }
+
+  dimension: use_in_accountability {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.Use_In_Accountability ;;
+  }
+
 }

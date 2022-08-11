@@ -262,6 +262,48 @@ explore: staff_assignment_snapshot {
   }
 }
 
+explore: assessment {
+  join: student_consolidated {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${assessment.student_key}=${student_consolidated.student_key}
+      and ${assessment.school_year} = ${student_consolidated.school_year_end_date};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${assessment.location_key}.location_key} = ${locations.location_key}
+      and ${assessment.school_year} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${assessment.district_key} = ${districts.district_key}
+      and ${assessment.school_year} = ${districts.school_year_end_date};;
+  }
+}
+
+explore: school_enroll {
+  join: student_consolidated {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${school_enroll.student_id}= ${student_consolidated.student_id};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${school_enroll.location_id} = ${locations.location_id}
+      and ${school_enroll.district_code} = ${locations.district_code}
+      and ${school_enroll.school_year_end_date} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${school_enroll.district_code} = ${districts.district_code}
+      and ${school_enroll.school_year_end_date} = ${districts.school_year_end_date};;
+  }
+}
+
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map.topojson"
   property_key: "name"
