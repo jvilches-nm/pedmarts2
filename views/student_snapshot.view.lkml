@@ -909,6 +909,6 @@ view: student_snapshot {
   }
   measure: count {
     type: count
-    drill_fields: [student_name_full, grade_level, districts.district_name_full, locations.location_name_full]
+    drill_fields: [districts.district_name_full, locations.location_name_full, grade_level]
   }
 }
