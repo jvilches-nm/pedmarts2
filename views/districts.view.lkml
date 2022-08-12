@@ -50,7 +50,7 @@ view: districts {
     type: string
     primary_key: yes
     hidden: yes
-    sql: cast(${TABLE}.DISTRICT_KEY as varchar) + "-" + cast(${TABLE}.PERIOD_KEY as varchar) ;;
+    sql: cast(${TABLE}.DISTRICT_KEY as varchar) + '-' + cast(${TABLE}.PERIOD_KEY as varchar) ;;
   }
 
   dimension: district_name_legal {
