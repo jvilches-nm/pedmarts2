@@ -326,9 +326,7 @@ explore: student_attendance {
   }
 }
 
-
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map.topojson"
   property_key: "name"
-
 }
