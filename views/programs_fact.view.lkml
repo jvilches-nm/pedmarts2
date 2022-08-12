@@ -380,4 +380,8 @@ view: programs_fact {
     type: count
     drill_fields: []
   }
+  measure: program_count {
+    type: count_distinct
+    sql: ${TABLE}.PROGRAMS_KEY  ;;
+  }
 }
