@@ -124,6 +124,23 @@ explore: student_consolidated {
   }
 }
 
+explore: student_consolidated_with_eoy {
+  label: "Student Consolidated - Includes EOY"
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_consolidated_with_eoy.district_key} = ${districts.district_key} and
+      ${student_consolidated_with_eoy.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_consolidated_with_eoy.location_key} = ${locations.location_key} and
+      ${student_consolidated_with_eoy.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
+}
+
+
 explore: license_user_endorsements {
   join: staff_snapshot {
     relationship: many_to_one
