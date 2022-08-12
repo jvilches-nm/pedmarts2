@@ -87,7 +87,7 @@ explore: ecf_billed_entity {
 }
 
 map_layer: my_neighborhood_layer {
-  file: "/Map_Shapefiles/dist_map.topojson"
+  file: "/Map_Shapefiles/dist_map_v2.topojson"
   property_key: "name"
 
 }
