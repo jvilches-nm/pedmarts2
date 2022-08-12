@@ -911,7 +911,10 @@ view: student_consolidated_with_eoy {
     sql: case when ${student_race_1_code}='I' then 1
       else 0 end;;
   }
-
+  measure: percent_of_student_count {
+    type: percent_of_total
+    sql: ${count} ;;
+  }
   measure: count {
     type: count
     drill_fields: [student_name_full, grade_level, districts.district_name_full, locations.location_name_full]

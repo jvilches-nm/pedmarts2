@@ -89,11 +89,11 @@ explore: student_snapshot {
 }
 
 explore: discipline {
-  join: student_consolidated {
+  join: student_consolidated_with_eoy {
     relationship:many_to_one
     type:inner
-    sql_on: ${discipline.student_key} = ${student_consolidated.student_key}
-        and ${discipline.school_year_date} = ${student_consolidated.school_year_end_date} ;;
+    sql_on: ${discipline.student_key} = ${student_consolidated_with_eoy.student_key}
+        and ${discipline.school_year_date} = ${student_consolidated_with_eoy.school_year_end_date} ;;
   }
   join: districts {
     relationship: many_to_one
