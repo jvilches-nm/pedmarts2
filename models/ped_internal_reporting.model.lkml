@@ -150,13 +150,13 @@ explore: license_user_endorsements {
   }
   join: districts {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_snapshot.district_key} = ${districts.district_key} and
       ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
   }
   join: locations {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_snapshot.location_key} = ${locations.location_key} and
       ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
@@ -177,13 +177,13 @@ explore: license_user_info {
   }
   join: districts {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_snapshot.district_key} = ${districts.district_key} and
       ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
   }
   join: locations {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_snapshot.location_key} = ${locations.location_key} and
       ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
@@ -234,13 +234,13 @@ explore: course_instruct_staff_student_snapshot {
 explore: staff_snapshot {
   join: districts {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_snapshot.district_key} = ${districts.district_key} and
       ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
   }
   join: locations {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_snapshot.location_key} = ${locations.location_key} and
       ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
@@ -267,13 +267,13 @@ explore: staff_assignment_snapshot {
    }
   join: districts {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_assignment_snapshot.district_key} = ${districts.district_key} and
       ${staff_assignment_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
   }
   join: locations {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${staff_assignment_snapshot.location_key} = ${locations.location_key} and
       ${staff_assignment_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }

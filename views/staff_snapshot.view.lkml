@@ -531,8 +531,14 @@ view: staff_snapshot {
               else ${race1} end;;
   }
 
-  measure: count {
+  measure: count_staff_locations {
     type: count
+    drill_fields: [staff_name_full]
+  }
+
+  measure: count_staff {
+    type: count_distinct
+    sql_distinct_key: ${staff_id} ;;
     drill_fields: [staff_name_full]
   }
 }
