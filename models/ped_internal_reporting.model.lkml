@@ -327,7 +327,7 @@ explore: student_attendance {
     relationship: many_to_one
     type: inner
     sql_on: ${student_attendance.student_key}= ${student_consolidated.student_key}
-       and $student_attendance.school_year_end_date}= ${student_consolidated.school_year_end_date};;
+       and ${student_attendance.school_year_end_date}= ${student_consolidated.school_year_end_date};;
   }
   join: locations {
     relationship: many_to_one
