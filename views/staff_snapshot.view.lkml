@@ -402,6 +402,7 @@ view: staff_snapshot {
 
   dimension: staff_id {
     type: string
+    description: "Staff ID - DO NOT DISPLAY THIS FIELD"
     hidden: yes
     sql: ${TABLE}.STAFF_ID ;;
   }
@@ -538,7 +539,7 @@ view: staff_snapshot {
 
   measure: count_staff {
     type: count_distinct
-    sql_distinct_key: ${staff_id} ;;
+    sql: ${staff_id} ;;
     drill_fields: [staff_name_full]
   }
 }

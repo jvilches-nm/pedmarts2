@@ -277,6 +277,11 @@ explore: staff_assignment_snapshot {
     sql_on: ${staff_assignment_snapshot.location_key} = ${locations.location_key} and
       ${staff_assignment_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
+  join: license_user_info {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${license_user_info.staff_id}=${staff_snapshot.staff_id} ;;
+  }
 }
 
 explore: assessment {
