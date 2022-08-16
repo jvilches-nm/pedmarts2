@@ -30,33 +30,32 @@ explore: student_snapshot {
   }
 }
 
-explore: student_digital_resources {
-   join: student_snapshot {
-     relationship: one_to_one
-     type: inner
-     sql_on: ${student_digital_resources.student_key}=${student_snapshot.student_key} and
-             ${student_digital_resources.reporting_date_period_key}=${student_snapshot.period_key} ;;
-   }
-  join: period {
-    relationship: many_to_one
-    type: inner
-    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
-      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
-  }
-   join: locations {
-     relationship: many_to_one
-     type: inner
-     sql_on: ${student_digital_resources.location_key} = ${locations.location_key} and
-            ${student_digital_resources.school_year_end_date} = ${locations.school_year_end_date} ;;
-   }
-
-   join: districts {
-     relationship: many_to_one
-     type: inner
-     sql_on: ${student_digital_resources.district_key} = ${districts.district_key} and
-            ${student_digital_resources.school_year_end_date} = ${districts.school_year_end_date};;
-   }
- }
+#explore: student_digital_resources {
+#   join: student_snapshot {
+#     relationship: one_to_one
+#     type: inner
+#     sql_on: ${student_digital_resources.student_key}=${student_snapshot.student_key} and
+#             ${student_digital_resources.reporting_date_period_key}=${student_snapshot.period_key} ;;
+#   }
+#  join: period {
+#    relationship: many_to_one
+#    type: inner
+#    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+#      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+#  }
+#   join: locations {
+#     relationship: many_to_one
+#     type: inner
+#     sql_on: ${student_digital_resources.location_key} = ${locations.location_key} and
+#            ${student_digital_resources.school_year_end_date} = ${locations.school_year_end_date} ;;
+#   }
+#   join: districts {
+#     relationship: many_to_one
+#     type: inner
+#     sql_on: ${student_digital_resources.district_key} = ${districts.district_key} and
+#            ${student_digital_resources.school_year_end_date} = ${districts.school_year_end_date};;
+#   }
+# }
 
 explore: ecf_billed_entity {
   label: "Emergency Connectivity Funding"
