@@ -3,6 +3,12 @@ connection: "dm02"
 include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 
 explore: student_snapshot {
+  join: student_digital_resources  {
+    relationship: one_to_one
+    type: left_outer
+    sql_on:${student_digital_resources.student_key}=${student_snapshot.student_key} and
+             ${student_digital_resources.reporting_date_period_key}=${student_snapshot.period_key} ;;
+  }
   join: locations {
     relationship: many_to_one
     type: inner

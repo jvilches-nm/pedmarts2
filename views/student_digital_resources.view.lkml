@@ -56,7 +56,7 @@ view: student_digital_resources {
   dimension: internet_access {
     type: string
     description: "Student has internet access - Yes/No"
-    sql: ${TABLE}.INTERNET_ACCESS_IND ;;
+    sql: case when ${TABLE}.INTERNET_ACCESS_IND is null then 'No' else ${TABLE}.INTERNET_ACCESS_IND end;;
   }
 
   dimension: internet_access_type_cd {
@@ -117,12 +117,13 @@ view: student_digital_resources {
   dimension: prim_learn_device_type_cd {
     type: string
     hidden: yes
-    sql: ${TABLE}.PRIM_LEARN_DEVICE_TYPE_CD ;;
+    sql: case when ${TABLE}.PRIM_LEARN_DEVICE_TYPE_CD is null then '10' else ${TABLE}.PRIM_LEARN_DEVICE_TYPE_CD end;;
   }
 
   dimension: primary_learning_device_type {
     type: string
-    sql: ${TABLE}.PRIM_LEARN_DEVICE_TYPE_DESC ;;
+    sql: case when ${TABLE}.PRIM_LEARN_DEVICE_TYPE_DESC is null then 'No Device'
+         else ${TABLE}.PRIM_LEARN_DEVICE_TYPE_DESC end;;
   }
 
   dimension: reporting_date_period_key {
@@ -134,7 +135,7 @@ view: student_digital_resources {
   dimension: school_provided_device {
     type: string
     description: "Student has a school-provided device - Yes/No"
-    sql: ${TABLE}.SCHOOL_PROVIDED_DEVICE_IND ;;
+    sql: case when ${TABLE}.SCHOOL_PROVIDED_DEVICE_IND is null then 'No' else ${TABLE}.SCHOOL_PROVIDED_DEVICE_IND end;;
   }
 
   dimension: school_year_end_date {
