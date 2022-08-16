@@ -1,6 +1,9 @@
 view: districts {
   derived_table: {
-    sql: select * from stars.districts where district_organization_type in ('State Charter', 'State District', 'State Supported') ;;
+    sql: select d.*, de.rea_district_code, my_focus, ied_focus, cte_region, cte_priorities
+          from stars.districts d
+          left outer join dbo.districts_extension de on de.district_code=d.distrct_code
+          where d.district_organization_type in ('State Charter', 'State District', 'State Supported') ;;
   }
   drill_fields: [nces_district_id, district_name]
 
@@ -250,47 +253,40 @@ view: districts {
     sql: ${TABLE}.State_District_Code ;;
   }
 
-  dimension: indian_education_focus_district {
+  dimension: cte_priorities {
     type: string
-    label: "IED Focus District"
-    description: "District is a focus district for the Indian Education Department"
-    sql: case when ${TABLE}.District_Code in ('001', '064', '061', '066', '067', '062', '054', '055',
-                                              '065', '043', '088', '056', '063', '086', '075',
-                                              '077', '072', '083', '036', '071', '076', '047', '089',
-                                              '573', '578', '568', '552', '562') then 'Yes'
-              else 'No' end;;
+    sql: ${TABLE}.cte_priorities ;;
   }
 
-  dimension: martinez_yazzie_focus_district {
+  dimension: cte_region {
     type: string
-    sql: case when ${TABLE}.District_Code = '046' then 'Yes'
-              when ${TABLE}.District_Code = '001' then 'Yes'
-              when ${TABLE}.District_Code = '061' then 'Yes'
-              when ${TABLE}.District_Code = '062' then 'Yes'
-              when ${TABLE}.District_Code = '055' then 'Yes'
-              when ${TABLE}.District_Code = '019' then 'Yes'
-              when ${TABLE}.District_Code = '043' then 'Yes'
-              when ${TABLE}.District_Code = '088' then 'Yes'
-              when ${TABLE}.District_Code = '018' then 'Yes'
-              when ${TABLE}.District_Code = '063' then 'Yes'
-              when ${TABLE}.District_Code = '007' then 'Yes'
-              when ${TABLE}.District_Code = '017' then 'Yes'
-              when ${TABLE}.District_Code = '086' then 'Yes'
-              when ${TABLE}.District_Code = '075' then 'Yes'
-              when ${TABLE}.District_Code = '081' then 'Yes'
-              when ${TABLE}.District_Code = '077' then 'Yes'
-              when ${TABLE}.District_Code = '072' then 'Yes'
-              when ${TABLE}.District_Code = '083' then 'Yes'
-              when ${TABLE}.District_Code = '071' then 'Yes'
-              when ${TABLE}.District_Code = '023' then 'Yes'
-              when ${TABLE}.District_Code = '076' then 'Yes'
-              when ${TABLE}.District_Code = '049' then 'Yes'
-              when ${TABLE}.District_Code = '089' then 'Yes'
-         else 'No' end ;;
+    sql: ${TABLE}.cte_region ;;
   }
+
+  dimension: ied_focus {
+    type: string
+    label: "Focus District - IED"
+    description: "District is an Indian Education Dept focus district - Yes/No"
+    sql: ${TABLE}.ied_focus ;;
+  }
+
+  dimension: my_focus {
+    type: string
+    label: "Focus District - Martinez-Yazzie"
+    description: "District is a Martinez-Yazzie tech order focus district - Yes/No"
+    sql: ${TABLE}.my_focus ;;
+  }
+
+  dimension: rea_district_code {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.rea_district_code ;;
+  }
+
 
   measure: count {
     type: count
+    description: "Count of Districts"
     drill_fields: [detail*]
   }
 
