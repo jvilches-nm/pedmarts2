@@ -263,14 +263,14 @@ view: districts {
     sql: ${TABLE}.cte_region ;;
   }
 
-  dimension: ied_focus {
+  dimension: indian_education_focus_district {
     type: string
     label: "Focus District - IED"
     description: "District is an Indian Education Dept focus district - Yes/No"
     sql: ${TABLE}.ied_focus ;;
   }
 
-  dimension: my_focus {
+  dimension: martinez_yazzie_focus_district {
     type: string
     label: "Focus District - Martinez-Yazzie"
     description: "District is a Martinez-Yazzie tech order focus district - Yes/No"
