@@ -2,7 +2,7 @@ view: districts {
   derived_table: {
     sql: select d.*, de.rea_district_code, my_focus, ied_focus, cte_region, cte_priorities
           from stars.districts d
-          left outer join dbo.districts_extension de on de.district_code=d.distrct_code
+          left outer join dbo.districts_extension de on de.district_code=d.district_code
           where d.district_organization_type in ('State Charter', 'State District', 'State Supported') ;;
   }
   drill_fields: [nces_district_id, district_name]
