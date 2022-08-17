@@ -9,30 +9,6 @@
                          group by s.school_year, s.student_id) z on z.school_year=y.school_year and z.student_id=y.student_id and z.max_period_key=y.period_key ;;
    }
 
-  dimension: alternate_student_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Alternate_Student_ID ;;
-  }
-
-  dimension: at_risk_student {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.At_Risk_Student ;;
-  }
-
-  dimension: credential_type {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Credential_Type ;;
-  }
-
-  dimension: credential_type_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Credential_Type_Code ;;
-  }
-
   dimension: diploma_type {
     type: string
     description: "Type of diploma: Diploma / Certificate of Course Work Completed"
@@ -45,12 +21,6 @@
     sql: ${TABLE}.Diploma_Type_Code ;;
   }
 
-  dimension: direct_certification_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Direct_Certification_Status_Code ;;
-  }
-
   dimension: displaced_homemaker {
     type: string
     description: "Displaced homemaker: Yes/No"
@@ -61,12 +31,6 @@
     type: string
     hidden: yes
     sql: ${TABLE}.District_Code ;;
-  }
-
-  dimension: district_county {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.District_County ;;
   }
 
   dimension: district_key {
@@ -100,27 +64,6 @@
     sql: ${TABLE}.Economically_Disadvantaged_Status_Code ;;
   }
 
-  dimension: ell_program_eligibility {
-    type: string
-    sql: ${TABLE}.ELL_Program_Eligibility ;;
-  }
-
-  dimension: ell_program_eligibility_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.ELL_Program_Eligibility_Code ;;
-  }
-
-  dimension: ell_program_participation {
-    type: string
-    sql: ${TABLE}.ELL_Program_Participation ;;
-  }
-
-  dimension: ell_program_participation_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.ELL_Program_Participation_Code ;;
-  }
 
   dimension: english_proficiency {
     type: string
@@ -138,12 +81,6 @@
     type: date
     description: "Date used to calculate the 9-12 grade graduation cohort"
     sql: ${TABLE}.Entry_Date_Grade_9 ;;
-  }
-
-  dimension: family_identifier {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Family_Identifier ;;
   }
 
   dimension: federal_form_506_indicator {
@@ -184,7 +121,8 @@
 
   dimension: foster_care {
     type: string
-    sql: ${TABLE}.FOSTER_CARE_IND ;;
+    description: "Student is in foster care - Yes/No"
+    sql: case ${TABLE}.FOSTER_CARE_IND when 'Y' then 'Yes' else 'No' end ;;
   }
 
   dimension: gifted_participation {
@@ -199,70 +137,10 @@
     sql: ${TABLE}.Gifted_Participation_Code ;;
   }
 
-  dimension: grade_01_location_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Grade_01_Location_ID ;;
-  }
-
-  dimension: grade_02_location_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Grade_02_Location_ID ;;
-  }
-
-  dimension: grade_k_location_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Grade_K_Location_ID ;;
-  }
-
-  dimension: graduated {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Graduated ;;
-  }
-
-  dimension: graduation_status {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Graduation_Status ;;
-  }
-
-  dimension: graduation_year {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Graduation_Year ;;
-  }
-
-  dimension: graduation_year_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Graduation_Year_Code ;;
-  }
-
-  dimension: guardian_daytime_phone {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Guardian_Daytime_Phone ;;
-  }
-
-  dimension: guardian_email {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Guardian_Email ;;
-  }
-
   dimension: guardian_name {
     type: string
     description: "Name of the student's primary guardian"
     sql: ${TABLE}.Guardian_Name ;;
-  }
-
-  dimension: guardian_name_alternate {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Guardian_Name_Alternate ;;
   }
 
   dimension: home_language {
@@ -327,28 +205,10 @@
     sql: ${TABLE}.Location_Code ;;
   }
 
-  dimension: location_county {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.location_county ;;
-  }
-
   dimension: location_key {
     type: number
     hidden: yes
     sql: ${TABLE}.Location_Key ;;
-  }
-
-  dimension: migrant_status {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Migrant_Status ;;
-  }
-
-  dimension: migrant_status_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Migrant_Status_Code ;;
   }
 
   dimension: military_family_code {
@@ -400,24 +260,6 @@
     type: string
     description: "Planned activity post-graduation: Attend college/university, Attend junior college, Attend trade school, Work"
     sql: ${TABLE}.Planned_Post_Graduate_Activity ;;
-  }
-
-  dimension: planned_post_graduate_activity_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Planned_Post_Graduate_Activity_Code ;;
-  }
-
-  dimension: primary_disability {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Primary_Disability ;;
-  }
-
-  dimension: primary_disability_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Primary_Disability_Code ;;
   }
 
   dimension: primary_language_code {
@@ -483,12 +325,6 @@
     sql: ${TABLE}.Section_504_Status ;;
   }
 
-  dimension: single_parent_household {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Single_Parent_Household ;;
-  }
-
   dimension: special_ed_referral {
     type: string
     description: "For special education only - Child served in Part C referred to Part B / Child referred thru Child Find (NOT rcving Part C) "
@@ -511,48 +347,6 @@
     type: string
     hidden: yes
     sql: ${TABLE}.Special_Ed_Status_Code ;;
-  }
-
-  dimension: special_ed_transition_status {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Special_Ed_Transition_Status ;;
-  }
-
-  dimension: student_address_base_zip_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Address_Base_Zip_Code ;;
-  }
-
-  dimension: student_address_city {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Address_City ;;
-  }
-
-  dimension: student_address_state {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Address_State ;;
-  }
-
-  dimension: student_address_street_1 {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Address_Street_1 ;;
-  }
-
-  dimension: student_address_street_2 {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Address_Street_2 ;;
-  }
-
-  dimension: student_address_zip_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Address_Zip_Code ;;
   }
 
   dimension_group: student_birth {
@@ -610,7 +404,7 @@
 
   dimension: student_id {
     type: string
-    description: "Student ID"
+    description: "Student ID - use with caution; do not distribute outsdie of PED"
     sql: ${TABLE}.Student_ID ;;
   }
 
@@ -659,7 +453,7 @@
 
   dimension: student_name_full {
     type: string
-    description: "Student name: last, first"
+    description: "Student name: last, first - use with caution, do not distribute outside of PED"
     sql: ${TABLE}.Student_Name ;;
   }
 
@@ -788,46 +582,11 @@
     sql: ${TABLE}.Student_Snapshot_Date ;;
   }
 
-  dimension: snapshot_period {
-    type: string
-    hidden: yes
-    label: "Snapshot Period"
-    order_by_field: snapshot_period_order
-    description: "Defines the count for which the snapshot was taken, for example 40 Day, 80 Day, 120 Day, End of Year"
-    sql:  case when month(${TABLE}.Student_Snapshot_Date)=10 then '40 Day'
-               when month(${TABLE}.Student_Snapshot_Date)=12 then '80 Day'
-               when month(${TABLE}.Student_Snapshot_Date)=3 then '120 Day'
-               when month(${TABLE}.Student_Snapshot_date)=6 then 'End of Year'
-               else 'Unknown' end;;
-  }
-
-  dimension: snapshot_period_order {
-    type: number
-    hidden: yes
-    sql: case when month(${TABLE}.Student_Snapshot_Date)=10 then 1
-               when month(${TABLE}.Student_Snapshot_Date)=12 then 2
-               when month(${TABLE}.Student_Snapshot_Date)=3 then 3
-               when month(${TABLE}.Student_Snapshot_date)=6 then 4
-               else 5 end;;
-  }
-
   dimension: student_snapshot_key {
     type: number
     primary_key: yes
     hidden: yes
     sql: ${TABLE}.Student_Snapshot_Key ;;
-  }
-
-  dimension: student_special_program {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Special_Program ;;
-  }
-
-  dimension: student_special_program_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Student_Special_Program_Code ;;
   }
 
   dimension: years_in_us_schools {
@@ -844,17 +603,14 @@
       else ${student_race_1} end;;
   }
 
-  dimension: at_risk_student_martinez_yazzie {
+  dimension: at_risk_economically_disadvantaged {
     type: string
-    description: "Student's at-risk status as defined by the Martinez/Yazzie Tech Order. Student is At-Risk if economically disadvantaged, an English language learner, American Indian, or Special Education"
+    description: "Student is at-risk due to being economically disadvantaged - Yes/No"
     sql: case when ${economically_disadvantaged_status_code}='1' then 'Yes'
               when ${economically_disadvantaged_status_code}='2' then 'Yes'
               when ${economically_disadvantaged_status_code}='3' then 'Yes'
               when ${food_program_eligibility_code}='F' then 'Yes'
               when ${food_program_eligibility_code}='R' then 'Yes'
-              when ${english_proficiency_code}='1' then 'Yes'
-              when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes'
-              when ${special_ed_status_code}='Y' then 'Yes'
               else 'No' end;;
   }
 
@@ -869,11 +625,23 @@
               else 0 end;;
   }
 
+  dimension: at_risk_english_learner {
+    type: string
+    description: "Student is at-risk due to being an English language learner - Yes/No"
+    sql: case when ${english_proficiency_code}='1' then 'Yes' else 'No' end;;
+  }
+
   measure: at_risk_english_learner_count {
     type: sum
     description: "Count of students who are at-risk due to being English language learners"
     sql: case when ${english_proficiency_code}='1' then 1
       else 0 end;;
+  }
+
+  dimension: at_risk_native {
+    type: string
+    description: "Student is at-risk due to being Native American - Federal reporting definition - Yes/No"
+    sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes' else 'No' end;;
   }
 
   measure: at_risk_native_count {
@@ -883,11 +651,31 @@
       else 0 end;;
   }
 
+  dimension: at_risk_special_ed {
+    type: string
+    description: "Student is at-risk due to being special education - Yes/No"
+    sql: case when ${special_ed_status_code}='Y' then 'Yes' else 'No' end;;
+  }
+
   measure: at_risk_special_ed_count {
     type: sum
     description: "Count of students who are at-risk due to being special education"
     sql: case when ${special_ed_status_code}='Y' then 1
       else 0 end;;
+  }
+
+  dimension: at_risk_student_martinez_yazzie {
+    type: string
+    description: "Student's at-risk status as defined by the Martinez/Yazzie Tech Order. Student is At-Risk if economically disadvantaged, an English language learner, American Indian, or Special Education"
+    sql: case when ${economically_disadvantaged_status_code}='1' then 'Yes'
+              when ${economically_disadvantaged_status_code}='2' then 'Yes'
+              when ${economically_disadvantaged_status_code}='3' then 'Yes'
+              when ${food_program_eligibility_code}='F' then 'Yes'
+              when ${food_program_eligibility_code}='R' then 'Yes'
+              when ${english_proficiency_code}='1' then 'Yes'
+              when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes'
+              when ${special_ed_status_code}='Y' then 'Yes'
+              else 'No' end;;
   }
 
   measure: at_risk_martinez_yazzie_count {
@@ -904,16 +692,29 @@
               else 0 end;;
   }
 
+  dimension: american_indian_IED {
+    type: string
+    label: "American Indian - IED"
+    description: "Student is American Indian as defined by the Indian Education Department - Yes/No - Race 1 is American Indian/Alaskan Native"
+    sql: case when ${student_race_1_code}='I' then 1
+      else 0 end;;
+  }
+
   measure: american_indian_IED_count {
     type: sum
-    label: "American Indian IED Count"
+    label: "American Indian - IED Count"
     description: "Count of students who are American Indian as defined by the Indian Education Department - Race 1 is American Indian/Alaskan Native"
     sql: case when ${student_race_1_code}='I' then 1
-              else 0 end;;
+      else 0 end;;
+  }
+
+  measure: percent_of_student_count {
+    type: percent_of_total
+    sql: ${count} ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [student_name_full, grade_level, districts.district_name_full, locations.location_name_full]
+    drill_fields: [districts.district_name_full, locations.location_name_full, grade_level]
   }
  }
