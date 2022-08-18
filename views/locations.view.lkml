@@ -488,6 +488,7 @@ view: locations {
 
   measure: count {
     type: count
+    label: "Location Count"
     drill_fields: [detail*]
   }
 

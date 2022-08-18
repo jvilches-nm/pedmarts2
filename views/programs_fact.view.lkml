@@ -378,6 +378,7 @@ view: programs_fact {
 
   measure: count {
     type: count
+    label: "Program Count"
     drill_fields: []
   }
 

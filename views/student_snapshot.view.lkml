@@ -16,6 +16,7 @@ view: student_snapshot {
 
   dimension: displaced_homemaker {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Displaced homemaker: Yes/No"
     sql: ${TABLE}.Displaced_Homemaker ;;
   }
@@ -78,6 +79,7 @@ view: student_snapshot {
 
   dimension: federal_form_506_indicator {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student has a verified Federal From 506 or Census Number on file: Yes/No"
     sql: ${TABLE}.Federal_Form_506_Indicator ;;
   }
@@ -108,18 +110,21 @@ view: student_snapshot {
 
   dimension: foreign_exchange_student {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is a foreign exchange student - Yes/No"
     sql: ${TABLE}.Foreign_Exchange_Student ;;
   }
 
   dimension: foster_care {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is in foster care - Yes/No"
     sql: case ${TABLE}.FOSTER_CARE_IND when 'Y' then 'Yes' else 'No' end ;;
   }
 
   dimension: gifted_participation {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is gifted - Yes/No"
     sql: ${TABLE}.Gifted_Participation ;;
   }
@@ -158,12 +163,14 @@ view: student_snapshot {
 
   dimension: home_schooled {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is home schooled: Yes/No"
     sql: ${TABLE}.Home_Schooled_Ind ;;
   }
 
   dimension: homeless_status {
     type: string
+    suggestions: ["Homeless", "Not Homeless"]
     description: "Student homeless status: Homeless/Not Homeless"
     sql: ${TABLE}.Homeless_Status ;;
   }
@@ -176,6 +183,7 @@ view: student_snapshot {
 
   dimension: immigrant {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Immigrant student - a student age 3 to 21 who was not born in any State and has not been attending schools in the US for more than 3 full academic years not including PreK. Yes/No"
     sql: ${TABLE}.Immigrant ;;
   }
@@ -316,6 +324,7 @@ view: student_snapshot {
 
   dimension: section_504_status {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student qualifies as an individual with disabilities under Section 504 of the Rehabilitation Act: Yes/No. Cannot be Yes if student is marked as Special Education."
     sql: ${TABLE}.Section_504_Status ;;
   }
@@ -334,6 +343,7 @@ view: student_snapshot {
 
   dimension: special_ed_status {
     type: string
+    suggestions: ["Students with disabilities", "Regular Education and Gifted only students"]
     description: "Student with disability (has a current IEP and is receiving IDEA 618, Part B services) or regular/gifted student: Students with disabilities / Regular Education and Gifted only students"
     sql: ${TABLE}.Special_Ed_Status ;;
   }
@@ -373,6 +383,7 @@ view: student_snapshot {
 
   dimension: gender {
     type: string
+    suggestions: ["Male", "Female"]
     description: "Student's gender at the time of their birth: Male/Female"
     sql: ${TABLE}.Student_Gender ;;
   }
@@ -405,12 +416,14 @@ view: student_snapshot {
 
   dimension: student_is_a_single_parent {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is a single parent: Yes/No"
     sql: ${TABLE}.Student_Is_a_Single_Parent ;;
   }
 
   dimension: student_is_pregnant {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is expecting a child: Yes/No"
     sql: ${TABLE}.Student_Is_Pregnant ;;
   }
@@ -600,6 +613,7 @@ view: student_snapshot {
 
   dimension: at_risk_economically_disadvantaged {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is at-risk due to being economically disadvantaged - Yes/No"
     sql: case when ${economically_disadvantaged_status_code}='1' then 'Yes'
               when ${economically_disadvantaged_status_code}='2' then 'Yes'
@@ -622,6 +636,7 @@ view: student_snapshot {
 
   dimension: at_risk_english_learner {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is at-risk due to being an English language learner - Yes/No"
     sql: case when ${english_proficiency_code}='1' then 'Yes' else 'No' end;;
   }
@@ -635,6 +650,7 @@ view: student_snapshot {
 
   dimension: at_risk_native {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is at-risk due to being Native American - Federal reporting definition - Yes/No"
     sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes' else 'No' end;;
   }
@@ -648,6 +664,7 @@ view: student_snapshot {
 
   dimension: at_risk_special_ed {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student is at-risk due to being special education - Yes/No"
     sql: case when ${special_ed_status_code}='Y' then 'Yes' else 'No' end;;
   }
@@ -661,6 +678,7 @@ view: student_snapshot {
 
   dimension: at_risk_student_martinez_yazzie {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Student's at-risk status as defined by the Martinez/Yazzie Tech Order. Student is At-Risk if economically disadvantaged, an English language learner, American Indian, or Special Education"
     sql: case when ${economically_disadvantaged_status_code}='1' then 'Yes'
               when ${economically_disadvantaged_status_code}='2' then 'Yes'
@@ -710,6 +728,7 @@ view: student_snapshot {
 
   measure: count {
     type: count
+    label: "Student Count"
     drill_fields: [districts.district_name_full, locations.location_name_full, grade_level]
   }
 

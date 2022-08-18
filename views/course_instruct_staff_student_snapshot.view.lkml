@@ -11,6 +11,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: advanced_indicator {
     type: string
     label: "Advanced"
+    suggestions: ["Yes", "No"]
     description: "Course is an advanced class - Yes/No"
     sql: ${TABLE}."Advanced Indicator" ;;
   }
@@ -25,14 +26,9 @@ view: course_instruct_staff_student_snapshot {
   dimension: advanced_placement_indicator {
     type: string
     label: "Advanced Placement"
+    suggestions: ["Yes", "No"]
     description: "Course is advanced placement - Yes/No"
     sql: ${TABLE}."Advanced Placement Indicator" ;;
-  }
-
-  dimension: allowable_course_gender {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Allowable Course Gender" ;;
   }
 
   dimension: alternate_course_id {
@@ -63,6 +59,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: basic_indicator {
     type: string
     label: "Basic/General"
+    suggestions: ["Yes", "No"]
     description: "Course is a basic/general class: Yes/No"
     sql: ${TABLE}."Basic Indicator" ;;
   }
@@ -88,7 +85,8 @@ view: course_instruct_staff_student_snapshot {
   dimension: career_tech_indicator {
     type: string
     label: "Career Technical"
-    description: "Course is a career and technical class"
+    suggestions: ["Yes", "No"]
+    description: "Course is a career and technical education class - Yes/No"
     sql: ${TABLE}."Career Tech Indicator" ;;
   }
 
@@ -101,25 +99,22 @@ view: course_instruct_staff_student_snapshot {
   dimension: ci_course_special_program_code {
     type: string
     label: "BEP Course"
+    suggestions: ["BEP"]
     description: "Indicates if course is part of a BEP (Bilingual Multicultural Education Program)"
     sql: ${TABLE}."CI Course Special Program Code" ;;
   }
 
   dimension: class_period {
     type: string
+    suggestions: ["AM", "PM", "FD", "SEM", "TRI", "YR", "BLK", "QTR", "SP", "PO"]
     description: "Type of class period: AM - Morning / PM - Afternoon / FD - Full Day / SEM - Semester / TRI - Trimester / YR - Year-long / BLK - Block / QTR - Quarter / SP - Self-paced / PO - Pull-out"
     sql: ${TABLE}."Class Period" ;;
-  }
-
-  dimension: college_level_course {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."College Level Course" ;;
   }
 
   dimension: core_course {
     type: string
     label: "Core"
+    suggestions: ["Yes", "No"]
     description: "Course is a core class: Yes/No"
     sql: ${TABLE}."Core Course" ;;
   }
@@ -233,6 +228,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: course_special_program {
     type: string
     label: "Course Special Program"
+    suggestions: ["Concurrently Enrolled Student", "Dual Credit Course", "PEER"]
     description: "Course is a Dual Credit or Concurrent Enrollment class"
     sql: ${TABLE}."Course Special Program" ;;
   }
@@ -288,6 +284,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: dual_credit_course {
     type: string
     label: "Dual Credit"
+    suggestions: ["Yes", "No"]
     description: "Course is a dual credit couse - Yes/No"
     sql: ${TABLE}."Dual Credit Course" ;;
   }
@@ -295,6 +292,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: elective_indicator {
     type: string
     label: "Elective"
+    suggestions: ["Yes", "No"]
     description: "Course is an elective class: Yes/No"
     sql: ${TABLE}."Elective Indicator" ;;
   }
@@ -336,12 +334,14 @@ view: course_instruct_staff_student_snapshot {
   dimension: gifted_indicator {
     type: string
     label: "Gifted"
+    suggestions: ["Yes", "No"]
     description: "Course is a gifted class: Yes/No"
     sql: ${TABLE}."Gifted Indicator" ;;
   }
 
   dimension: honors_indicator {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Course is an honors course: Yes/No"
     sql: ${TABLE}."Honors Indicator" ;;
   }
@@ -355,6 +355,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: international_baccalaureate_indicator {
     type: string
     label: "International Baccalaureate"
+    suggestions: ["Yes", "No"]
     description: "Course is an international baccalaureate (IB) class: Yes/No"
     sql: ${TABLE}."International Baccalaureate Indicator" ;;
   }
@@ -362,6 +363,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: lab_component_indicator {
     type: string
     label: "Lab Component"
+    suggestions: ["Yes", "No"]
     description: "Course has a lab component: Yes/No"
     sql: ${TABLE}."Lab Component Indicator" ;;
   }
@@ -540,6 +542,7 @@ view: course_instruct_staff_student_snapshot {
   dimension: remedial_indicator {
     type: string
     label: "Remedial"
+    suggestions: ["Yes", "No"]
     description: "Course is a remedial class: Yes/No"
     sql: ${TABLE}."Remedial Indicator" ;;
   }
@@ -586,6 +589,7 @@ view: course_instruct_staff_student_snapshot {
 
   dimension: special_ed_indicator {
     type: string
+    suggestions: ["Yes", "No"]
     description: "Course is a special education class: Yes/No"
     sql: ${TABLE}."Special Ed Indicator" ;;
   }
@@ -766,22 +770,10 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."STUDENT SNAPSHOT KEY CE" ;;
   }
 
-  dimension: total_years_of_experience {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."Total Years of Experience" ;;
-  }
-
-  dimension: total_years_of_experience_in_district {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."Total Years of Experience in District" ;;
-  }
-
   dimension: work_based_learning_course {
     type: string
-    hidden: yes
-    sql: ${TABLE}."Work Based Learning Course" ;;
+    description: "Work based learning course - Yes/No"
+    sql: case when ${TABLE}."Work Based Learning Course"='Yes' then 'Yes' else 'No' end ;;
   }
 
   dimension: year_number {
@@ -792,6 +784,32 @@ view: course_instruct_staff_student_snapshot {
 
   measure: count {
     type: count
+    label: "Course Count"
     drill_fields: [full_course_name, primary_location_name, state_course_full_course_name]
   }
+#----------------------- Unused/empty fields
+  dimension: allowable_course_gender {
+    type: string
+    hidden: yes
+    #-- Always B or Both
+    sql: ${TABLE}."Allowable Course Gender" ;;
+  }
+  dimension: total_years_of_experience {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."Total Years of Experience" ;;
+  }
+  dimension: total_years_of_experience_in_district {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."Total Years of Experience in District" ;;
+  }
+  dimension: college_level_course {
+    type: string
+    hidden: yes
+    #-- null
+    sql: ${TABLE}."College Level Course" ;;
+  }
+
+
 }
