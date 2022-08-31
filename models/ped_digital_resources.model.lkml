@@ -12,8 +12,8 @@ explore: student_snapshot {
   join: locations {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.location_key} = ${districts.location_key} and
-      ${student_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
+    sql_on: ${student_snapshot.location_key} = ${locations.location_key} and
+      ${student_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
 
   join: districts {
