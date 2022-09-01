@@ -7,6 +7,8 @@ view: student_consolidated_with_eoy {
                inner join (select s.school_year, s.student_id, max(s.period_key) max_period_key from stars.student_snapshot s
                 where (month(student_snapshot_date) in (3, 6, 10) and day(student_snapshot_date)=1) or (month(student_snapshot_date)=12 and day(student_snapshot_date)=15)
                          group by s.school_year, s.student_id) z on z.school_year=y.school_year and z.student_id=y.student_id and z.max_period_key=y.period_key ;;
+   ## persist_for: "24 hour"
+   ##  indexes: ["student_id", "district_key", "location_key", "school_year", "Student_Race_1_Ethnicity"]
   }
 
   dimension: diploma_type {
