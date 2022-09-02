@@ -17,5 +17,10 @@ view: student_snapshot {
     sql: cast(YEAR(${TABLE}.School_Year)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.School_Year) as varchar) ;;
   }
 
+  dimension: student_home_address {
+    type: string
+    description: "Student Home Address"
+    sql: coalesce(${TABLE}.student_address_street_1,'') + ' ' + coalesce(${TABLE}.student_address_street_2, '') + ', ' + coalesce(${TABLE}.student_address_city,'') +', '+ coalesce(${TABLE}.student_address_state,'') + ' ' + coalesce(${TABLE}.student_address_zip_code, '');;
+  }
 
 }

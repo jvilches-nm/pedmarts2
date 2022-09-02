@@ -567,7 +567,7 @@ dimension: student_race_ethnicity_subgroup {
 }
 
   dimension: student_address_zip_code {
-    type: string
+    type: zipcode
     hidden: no
     sql: ${TABLE}.Student_Address_Zip_Code ;;
   }

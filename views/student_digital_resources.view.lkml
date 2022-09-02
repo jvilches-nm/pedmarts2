@@ -173,7 +173,11 @@ view: student_digital_resources {
   measure: no_internet_access_count {
     type: sum
     sql: case when ${internet_access}='No' then 1 else 0 end;;
-  }
+    drill_fields: [district.district_name, location.location_name_full,
+      student_snapshot.student_id, student_snapshot.student_name_full, student_snapshot.grade_level,
+      student_snapshot.student_home_address,
+      student_snapshot.at_risk_student_martinez_yazzie, district_provided_device, internet_access]
+    }
 
   measure: inadequate_internet_access_count {
     type: sum
@@ -186,6 +190,10 @@ view: student_digital_resources {
     type: sum
     sql: case when ${prim_learn_device_type_cd}='10' then 1
               else 0 end ;;
+    drill_fields: [district.district_name, location.location_name_full,
+                  student_snapshot.student_id, student_snapshot.student_name_full, student_snapshot.grade_level,
+                   student_snapshot.student_home_address,
+                   student_snapshot.at_risk_student_martinez_yazzie, district_provided_device, internet_access]
   }
 
   measure: count {
