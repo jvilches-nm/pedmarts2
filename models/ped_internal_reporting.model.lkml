@@ -348,6 +348,27 @@ explore: student_attendance {
   }
 }
 
+explore: perkins_students {
+  join: student_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${perkins_students.student_id}=${student_snapshot.student_id}
+      and ${perkins_students.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${perkins_students.location_id} = ${locations.location_id}
+      and ${perkins_students.school_year_date} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${perkins_students.district_code} = ${districts.district_code}
+      and ${perkins_students.school_year_date} = ${districts.school_year_end_date};;
+  }
+}
+
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map_v2.topojson"
   property_key: "name"

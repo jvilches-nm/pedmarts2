@@ -5,6 +5,7 @@ view: perkins_students {
   dimension: id {
     primary_key: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.ID ;;
   }
 
@@ -179,7 +180,7 @@ view: perkins_students {
   }
 
   dimension: district_code {
-    type: string
+    type: number
     sql: ${TABLE}.District_Code ;;
   }
 
@@ -274,7 +275,7 @@ view: perkins_students {
   }
 
   dimension: location_id {
-    type: string
+    type: number
     sql: ${TABLE}.Location_ID ;;
   }
 

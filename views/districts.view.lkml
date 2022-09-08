@@ -34,7 +34,7 @@ view: districts {
   dimension: district_code {
     type: string
     description: "Three digit district code"
-    sql: cast(${TABLE}.District_Code as varchar);;
+    sql: cast(${TABLE}.District_Code as int);;
   }
 
   dimension: district_county_name {

@@ -175,9 +175,9 @@ view: locations {
   }
 
   dimension: location_id {
-    type: string
+    type: number
     hidden: yes
-    sql: ${TABLE}.Location_ID ;;
+    sql: cast(${TABLE}.Location_ID as int);;
   }
 
   dimension: location_key {
