@@ -390,7 +390,20 @@ explore: student_credentials_cte {
   }
 }
 
-
+explore: cte_students_clusters {
+  join: perkins_students {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${cte_students_clusters.student_id}=${perkins_students.student_id}
+      and ${cte_students_clusters.school_year_date} = ${perkins_students.school_year_date};;
+  }
+  join: student_snapshot {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${cte_students_clusters.student_id}=${student_snapshot.student_id}
+      and ${cte_students_clusters.school_year_date} = ${student_snapshot.school_year_end_date};;
+  }
+}
 
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map_v2.topojson"
