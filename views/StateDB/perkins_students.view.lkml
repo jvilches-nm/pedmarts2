@@ -11,121 +11,145 @@ view: perkins_students {
 
   dimension: car_indicator_1_s1_denominator {
     type: number
+    label: "CAR Indicator 1S1 Denominator"
     sql: ${TABLE}.CAR_Indicator_1S1_Denominator ;;
   }
 
   dimension: car_indicator_1_s1_numerator {
     type: number
+    label: "CAR Indicator 1S1 Numerator"
     sql: ${TABLE}.CAR_Indicator_1S1_Numerator ;;
   }
 
   dimension: car_indicator_1_s2_denominator {
     type: number
+    label: "CAR Indicator 1S2 Denominator"
     sql: ${TABLE}.CAR_Indicator_1S2_Denominator ;;
   }
 
   dimension: car_indicator_1_s2_numerator {
     type: number
+    label: "CAR Indicator 1S2 Numerator"
     sql: ${TABLE}.CAR_Indicator_1S2_Numerator ;;
   }
 
   dimension: car_indicator_2_s1_denominator {
     type: number
+    label: "CAR Indicator 2S1 Denominator"
     sql: ${TABLE}.CAR_Indicator_2S1_Denominator ;;
   }
 
   dimension: car_indicator_2_s1_numerator {
     type: number
+    label: "CAR Indicator 2S1 Numerator"
     sql: ${TABLE}.CAR_Indicator_2S1_Numerator ;;
   }
 
   dimension: car_indicator_2_s2_denominator {
     type: number
+    label: "CAR Indicator 2S2 Denominator"
     sql: ${TABLE}.CAR_Indicator_2S2_Denominator ;;
   }
 
   dimension: car_indicator_2_s2_numerator {
     type: number
+    label: "CAR Indicator 2S2 Numerator"
     sql: ${TABLE}.CAR_Indicator_2S2_Numerator ;;
   }
 
   dimension: car_indicator_2_s3_denominator {
     type: number
+    label: "CAR Indicator 2S3 Denominator"
     sql: ${TABLE}.CAR_Indicator_2S3_Denominator ;;
   }
 
   dimension: car_indicator_2_s3_numerator {
     type: number
+    label: "CAR Indicator 2S3 Numerator"
     sql: ${TABLE}.CAR_Indicator_2S3_Numerator ;;
   }
 
   dimension: car_indicator_3_s1_denominator {
     type: number
+    label: "CAR Indicator 3S1 Denominator"
     sql: ${TABLE}.CAR_Indicator_3S1_Denominator ;;
   }
 
   dimension: car_indicator_3_s1_numerator {
     type: number
+    label: "CAR Indicator 3S1 Numerator"
     sql: ${TABLE}.CAR_Indicator_3S1_Numerator ;;
   }
 
   dimension: car_indicator_4_s1_denominator {
     type: number
+    label: "CAR Indicator 4S1 Denominator"
     sql: ${TABLE}.CAR_Indicator_4S1_Denominator ;;
   }
 
   dimension: car_indicator_4_s1_numerator {
     type: number
+    label: "CAR Indicator 4S1 Numerator"
     sql: ${TABLE}.CAR_Indicator_4S1_Numerator ;;
   }
 
   dimension: car_indicator_5_s1_denominator {
     type: number
+    label: "CAR Indicator 5S1 Denominator"
     sql: ${TABLE}.CAR_Indicator_5S1_Denominator ;;
   }
 
   dimension: car_indicator_5_s1_numerator {
     type: number
+    label: "CAR Indicator 5S1 Numerator"
     sql: ${TABLE}.CAR_Indicator_5S1_Numerator ;;
   }
 
   dimension: car_indicator_5_s2_denominator {
     type: number
+    label: "CAR Indicator 5S2 Denominator"
     sql: ${TABLE}.CAR_Indicator_5S2_Denominator ;;
   }
 
   dimension: car_indicator_5_s2_numerator {
     type: number
+    label: "CAR Indicator 5S2 Numerator"
     sql: ${TABLE}.CAR_Indicator_5S2_Numerator ;;
   }
 
   dimension: car_indicator_5_s3_numerator {
     type: number
+    label: "CAR Indicator 5S3 Numerator"
     sql: ${TABLE}.CAR_Indicator_5S3_Numerator ;;
   }
 
   dimension: car_indicator_5_s4_numerator {
     type: number
+    label: "CAR Indicator 5S4 Numerator"
     sql: ${TABLE}.CAR_Indicator_5S4_Numerator ;;
   }
 
   dimension: car_indicator_6_s1_denominator {
     type: number
+    label: "CAR Indicator 6S1 Denominator"
     sql: ${TABLE}.CAR_Indicator_6S1_Denominator ;;
   }
 
   dimension: car_indicator_6_s1_numerator {
     type: number
+    label: "CAR Indicator 6S1 Numerator"
     sql: ${TABLE}.CAR_Indicator_6S1_Numerator ;;
   }
 
   dimension: car_indicator_6_s2_denominator {
     type: number
+    label: "CAR Indicator 6S2 Denominator"
     sql: ${TABLE}.CAR_Indicator_6S2_Denominator ;;
   }
 
   dimension: car_indicator_6_s2_numerator {
     type: number
+    label: "CAR Indicator 6S2 Numerator"
     sql: ${TABLE}.CAR_Indicator_6S2_Numerator ;;
   }
 
@@ -181,6 +205,7 @@ view: perkins_students {
 
   dimension: district_code {
     type: number
+    hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 
@@ -191,61 +216,73 @@ view: perkins_students {
 
   dimension: indicator_1_s1_lagged {
     type: string
+    label: "Indicator 1S1 Lagged"
     sql: ${TABLE}.Indicator_1S1_Lagged ;;
   }
 
   dimension: indicator_1_s2_lagged {
     type: string
+    label: "Indicator 1S2 Lagged"
     sql: ${TABLE}.Indicator_1S2_Lagged ;;
   }
 
   dimension: indicator_2_s1_lagged {
     type: string
+    label: "Indicator 2S1 Lagged"
     sql: ${TABLE}.Indicator_2S1_Lagged ;;
   }
 
   dimension: indicator_2_s2_lagged {
     type: string
+    label: "Indicator 2S2 Lagged"
     sql: ${TABLE}.Indicator_2S2_Lagged ;;
   }
 
   dimension: indicator_2_s3_lagged {
     type: string
+    label: "Indicator 2S3 Lagged"
     sql: ${TABLE}.Indicator_2S3_Lagged ;;
   }
 
   dimension: indicator_3_s1_lagged {
     type: string
+    label: "Indicator 3S1 Lagged"
     sql: ${TABLE}.Indicator_3S1_Lagged ;;
   }
 
   dimension: indicator_4_s1_lagged {
     type: string
+    label: "Indicator 4S1 Lagged"
     sql: ${TABLE}.Indicator_4S1_Lagged ;;
   }
 
   dimension: indicator_5_s1_lagged {
     type: string
+    label: "Indicator 5S1 Lagged"
     sql: ${TABLE}.Indicator_5S1_Lagged ;;
   }
 
   dimension: indicator_5_s2_lagged {
     type: string
+    label: "Indicator 5S2 Lagged"
     sql: ${TABLE}.Indicator_5S2_Lagged ;;
   }
 
   dimension: indicator_5_s3_lagged {
     type: string
+    label: "Indicator 5S3 Lagged"
     sql: ${TABLE}.Indicator_5S3_Lagged ;;
   }
 
   dimension: indicator_5_s4_lagged {
     type: string
+    label: "Indicator 5S4 Lagged"
     sql: ${TABLE}.Indicator_5S4_Lagged ;;
   }
 
   dimension: indicator_6_s1_lagged {
     type: string
+    label: "Indicator 6S1 Lagged"
     sql: ${TABLE}.Indicator_6S1_Lagged ;;
   }
 
@@ -276,6 +313,7 @@ view: perkins_students {
 
   dimension: location_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.Location_ID ;;
   }
 
@@ -316,6 +354,7 @@ view: perkins_students {
 
   dimension_group: school_year {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -340,11 +379,13 @@ view: perkins_students {
 
   dimension: student_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_ID ;;
   }
 
   dimension_group: student_snapshot {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,

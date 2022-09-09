@@ -369,6 +369,29 @@ explore: perkins_students {
   }
 }
 
+explore: student_credentials_cte {
+  join: student_snapshot {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${student_credentials_cte.student_key}=${student_snapshot.student_key}
+      and ${student_credentials_cte.school_year_date} = ${student_snapshot.school_year_end_date};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${student_credentials_cte.location_key} = ${locations.location_key}
+      and ${student_credentials_cte.school_year_date} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${student_credentials_cte.district_key} = ${districts.district_key}
+      and ${student_credentials_cte.school_year_date} = ${districts.school_year_end_date};;
+  }
+}
+
+
+
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map_v2.topojson"
   property_key: "name"

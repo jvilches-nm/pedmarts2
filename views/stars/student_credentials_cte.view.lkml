@@ -47,7 +47,7 @@ view: student_credentials_cte {
       quarter,
       year
     ]
-    sql: ${TABLE}.School_Year ;;
+    sql:${TABLE}.School_Year;;
   }
 
   dimension: student_id {
