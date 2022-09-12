@@ -216,7 +216,7 @@ view: perkins_students {
 
   dimension: district_code {
     type: number
-    #hidden: yes
+    hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 

@@ -65,12 +65,7 @@ explore: programs_fact {
     sql_on: ${programs_fact.location_key} = ${locations.location_key} and
       ${programs_fact.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
-  join: student_credentials_cte {
-    relationship: many_to_one
-    view_label: "CTE Student Credentials"
-    type: left_outer
-    sql_on: ${programs_fact.student_key} = ${student_credentials_cte.student_key} ;;
-  }
+
 }
 
 explore: student_snapshot {
@@ -358,6 +353,7 @@ explore: perkins_students {
   join: cte_students_clusters {
     relationship: many_to_one
     type: inner
+    view_label: "CTE Student Clusters"
     sql_on: ${perkins_students.student_id} = ${cte_students_clusters.student_id}
       and ${perkins_students.school_year_date} = ${cte_students_clusters.school_year_date}
       and ${perkins_students.version_number} = ${cte_students_clusters.version_number};;
@@ -367,6 +363,25 @@ explore: perkins_students {
     type: inner
     sql_on: ${perkins_students.student_id}=${student_snapshot.student_id}
       and ${perkins_students.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
+  }
+  join: programs_fact {
+    relationship: many_to_one
+    type: left_outer
+    view_label: "Programs"
+    sql_on:${student_snapshot.student_key} = ${programs_fact.student_key} and
+      ${student_snapshot.student_snapshot_date} = ${programs_fact.program_start_date}  ;;
+  }
+  join: student_credentials_cte {
+    relationship: many_to_one
+    view_label: "CTE Student Credentials"
+    type: left_outer
+    sql_on: ${programs_fact.student_key} = ${student_credentials_cte.student_key} ;;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
   }
   join: locations {
     relationship: many_to_one

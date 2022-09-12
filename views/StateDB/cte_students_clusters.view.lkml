@@ -48,6 +48,7 @@ view: cte_students_clusters {
 
   dimension_group: school_year {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
