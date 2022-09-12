@@ -71,8 +71,13 @@ view: cte_students_clusters {
     sql: ${TABLE}.Version_Number ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [element_name, element_column_name]
-  }
+measure: student_count {
+  type: count
+  drill_fields: [student_id]
+}
+
+ # measure: count {
+ #   type: count
+  #  drill_fields: [element_name, element_column_name]
+ # }
 }

@@ -175,8 +175,19 @@ view: perkins_students {
 
   dimension: concentrator {
     type: string
+
     sql: ${TABLE}.Concentrator ;;
   }
+
+  dimension: concentrators {
+    type: number
+    hidden: yes
+    sql: case when ${TABLE}.Concentrator = 'Y' then 1
+              when ${TABLE}.Concentrator = 'N' then 0
+              else null end;;
+  }
+
+
 
   dimension: credential {
     type: string
@@ -205,7 +216,7 @@ view: perkins_students {
 
   dimension: district_code {
     type: number
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 
@@ -367,6 +378,14 @@ view: perkins_students {
     sql: ${TABLE}.School_Year ;;
   }
 
+  dimension: school_year {
+    type: string
+    #hidden: yes
+    label: "School Year"
+    description: "The two calendar years that the school year spans"
+    sql: cast(YEAR(${TABLE}.School_Year)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.School_Year) as varchar) ;;
+  }
+
   dimension: science_proficiency {
     type: string
     sql: ${TABLE}.Science_Proficiency ;;
@@ -405,16 +424,19 @@ view: perkins_students {
 
   dimension: used_in_extended_grad_cohort_calculation {
     type: string
+    hidden: yes
     sql: ${TABLE}.Used_in_Extended_Grad_Cohort_Calculation ;;
   }
 
   dimension: used_in_grad_cohort_calculation {
     type: string
+    hidden: yes
     sql: ${TABLE}.Used_in_Grad_Cohort_Calculation ;;
   }
 
   dimension: version_description {
     type: string
+    label: "Version"
     sql: ${TABLE}.Version_Description ;;
   }
 
@@ -442,6 +464,11 @@ view: perkins_students {
     type: string
     sql: ${TABLE}.Version_Title ;;
   }
+
+measure: concentrator_count {
+ type: count
+drill_fields: [concentrators]
+}
 
   measure: count {
     type: count
