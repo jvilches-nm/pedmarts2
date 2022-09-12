@@ -417,6 +417,16 @@ explore: cte_students_clusters {
   }
 }
 
+explore: cluster_courses {
+  join: course_instruct_staff_student_snapshot {
+    relationship: many_to_one
+    type: left_outer
+    view_label: "Course Snapshot"
+    sql_on: ${cluster_courses.course_id} = ${course_instruct_staff_student_snapshot.state_course_course_id}
+    and ${cluster_courses.school_year_date} = ${course_instruct_staff_student_snapshot.school_year_date};;
+  }
+}
+
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map_v2.topojson"
   property_key: "name"
