@@ -403,6 +403,18 @@ explore: cte_students_clusters {
     sql_on: ${cte_students_clusters.student_id}=${student_snapshot.student_id}
       and ${cte_students_clusters.school_year_date} = ${student_snapshot.school_year_end_date};;
   }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.district_key} = ${districts.district_key} and
+      ${student_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.location_key} = ${locations.location_key} and
+      ${student_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
+  }
 }
 
 map_layer: my_neighborhood_layer {
