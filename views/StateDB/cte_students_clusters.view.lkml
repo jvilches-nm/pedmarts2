@@ -8,21 +8,25 @@ view: cte_students_clusters {
 
   dimension: cte_group_element_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.CTE_Group_Element_ID ;;
   }
 
   dimension: cte_group_student_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.CTE_Group_Student_ID ;;
   }
 
   dimension: district_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 
   dimension: element_column_name {
     type: string
+    label: "Cluster"
     sql: ${TABLE}.Element_Column_Name ;;
   }
 
@@ -38,11 +42,13 @@ view: cte_students_clusters {
 
   dimension: location_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_ID ;;
   }
 
   dimension_group: school_year {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -57,6 +63,7 @@ view: cte_students_clusters {
 
   dimension: student_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_ID ;;
   }
 
@@ -65,8 +72,13 @@ view: cte_students_clusters {
     sql: ${TABLE}.Version_Number ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [element_name, element_column_name]
-  }
+measure: student_count {
+  type: count
+  drill_fields: [student_id]
+}
+
+ # measure: count {
+ #   type: count
+  #  drill_fields: [element_name, element_column_name]
+ # }
 }

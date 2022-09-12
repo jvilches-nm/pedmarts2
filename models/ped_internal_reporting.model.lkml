@@ -65,6 +65,7 @@ explore: programs_fact {
     sql_on: ${programs_fact.location_key} = ${locations.location_key} and
       ${programs_fact.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
+
 }
 
 explore: student_snapshot {
@@ -345,6 +346,103 @@ explore: student_attendance {
     type: left_outer
     sql_on: ${student_attendance.district_key} = ${districts.district_key}
       and ${student_attendance.school_year_end_date} = ${districts.school_year_end_date};;
+  }
+}
+
+explore: perkins_students {
+  join: cte_students_clusters {
+    relationship: many_to_one
+    type: inner
+    view_label: "CTE Student Clusters"
+    sql_on: ${perkins_students.student_id} = ${cte_students_clusters.student_id}
+      and ${perkins_students.school_year_date} = ${cte_students_clusters.school_year_date}
+      and ${perkins_students.version_number} = ${cte_students_clusters.version_number};;
+  }
+    join: student_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${perkins_students.student_id}=${student_snapshot.student_id}
+      and ${perkins_students.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
+  }
+  join: programs_fact {
+    relationship: many_to_one
+    type: left_outer
+    view_label: "Programs"
+    sql_on:${student_snapshot.student_key} = ${programs_fact.student_key} and
+      ${student_snapshot.student_snapshot_date} = ${programs_fact.program_start_date}  ;;
+  }
+  join: student_credentials_cte {
+    relationship: many_to_one
+    view_label: "CTE Student Credentials"
+    type: left_outer
+    sql_on: ${programs_fact.student_key} = ${student_credentials_cte.student_key} ;;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${perkins_students.location_id} = ${locations.location_id}
+      and ${perkins_students.school_year_date} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${perkins_students.district_code} = ${districts.district_code}
+      and ${perkins_students.school_year_date} = ${districts.school_year_end_date};;
+  }
+}
+
+#explore: student_credentials_cte {
+#  join: programs_fact {
+    #}
+  #join: student_snapshot {
+  #  relationship: many_to_one
+  #  type: left_outer
+  #  sql_on: ${student_credentials_cte.student_key}=${student_snapshot.student_key}
+  #    and ${student_credentials_cte.school_year_date} = ${student_snapshot.school_year_end_date};;
+  #}
+  #join: locations {
+  #  relationship: many_to_one
+  #  type: left_outer
+  #  sql_on: ${student_credentials_cte.location_key} = ${locations.location_key}
+  #    and ${student_credentials_cte.school_year_date} = ${locations.school_year_end_date};;
+  #}
+  #join: districts {
+  #  relationship: many_to_one
+  #  type: left_outer
+  #  sql_on: ${student_credentials_cte.district_key} = ${districts.district_key}
+  #    and ${student_credentials_cte.school_year_date} = ${districts.school_year_end_date};;
+  #}
+#}
+
+explore: cte_students_clusters {
+  join: perkins_students {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${cte_students_clusters.student_id}=${perkins_students.student_id}
+      and ${cte_students_clusters.school_year_date} = ${perkins_students.school_year_date};;
+  }
+  join: student_snapshot {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${cte_students_clusters.student_id}=${student_snapshot.student_id}
+      and ${cte_students_clusters.school_year_date} = ${student_snapshot.school_year_end_date};;
+  }
+
+}
+
+explore: cluster_courses {
+  join: course_instruct_staff_student_snapshot {
+    relationship: many_to_one
+    type: left_outer
+    view_label: "Course Snapshot"
+    sql_on: ${cluster_courses.course_id} = ${course_instruct_staff_student_snapshot.state_course_course_id}
+    and ${cluster_courses.school_year_date} = ${course_instruct_staff_student_snapshot.school_year_date};;
   }
 }
 
