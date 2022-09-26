@@ -291,9 +291,7 @@ explore: assessment {
     relationship: many_to_one
     type: inner
     sql_on: ${assessment.student_key}=${student_snapshot.student_key}
-      and ${assessment.school_year} = ${student_snapshot.school_year_end_date}
-
-  ;;
+      and ${assessment.school_year} = ${student_snapshot.school_year_end_date};;
   }
   join: period {
     relationship: many_to_one
