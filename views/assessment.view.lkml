@@ -49,7 +49,7 @@ view: assessment {
 
   dimension: assessment_id_school_year {
     type: string
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}.Assessment_ID_School_Year ;;
   }
 
@@ -241,6 +241,7 @@ view: assessment {
 
   dimension: school_year {
     type: date
+    #hidden: yes
     sql: ${TABLE}.School_Year ;;
   }
 

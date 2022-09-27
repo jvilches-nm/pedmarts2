@@ -286,16 +286,23 @@ explore: staff_assignment_snapshot {
 }
 
 explore: assessment {
-  join: student_consolidated {
+  join: student_snapshot{
+  #student_consolidated {
     relationship: many_to_one
     type: inner
-    sql_on: ${assessment.student_key}=${student_consolidated.student_key}
-      and ${assessment.school_year} = ${student_consolidated.school_year_end_date};;
+    sql_on: ${assessment.student_key}=${student_snapshot.student_key}
+      and ${assessment.school_year} = ${student_snapshot.school_year_end_date};;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
   }
   join: locations {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${assessment.location_key}.location_key} = ${locations.location_key}
+    sql_on: ${assessment.location_key} = ${locations.location_key}
       and ${assessment.school_year} = ${locations.school_year_end_date};;
   }
   join: districts {
