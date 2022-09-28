@@ -453,6 +453,7 @@ explore: cluster_courses {
   }
 }
 
+
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map_v2.topojson"
   property_key: "name"
