@@ -313,6 +313,35 @@ explore: assessment {
   }
 }
 
+explore: special_ed_snapshot {
+  join: student_snapshot{
+    #student_consolidated {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${special_ed_snapshot.student_key}=${student_snapshot.student_key}
+      and ${special_ed_snapshot.school_year_date} = ${student_snapshot.school_year_end_date};;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${special_ed_snapshot.location_key} = ${locations.location_key}
+      and ${special_ed_snapshot.school_year_date} = ${locations.school_year_end_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${special_ed_snapshot.district_key} = ${districts.district_key}
+      and ${special_ed_snapshot.school_year_date} = ${districts.school_year_end_date};;
+  }
+}
+
+
 explore: school_enroll {
   join: student_consolidated {
     relationship: many_to_one
