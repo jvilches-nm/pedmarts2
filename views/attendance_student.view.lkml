@@ -13,16 +13,19 @@ view: attendance_student {
 
   dimension: district_code {
     type: number
+    hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 
   dimension: full_location_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.Full_Location_Name ;;
   }
 
   dimension: index {
     type: number
+    hidden: yes
     sql: ${TABLE}."Index" ;;
   }
 
@@ -36,18 +39,20 @@ view: attendance_student {
     sql: ${TABLE}.Student_ID ;;
   }
 
-  dimension: total_days_enrolled {
-    type: number
+  measure: total_days_enrolled {
+    type: sum
+    label: "Days Enrolled"
     sql: ${TABLE}.Total_Days_Enrolled ;;
   }
 
-  dimension: total_days_present {
-    type: number
+  measure: total_days_present {
+    type: sum
+    label: "Days Present"
     sql: ${TABLE}.Total_Days_Present ;;
   }
 
-  dimension: total_days_unexcused_absent {
-    type: number
+  measure: total_days_unexcused_absent {
+    type: sum
     sql: ${TABLE}.Total_Days_Unexcused_Absent ;;
   }
 
