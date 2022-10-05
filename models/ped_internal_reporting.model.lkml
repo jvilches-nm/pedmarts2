@@ -37,6 +37,8 @@ persist_with: ped_bi_default_datagroup
 #  }
 #}
 
+explore: locations {}
+
 explore: programs_fact {
   label: "Programs"
   join: student_snapshot {

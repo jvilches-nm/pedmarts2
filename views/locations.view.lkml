@@ -1,6 +1,10 @@
 view: locations {
   derived_table: {
-    sql: select * from stars.locations where Location_Organization_Type_Code not in ('BIA', 'Home School', 'Private') ;;
+    sql: select l.*, le.eltp_school, le.new_pgm from stars.locations l
+         left outer join dbo.locations_extension le on cast(le.district_code as int) = cast(l.district_code as int) and cast(le.location_id as int) = cast(l.location_id as int)
+        and cast(le.school_year as date) = cast(l.school_year as date)
+        where l.Location_Organization_Type_Code not in ('BIA', 'Home School', 'Private')
+         ;;
   }
 
   drill_fields: [nces_school_id,
@@ -11,6 +15,8 @@ view: locations {
       grade_level_range,
       school_year,
       location_status]
+
+
 
   dimension: alternative_school {
     type: string
@@ -70,7 +76,7 @@ view: locations {
   dimension: district_code {
     type: string
     hidden: yes
-    sql: ${TABLE}.District_Code ;;
+    sql: cast(${TABLE}.District_Code as int) ;;
   }
 
   dimension: district_school_code {
@@ -484,6 +490,17 @@ view: locations {
               when ${TABLE}.location_name_long='SAN DIEGO RIVERSIDE' then 'Yes'
               when ${TABLE}.location_name_long='VISTA GRANDE HIGH SCHOOL' then 'Yes'
               else 'No' end;;
+  }
+
+  dimension: eltp_school {
+    type: string
+    sql: ${TABLE}.eltp_school ;;
+  }
+
+  dimension: new_pgm {
+    type: string
+    label: "New Program"
+    sql: ${TABLE}.new_pgm ;;
   }
 
   measure: count {
