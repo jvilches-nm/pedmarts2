@@ -8,16 +8,19 @@ view: attendance_summary {
 
   dimension: district_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 
   dimension: location_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Location_ID ;;
   }
 
   dimension_group: school_year {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -32,6 +35,7 @@ view: attendance_summary {
 
   dimension: student_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.Student_ID ;;
   }
 
@@ -55,13 +59,15 @@ view: attendance_summary {
     sql: ${TABLE}.Tier4Absentee ;;
   }
 
-  dimension: total_days_enrolled {
-    type: number
+  measure: total_days_enrolled {
+    type: sum
+    label: "Days Enrolled"
     sql: ${TABLE}.Total_Days_Enrolled ;;
   }
 
-  dimension: total_days_present {
-    type: number
+  measure: total_days_present {
+    type: sum
+    label: "Days Present"
     sql: ${TABLE}.Total_Days_Present ;;
   }
 

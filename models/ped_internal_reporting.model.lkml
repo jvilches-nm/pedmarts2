@@ -496,7 +496,8 @@ explore: attendance_summary {
     relationship: many_to_one
     type: left_outer
     sql_on: ${student_consolidated.location_key} = ${locations.location_key}
-      and ${student_consolidated.school_year_end_date} = ${locations.school_year_end_date};;
+      and ${student_consolidated.school_year_end_date} = ${locations.school_year_end_date}
+      and ${student_consolidated.district_key} = ${locations.district_key};;
   }
   join: districts {
     relationship: many_to_one
