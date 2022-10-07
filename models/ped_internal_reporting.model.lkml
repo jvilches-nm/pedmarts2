@@ -343,24 +343,32 @@ explore: special_ed_snapshot {
 
 
 explore: school_enroll {
-  join: student_consolidated {
+  join: student_consolidated_with_eoy {
     relationship: many_to_one
-    type: inner
-    sql_on: ${school_enroll.student_id}= ${student_consolidated.student_id}
-       and ${school_enroll.school_year_end_date} = ${student_consolidated.school_year_end_date};;
+    type: left_outer
+    sql_on: ${school_enroll.student_id}= ${student_consolidated_with_eoy.student_id}
+      and ${school_enroll.school_year_end_date} = ${student_consolidated_with_eoy.school_year_end_date};;
   }
   join: locations {
     relationship: many_to_one
-    type: left_outer
+    type: inner
     sql_on: ${school_enroll.location_id} = ${locations.location_id}
-      and ${school_enroll.district_code} = ${locations.district_code}
+      and ${locations.district_code} = ${districts.district_code}
       and ${school_enroll.school_year_end_date} = ${locations.school_year_end_date};;
   }
   join: districts {
     relationship: many_to_one
-    type: left_outer
+    type: inner
     sql_on: ${school_enroll.district_code} = ${districts.district_code}
       and ${school_enroll.school_year_end_date} = ${districts.school_year_end_date};;
+  }
+  join: student_events {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${student_events.student_id = ${school_enroll.student_id} and
+            ${student_events.district_key} = ${student_consolidated_with_eoy.district_key} and
+            ${student_events.location_key} = ${student_consolidated_with_eoy.location_key}
+         ;;
   }
 }
 
@@ -508,18 +516,18 @@ explore: attendance_summary {
 }
 
 explore: student_events {
-  join: student_consolidated {
+  join: student_consolidated_with_eoy {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_events.student_key}= ${student_consolidated.student_key}
-      and ${student_events.school_year_date}= ${student_consolidated.school_year_end_date};;
+    sql_on: ${student_events.student_key}= ${student_consolidated_with_eoy.student_key}
+      and ${student_events.school_year_date}= ${student_consolidated_with_eoy.school_year_end_date};;
   }
   join: locations {
     relationship: many_to_one
     type: left_outer
     sql_on: ${student_events.location_key} = ${locations.location_key}
       and ${student_events.school_year_date} = ${locations.school_year_end_date}
-      and ${locations.district_key} = ${districts.district_key};;
+      ;;
   }
   join: districts {
     relationship: many_to_one
