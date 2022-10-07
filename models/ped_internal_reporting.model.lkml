@@ -537,6 +537,7 @@ explore: student_events {
   }
 }
 
+explore: homeschool_students {}
 
 map_layer: my_neighborhood_layer {
   file: "/Map_Shapefiles/dist_map_v2.topojson"
