@@ -431,6 +431,13 @@ dimension: student_key {
   sql: ${TABLE}.Student_Key ;;
 }
 
+  dimension: student_id_obfuscated {
+    type: number
+    hidden: no
+    sql: ${TABLE}.Student_Key ;;
+  }
+
+
 dimension: student_name_last {
   type: string
   description: "Student's full last name"
