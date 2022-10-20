@@ -117,6 +117,7 @@ view: license_user_endorsements {
 
   dimension: start_date {
     type: date
+    label: "Certification Start Date"
     sql: ${TABLE}.startDate ;;
   }
 
