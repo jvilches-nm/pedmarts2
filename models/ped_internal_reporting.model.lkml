@@ -210,6 +210,9 @@ explore: course_instruct_staff_student_snapshot {
     relationship: many_to_one
     type: inner
     sql_on: ${course_instruct_staff_student_snapshot.student_key}=${student_snapshot.student_key}
+    and ${course_instruct_staff_student_snapshot.district_key} = ${student_snapshot.district_key}
+    and ${course_instruct_staff_student_snapshot.location_key} = ${student_snapshot.location_key}
+    and ${course_instruct_staff_student_snapshot.school_year_date} = ${course_instruct_staff_student_snapshot.school_year_date}
     and ${course_instruct_staff_student_snapshot.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
   }
   join: locations {
@@ -333,11 +336,11 @@ explore: special_ed_snapshot {
   join: education_services {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${special_ed_snapshot.student_key} = ${education_services.student_key}
+    sql_on: ${education_services.student_key} = ${special_ed_snapshot.student_key}
     and ${education_services.school_year_date} = ${special_ed_snapshot.school_year_date}
     and ${education_services.district_key} = ${special_ed_snapshot.district_key}
     and ${education_services.location_key} = ${special_ed_snapshot.location_key}
-    and ${education_services.svc_start_date} ${special_ed_snapshot.student_snapshot_date};;
+    and ${education_services.svc_start_date} =${special_ed_snapshot.student_snapshot_date};;
   }
   join: locations {
     relationship: many_to_one

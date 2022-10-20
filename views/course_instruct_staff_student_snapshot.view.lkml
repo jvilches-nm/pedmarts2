@@ -219,6 +219,12 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Course Section Number" ;;
   }
 
+  measure: count_course_sections {
+    type: count_distinct
+    label: "Total Classes"
+    sql: ${TABLE}."Course Section Number"  ;;
+  }
+
   dimension: course_sequence_number {
     type: number
     hidden: yes
