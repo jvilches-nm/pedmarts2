@@ -319,13 +319,25 @@ explore: special_ed_snapshot {
     relationship: many_to_one
     type: inner
     sql_on: ${special_ed_snapshot.student_key}=${student_snapshot.student_key}
-      and ${special_ed_snapshot.school_year_date} = ${student_snapshot.school_year_end_date};;
+      and ${special_ed_snapshot.school_year_date} = ${student_snapshot.school_year_end_date}
+      and ${special_ed_snapshot.student_snapshot_date} = ${student_snapshot.student_snapshot_date}
+      and ${special_ed_snapshot.district_key} = ${student_snapshot.district_key}
+      and ${special_ed_snapshot.location_key} = ${student_snapshot.location_key};;
   }
   join: period {
     relationship: many_to_one
     type: inner
     sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
       ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
+  join: education_services {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${special_ed_snapshot.student_key} = ${education_services.student_key}
+    and ${education_services.school_year_date} = ${special_ed_snapshot.school_year_date}
+    and ${education_services.district_key} = ${special_ed_snapshot.district_key}
+    and ${education_services.location_key} = ${special_ed_snapshot.location_key}
+    and ${education_services.svc_start_date} ${special_ed_snapshot.student_snapshot_date};;
   }
   join: locations {
     relationship: many_to_one
