@@ -14,6 +14,7 @@ view: license_user_info {
 
   dimension: cert_num {
     type: string
+    hidden: yes
     sql: ${TABLE}.certNum ;;
   }
 

@@ -286,6 +286,11 @@ explore: staff_assignment_snapshot {
     type: left_outer
     sql_on: ${license_user_info.staff_id}=${staff_snapshot.staff_id} ;;
   }
+  join: license_user_endorsements {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${license_user_endorsements.staff_id} = ${staff_assignment_snapshot.staff_id} ;;
+  }
 }
 
 explore: assessment {
