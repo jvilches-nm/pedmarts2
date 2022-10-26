@@ -43,8 +43,20 @@ explore: programs_fact {
     relationship: many_to_one
     type: inner
     sql_on: ${programs_fact.student_key} = ${student_snapshot.student_key} and
-      ${programs_fact.program_start_date} = ${student_snapshot.student_snapshot_date};;
+      ${programs_fact.program_start_date} = ${student_snapshot.student_snapshot_date}
+      and ${programs_fact.district_key} = ${student_snapshot.district_key}
+      and ${programs_fact.location_key} = ${student_snapshot.location_key}
+      and ${programs_fact.school_year_end_date} = ${student_snapshot.school_year_end_date};;
   }
+  join: education_services {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${programs_fact.student_key} = ${education_services.student_key}
+    and ${programs_fact.programs_key} = ${education_services.programs_key}
+    and ${programs_fact.district_key} = ${education_services.district_key}
+   and ${programs_fact.location_key} = ${education_services.location_key};;
+  }
+
   join: period {
     relationship: many_to_one
     type: inner
@@ -238,21 +250,55 @@ explore: course_instruct_staff_student_snapshot {
 explore: staff_snapshot {
   join: districts {
     relationship: many_to_one
-    type: left_outer
+    type: inner
     sql_on: ${staff_snapshot.district_key} = ${districts.district_key} and
-      ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date} ;;
+     ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date}
+      ;;
   }
   join: locations {
     relationship: many_to_one
-    type: left_outer
-    sql_on: ${staff_snapshot.location_key} = ${locations.location_key} and
-      ${staff_snapshot.school_year_end_date} = ${locations.school_year_end_date} ;;
+    type: inner
+    sql_on: ${staff_snapshot.location_key} = ${locations.location_key}
+      and ${locations.district_key} = ${districts.district_key};;
   }
   join: period {
     relationship: many_to_one
     type: inner
     sql_on: ${staff_snapshot.school_year_end_date}=${period.school_year_end_date} and
             ${staff_snapshot.snapshot_date}=${period.period_start_date};;
+  }
+}
+
+explore: staff_development_activity {
+  join: staff_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_development_activity.staff_key} = ${staff_snapshot.staff_key}
+    and ${staff_development_activity.school_year_date} = ${staff_snapshot.school_year_end_date}
+    and ${staff_development_activity.entry_date} = ${staff_snapshot.snapshot_date}
+
+      ;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on:
+          ${staff_snapshot.district_key} = ${districts.district_key}
+          and ${staff_snapshot.school_year_end_date} = ${districts.school_year_end_date}
+            ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_snapshot.location_key} = ${locations.location_key}
+      and ${locations.district_key} = ${districts.district_key};;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${staff_development_activity.school_year_date}=${period.school_year_end_date} and
+      ${staff_development_activity.entry_date}=${period.period_start_date}
+;;
   }
 }
 
@@ -359,7 +405,28 @@ explore: special_ed_snapshot {
     sql_on: ${special_ed_snapshot.district_key} = ${districts.district_key}
       and ${special_ed_snapshot.school_year_date} = ${districts.school_year_end_date};;
   }
+
 }
+
+# Place in `ped_internal_reporting` model
+
+explore: +special_ed_snapshot {
+
+    query: district_quick_explore {
+      dimensions: [education_services.educ_svc_long_desc, locations.location_name_full]
+      measures: [student_snapshot.count]
+      filters: [
+        districts.district_name_filter: "ALAMOGORDO",
+        education_services.educ_svc_code: "AU,SS,OT,PT,PS,SW,TRS,SECDEV,LIFT,NS,IHP",
+        locations.charter_school: "No",
+        period.school_year: "2021-2022",
+        period.snapshot_period: "80D"
+      ]
+    }
+
+}
+
+
 
 
 explore: school_enroll {
@@ -556,6 +623,61 @@ explore: student_events {
       and ${student_events.school_year_date} = ${districts.school_year_end_date};;
   }
 }
+
+explore: programs_services_fact {
+  label: "Program Services"
+  join: student_snapshot {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${programs_services_fact.student_key} = ${student_snapshot.student_key}
+          and ${programs_services_fact.school_year_date} = ${student_snapshot.school_year_end_date}
+                and ${programs_services_fact.svc_start_date} = ${student_snapshot.student_snapshot_date}
+                ;;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+  }
+  join: programs_code {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${programs_services_fact.programs_key} = ${programs_code.programs_key}
+      and ${student_snapshot.school_year_end_date} = ${programs_code.school_year_date};;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${districts.district_key} = ${programs_services_fact.district_key}
+      and ${districts.school_year_end_date} = ${programs_services_fact.school_year_date} ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${locations.location_key} = ${programs_services_fact.svc_location_key}
+      and ${locations.school_year_end_date} = ${programs_services_fact.school_year_date}
+      and ${locations.district_key} = ${districts.district_key}
+      ;;
+  }
+}
+
+# Place in `ped_internal_reporting` model
+
+explore: +programs_services_fact {
+
+    query: filters{
+      measures: [student_snapshot.count]
+      filters: [
+        districts.district_name_filter: "ALBUQUERQUE",
+        period.school_year: "2021-2022",
+        period.snapshot_period: "EOY"
+      ]
+
+    }
+
+}
+
 
 explore: homeschool_students {}
 

@@ -503,6 +503,19 @@ view: locations {
     sql: ${TABLE}.new_pgm ;;
   }
 
+ measure: total_new_pgm {
+   type: sum
+  label: "Total New Programs"
+  sql: case when ${new_pgm} = 'Y' then 1 else 0 end ;;
+ }
+
+
+  dimension: total_exist_pgm {
+    type: number
+    label: "Total Exist Program"
+    sql: case when ${TABLE}.new_pgm = 'N' then 1 else 0 end ;;
+  }
+
   measure: count {
     type: count
     label: "Location Count"
