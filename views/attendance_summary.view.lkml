@@ -6,6 +6,13 @@ view: attendance_summary {
     sql: ${TABLE}.Chronic_Absentee ;;
   }
 
+dimension: student_key {
+  type: string
+  hidden: yes
+  sql: ${TABLE}.Student_Key ;;
+}
+
+
   dimension: district_code {
     type: string
     hidden: yes

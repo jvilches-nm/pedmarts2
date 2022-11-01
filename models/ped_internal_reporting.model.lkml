@@ -10,33 +10,6 @@ datagroup: ped_bi_default_datagroup {
 
 persist_with: ped_bi_default_datagroup
 
-#explore: attendance_summary {
-#  join: student_consolidated {
-#    relationship: many_to_one
- #   type: inner
-  #  sql_on: ${attendance_summary.student_key} = ${student_consolidated.student_key}
-#   ;;
-#  }
-#  join: period {
-#    relationship: many_to_one
-#    type: inner
-#   sql_on: ${student_consolidated.school_year_end_date}=${period.school_year_end_date} and
-#           ${student_consolidated.student_snapshot_date}=${period.period_start_date};;
-#  }
-#  join: districts {
-#    relationship: many_to_one
-#    type: inner
-#    sql_on: ${attendance_summary.district_key} = ${districts.district_key} and
-#      ${attendance_summary.school_year_end_date} = ${districts.school_year_end_date} ;;
-#  }
-#  join: locations {
-#    relationship: many_to_one
-#    type: inner
-#    sql_on: ${attendance_summary.location_key} = ${locations.location_key} and
-#      ${attendance_summary.school_year_end_date} = ${locations.school_year_end_date} ;;
-#  }
-#}
-
 explore: programs_fact {
   label: "Programs"
   join: student_snapshot {
@@ -460,11 +433,18 @@ explore: school_enroll {
 }
 
 explore: student_attendance {
+  label: "Attendance Day"
   join: student_consolidated {
     relationship: many_to_one
     type: inner
     sql_on: ${student_attendance.student_key}= ${student_consolidated.student_key}
-       and ${student_attendance.school_year_end_date}= ${student_consolidated.school_year_end_date};;
+      and ${student_attendance.school_year_end_date}= ${student_consolidated.school_year_end_date};;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_consolidated.school_year_end_date}=${period.school_year_end_date} and
+      ${student_consolidated.student_snapshot_date}=${period.period_start_date};;
   }
   join: locations {
     relationship: many_to_one
@@ -479,6 +459,7 @@ explore: student_attendance {
       and ${student_attendance.school_year_end_date} = ${districts.school_year_end_date};;
   }
 }
+
 
 explore: perkins_students {
   join: cte_students_clusters {
@@ -584,8 +565,14 @@ explore: attendance_summary {
     relationship: many_to_one
     type: left_outer
     #view_label: "Attendance"
-    sql_on: ${attendance_summary.student_id} = ${student_consolidated.student_id} and
+    sql_on: ${attendance_summary.student_key} = ${student_consolidated.student_key} and
       ${attendance_summary.school_year_date} = ${student_consolidated.school_year_end_date};;
+  }
+  join: period {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${student_consolidated.school_year_end_date}=${period.school_year_end_date} and
+      ${student_consolidated.student_snapshot_date}=${period.period_start_date};;
   }
   join: locations {
     relationship: many_to_one
