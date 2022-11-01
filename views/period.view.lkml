@@ -55,4 +55,9 @@ view: period {
     sql: ${TABLE}.SORT_SEQ ;;
   }
 
+  dimension: snapshot_status {
+    type: string
+    description: "Is the snapshot being reported certified or non-certified?"
+    sql: case when ${TABLE}.REPORT_SCHOOL_YEAR='2022-2023' then 'NON-CERTIFIED' else 'CERTIFIED' end ;;
+  }
 }
