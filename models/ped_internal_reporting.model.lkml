@@ -739,6 +739,7 @@ explore: programs_services_fact {
   }
 }
 
+
 # Place in `ped_internal_reporting` model
 
 explore: +programs_services_fact {
@@ -753,6 +754,10 @@ explore: +programs_services_fact {
 
     }
 
+}
+
+explore: grad_data {
+  label: "Graduation"
 }
 
 map_layer: my_neighborhood_layer {
