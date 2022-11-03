@@ -24,7 +24,7 @@ view: programs_services_fact {
 
   dimension: educ_svc_long_desc {
     type: string
-    label: "Service Code"
+    label: "Service"
     sql: ${TABLE}.EDUC_SVC_LONG_DESC ;;
   }
 
@@ -174,6 +174,7 @@ view: programs_services_fact {
 
   dimension: svc_provider_type_desc {
     type: string
+    label: "Service Provider Type"
     sql: ${TABLE}.SVC_PROVIDER_TYPE_DESC ;;
   }
 

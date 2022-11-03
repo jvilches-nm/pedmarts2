@@ -35,9 +35,10 @@ view: grad_data {
 
   dimension: metric {
     type: string
+    label: "Graduation Metric"
+    description: "Graduation metric - rate, graduates (numerator), cohort size (denominator)"
     sql: ${TABLE}.Metric ;;
   }
-
   dimension: sch_numb {
     type: number
     hidden: yes
@@ -51,13 +52,14 @@ view: grad_data {
   }
 
   dimension: sy {
-    type: number
+    type: string
     label: "School Year"
+    description: "Last calendar year of the school year"
     sql: ${TABLE}.SY ;;
   }
 
-  dimension: value {
-    type: number
+  measure: value {
+    type: max
     sql: ${TABLE}.Value ;;
   }
 
