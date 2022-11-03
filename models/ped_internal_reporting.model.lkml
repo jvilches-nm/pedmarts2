@@ -631,7 +631,7 @@ explore: attendance_summary {
     relationship: many_to_one
     type: left_outer
     #view_label: "Attendance"
-    sql_on: ${attendance_summary.student_key} = ${student_consolidated.student_key} and
+    sql_on: ${attendance_summary.student_id} = ${student_consolidated.student_id} and
       ${attendance_summary.school_year_date} = ${student_consolidated.school_year_end_date};;
   }
   join: period {
