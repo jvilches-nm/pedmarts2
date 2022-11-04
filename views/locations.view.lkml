@@ -1,6 +1,6 @@
 view: locations {
   derived_table: {
-    sql: select l.*, le.eltp_school, le.new_pgm from stars.locations l
+    sql: select l.*, le.eltp_school,le.K5P_school,le.new_pgm_eltp, le.new_pgm_k5p from stars.locations l
          left outer join dbo.locations_extension le on cast(le.district_code as int) = cast(l.district_code as int) and cast(le.location_id as int) = cast(l.location_id as int)
         and cast(le.school_year as date) = cast(l.school_year as date)
         where l.Location_Organization_Type_Code not in ('BIA', 'Home School', 'Private')
@@ -492,29 +492,29 @@ view: locations {
               else 'No' end;;
   }
 
-  dimension: eltp_school {
+  dimension: ELTP_school {
     type: string
     sql: ${TABLE}.eltp_school ;;
   }
 
-  dimension: new_pgm {
+  dimension: K5P_school {
     type: string
-    label: "New Program"
-    sql: ${TABLE}.new_pgm ;;
+    sql: ${TABLE}.K5P_school ;;
   }
 
- measure: total_new_pgm {
-   type: sum
-  label: "Total New Programs"
-  sql: case when ${new_pgm} = 'Y' then 1 else 0 end ;;
- }
-
-
-  dimension: total_exist_pgm {
-    type: number
-    label: "Total Exist Program"
-    sql: case when ${TABLE}.new_pgm = 'N' then 1 else 0 end ;;
+  dimension: new_pgm_eltp {
+    type: string
+    label: "New ELTP Program"
+    sql: ${TABLE}.New_pgm_eltp ;;
   }
+
+  dimension: new_pgm_k5p {
+    type: string
+    label: "New K5P Program"
+    sql: ${TABLE}.New_pgm_k5p ;;
+  }
+
+
 
   measure: count {
     type: count
