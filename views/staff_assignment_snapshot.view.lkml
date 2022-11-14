@@ -20,7 +20,7 @@ view: staff_assignment_snapshot {
 
   dimension: assignment_code {
     type: string
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}.Assignment_Code ;;
   }
 
