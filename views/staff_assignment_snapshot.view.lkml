@@ -6,6 +6,11 @@ view: staff_assignment_snapshot {
     sql: ${TABLE}.Annual_Salary ;;
   }
 
+  measure: annual_salary_amount {
+    type: sum
+    sql: ${TABLE}.Annual_Salary ;;
+  }
+
   dimension: assignment {
     type: string
     description: "Assignment"

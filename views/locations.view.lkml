@@ -196,7 +196,7 @@ view: locations {
     type: string
     primary_key: yes
     hidden: yes
-    sql: cast(${TABLE}.LOCATION_KEY as varchar) + "-" + cast(${TABLE}.PERIOD_KEY as varchar) ;;
+    sql: cast(${TABLE}.LOCATION_KEY as varchar) + '-' + cast(${TABLE}.PERIOD_KEY as varchar) ;;
   }
 
   dimension: location_latitude {
@@ -290,6 +290,12 @@ view: locations {
     sql: ${TABLE}.Location_Organization_Subtype ;;
   }
 
+  dimension: location_sizing {
+    type: string
+    sql: case ${TABLE}.location_organization_subtype when '2' then 'High School Sizing'
+                                                     when '1' then 'Elementary/Jr. High Sizing'
+                                                     else 'Not Sized' end ;;
+  }
   dimension: location_organization_type {
     type: string
     sql: ${TABLE}.Location_Organization_Type_Code ;;
