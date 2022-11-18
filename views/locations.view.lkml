@@ -196,7 +196,7 @@ view: locations {
     type: string
     primary_key: yes
     hidden: yes
-    sql: cast(${TABLE}.LOCATION_KEY as varchar) + "-" + cast(${TABLE}.PERIOD_KEY as varchar) ;;
+    sql: cast(${TABLE}.LOCATION_KEY as varchar) + '-' + cast(${TABLE}.PERIOD_KEY as varchar) ;;
   }
 
   dimension: location_latitude {
