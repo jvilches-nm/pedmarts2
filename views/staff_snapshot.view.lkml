@@ -377,6 +377,7 @@ view: staff_snapshot {
 
   dimension: staff_email_addr {
     type: string
+    label: "Staff Email Address"
     #hidden: yes
     sql: ${TABLE}.STAFF_EMAIL_ADDR ;;
   }
