@@ -58,4 +58,10 @@ view: student_snapshot {
     sql: case when ${student_hispanic_indicator}='Yes' then 1 else 0 end;;
   }
 
+  measure: student_count_504 {
+    type: sum
+    description: "Count of students with disabilities who have Plan 504 selected"
+    sql: case when ${section_504_status}='Yes' then 1 else 0 end;;
+  }
+
 }
