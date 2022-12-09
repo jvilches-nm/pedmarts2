@@ -1,15 +1,6 @@
 view: student_consolidated_with_eoy {
-  derived_table: {
-    sql:  select y.* from
-            (select ss.* from stars.student_snapshot ss
-               inner join (select s1.school_year, s1.period_key, s1.student_id, max(s1.student_key) max_student_key from stars.student_snapshot s1 where (month(student_snapshot_date) in (3, 6, 10) and day(student_snapshot_date)=1) or (month(student_snapshot_date)=12 and day(student_snapshot_date)=15)
-               group by s1.school_year, s1.period_key, s1.student_id) x on x.school_year=ss.school_year and x.period_key=ss.period_key and x.student_id=ss.student_id and x.max_student_key=ss.student_key) y
-               inner join (select s.school_year, s.student_id, max(s.period_key) max_period_key from stars.student_snapshot s
-                where (month(student_snapshot_date) in (3, 6, 10) and day(student_snapshot_date)=1) or (month(student_snapshot_date)=12 and day(student_snapshot_date)=15)
-                         group by s.school_year, s.student_id) z on z.school_year=y.school_year and z.student_id=y.student_id and z.max_period_key=y.period_key ;;
-    persist_for: "24 hour"
-     indexes: ["student_id", "district_key", "location_key", "school_year", "Student_Race_1_Ethnicity"]
-  }
+  sql_table_name: student_consolidated_40_80_120_eoy ;;
+  label: "Student Consolidated - 40/80/120/EOY"
 
   dimension: diploma_type {
     type: string
