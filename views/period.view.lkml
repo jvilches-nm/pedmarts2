@@ -3,6 +3,11 @@ view: period {
     sql: select period_key, period_level, school_year, report_school_year, period_start_date, period_end_date, sort_seq from stars.period where district_key='35000999' and marking_period in ('40D', '80D', '120D', 'EOY');;
   }
 
+  measure: period_count {
+    type: count
+
+  }
+
   dimension: period_key {
     type: number
     primary_key: yes
