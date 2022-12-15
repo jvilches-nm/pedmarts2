@@ -10,6 +10,30 @@ datagroup: ped_bi_default_datagroup {
 
 persist_with: ped_bi_default_datagroup
 
+explore: assessment_rea {
+  join: districts {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: format(${assessment_rea.dist_code}, '000') = ${districts.district_code}
+      and ${assessment_rea.year} = year(${districts.school_year_end_date}) ;;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: format(${assessment_rea.dist_code},'000')=${locations.district_code}
+          and format(${assessment_rea.schnumb}-(${assessment_rea.dist_code}*1000), '000')=${locations.location_id}
+          and ${assessment_rea.year}=year(${locations.school_year_end_date});;
+  }
+
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${assessment_rea.student_id} = ${student_consolidated.student_id}
+      and ${assessment_rea.year} = year(${student_consolidated.school_year_end_date});;
+  }
+
+}
+
 explore: programs_fact {
   label: "Programs"
   join: student_snapshot {
