@@ -58,8 +58,9 @@ view: staff_development_activity {
     sql: ${TABLE}.CREDIT_TYPE_DESC ;;
   }
 
-  dimension: credits_earned {
-    type: number
+  measure: credits_earned {
+    type: sum
+    label: "Stipend Amount"
     sql: ${TABLE}.CREDITS_EARNED ;;
   }
 
