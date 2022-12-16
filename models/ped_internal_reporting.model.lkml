@@ -256,8 +256,6 @@ explore: course_instruct_staff_student_snapshot {
     relationship: many_to_one
     type: inner
     sql_on: ${course_instruct_staff_student_snapshot.student_key}=${student_snapshot.student_key}
-    and ${course_instruct_staff_student_snapshot.district_key} = ${student_snapshot.district_key}
-    and ${course_instruct_staff_student_snapshot.location_key} = ${student_snapshot.location_key}
     and ${course_instruct_staff_student_snapshot.school_year_date} = ${course_instruct_staff_student_snapshot.school_year_date}
     and ${course_instruct_staff_student_snapshot.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
   }
