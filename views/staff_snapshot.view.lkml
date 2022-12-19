@@ -539,6 +539,7 @@ view: staff_snapshot {
   }
 
   measure: count_staff {
+    label: "Staff Count"
     type: count_distinct
     sql: ${staff_id} ;;
     drill_fields: [staff_name_full]
