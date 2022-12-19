@@ -59,6 +59,16 @@ view: student_digital_resources {
     sql: case when ${TABLE}.INTERNET_ACCESS_IND is null then 'No' else ${TABLE}.INTERNET_ACCESS_IND end;;
   }
 
+  dimension: internet_adequacy {
+    type: string
+    description: "Student has internet access - Yes/No"
+    sql: case when ${TABLE}.INTERNET_ACCESS_IND is null then 'Unserved'
+          when ${TABLE}.INTERNET_ACCESS_IND = 'No' then 'Unserved'
+          when ${TABLE}.INTERNET_PERF_DESC='No (cannot reliably stream video on primary device)' then 'Underserved'
+          when ${TABLE}.INTERNET_PERF_DESC='Yes, but not consistent' then 'Underserved'
+         else 'Served' end;;
+  }
+
   dimension: internet_access_type_cd {
     type: string
     hidden: yes
