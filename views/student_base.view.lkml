@@ -591,6 +591,7 @@ dimension: student_race_ethnicity_subgroup {
 
   dimension: po_box_address {
     type: string
+    description: "Address is a Box - unmapable."
     sql: case when upper(${TABLE}.student_address_street_1) ='GENERAL DELIVERY' then 'Yes'
          when upper(${TABLE}.student_address_street_1) like '% BOX%' then 'Yes'
          when upper(${TABLE}.student_address_street_2) like '% BOX%' then 'Yes'
