@@ -589,7 +589,15 @@ dimension: student_race_ethnicity_subgroup {
     sql: ${TABLE}.Student_Address_Zip_Code ;;
   }
 
-dimension: student_race_ethnicity_subgroup_code {
+  dimension: po_box_address {
+    type: string
+    sql: case when upper(${TABLE}.student_address_street_1) ='GENERAL DELIVERY' then 'Yes'
+         when upper(${TABLE}.student_address_street_1) like '% BOX%' then 'Yes'
+         when upper(${TABLE}.student_address_street_2) like '% BOX%' then 'Yes'
+         else 'No' end ;;
+  }
+
+  dimension: student_race_ethnicity_subgroup_code {
   type: string
   hidden: yes
   sql: ${TABLE}.Student_Race_Ethnicity_Subgroup_Code ;;
