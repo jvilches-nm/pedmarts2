@@ -115,6 +115,7 @@ view: vehicle_snapshot {
     sql: ${TABLE}.School_Year ;;
   }
 
+
   dimension: staff_assignment_sort_sequence {
     type: number
     sql: ${TABLE}.Staff_Assignment_Sort_Sequence ;;

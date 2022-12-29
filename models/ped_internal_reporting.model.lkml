@@ -44,11 +44,11 @@ explore: vehicle_snapshot {
 
   # }
 
-  join: period {
-    relationship: many_to_one
-    type: inner
-    sql: ${vehicle_snapshot.school_year_date}=${period.school_year_end_date} ;;
-  }
+  # join: period {
+  #   relationship: many_to_one
+  #   type: inner
+  #   sql: ${vehicle_snapshot.school_year_date}=${period.school_year_end_date} ;;
+  # }
 
 }
 
