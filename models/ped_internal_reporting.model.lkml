@@ -36,12 +36,18 @@ explore: assessment_rea {
 
 explore: vehicle_snapshot {
   label: "Transportation"
-    join: districts {
+  #   join: districts {
+  #   relationship: many_to_one
+  #   type: inner
+  #   sql: ${vehicle_snapshot.district_key} = ${districts.district_key} and
+  #   ${vehicle_snapshot.school_year_date}=${districts.school_year_end_date};;
+
+  # }
+
+  join: period {
     relationship: many_to_one
     type: inner
-    sql: ${vehicle_snapshot.district_key} = ${districts.district_key} and
-    ${vehicle_snapshot.school_year_date}=${districts.school_year_end_date};;
-
+    sql: ${vehicle_snapshot.school_year_date}=${period.school_year_end_date} ;;
   }
 
 }
