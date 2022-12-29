@@ -34,6 +34,20 @@ explore: assessment_rea {
 
 }
 
+explore: vehicle_snapshot {
+  label: "Transportation"
+    join: districts {
+    relationship: many_to_one
+    type: inner
+    sql: ${vehicle_snapshot.district_key} = ${districts.district_key} and
+    ${vehicle_snapshot.school_year_date}=${districts.school_year_end_date};;
+
+  }
+
+}
+
+
+
 explore: programs_fact {
   label: "Programs"
   join: student_snapshot {
