@@ -59,11 +59,9 @@ explore: programs_fact {
   join: student_snapshot {
     relationship: many_to_one
     type: inner
-    sql_on: ${programs_fact.student_key} = ${student_snapshot.student_key} and
-      ${programs_fact.program_start_date} = ${student_snapshot.student_snapshot_date}
-      and ${programs_fact.district_key} = ${student_snapshot.district_key}
-      and ${programs_fact.location_key} = ${student_snapshot.location_key}
-      and ${programs_fact.school_year_end_date} = ${student_snapshot.school_year_end_date};;
+    sql_on: ${programs_fact.student_key} = ${student_snapshot.student_key}
+       and  ${programs_fact.program_start_date} = ${student_snapshot.student_snapshot_date}
+       and  ${programs_fact.school_year_end_date} = ${student_snapshot.school_year_end_date};;
   }
 
   join: school_year {
@@ -76,32 +74,30 @@ explore: programs_fact {
     relationship: many_to_one
     type: inner
     sql_on: ${programs_fact.student_key} = ${education_services.student_key}
-    and ${programs_fact.programs_key} = ${education_services.programs_key}
-    and ${programs_fact.district_key} = ${education_services.district_key}
-   and ${programs_fact.location_key} = ${education_services.location_key};;
+       and  ${programs_fact.programs_key} = ${education_services.programs_key};;
   }
 
   join: period {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
-      ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date}
+       and  ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
   }
+
   join: districts {
     relationship: many_to_one
     view_label: "Program District"
     type: inner
-    sql_on: ${programs_fact.district_key} = ${districts.district_key} and
-      ${programs_fact.school_year_end_date} = ${districts.school_year_end_date} ;;
+    sql_on: ${programs_fact.district_key} = ${districts.district_key}
+       and  ${programs_fact.school_year_end_date} = ${districts.school_year_end_date} ;;
   }
   join: locations {
     relationship: many_to_one
     view_label: "Program Location"
     type: inner
-    sql_on: ${programs_fact.location_key} = ${locations.location_key} and
-      ${programs_fact.school_year_end_date} = ${locations.school_year_end_date} ;;
+    sql_on: ${programs_fact.location_key} = ${locations.location_key}
+       and  ${programs_fact.school_year_end_date} = ${locations.school_year_end_date} ;;
   }
-
 }
 
 explore: student_snapshot {
@@ -203,7 +199,7 @@ explore: license_user_endorsements {
     relationship: many_to_one
     type: inner
     sql_on: ${license_user_endorsements.staff_id} = ${staff_snapshot.staff_id}
-            and ${staff_snapshot.snapshot_date} between ${license_user_endorsements.start_date} and ${license_user_endorsements.exp_date};;
+       and  ${staff_snapshot.snapshot_date} between ${license_user_endorsements.start_date} and ${license_user_endorsements.exp_date};;
   }
   join: districts {
     relationship: many_to_one
@@ -446,9 +442,7 @@ explore: special_ed_snapshot {
     type: inner
     sql_on: ${special_ed_snapshot.student_key}=${student_snapshot.student_key}
       and ${special_ed_snapshot.school_year_date} = ${student_snapshot.school_year_end_date}
-      and ${special_ed_snapshot.student_snapshot_date} = ${student_snapshot.student_snapshot_date}
-      and ${special_ed_snapshot.district_key} = ${student_snapshot.district_key}
-      and ${special_ed_snapshot.location_key} = ${student_snapshot.location_key};;
+      and ${special_ed_snapshot.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
   }
   join: school_year {
     relationship: many_to_one
@@ -466,8 +460,6 @@ explore: special_ed_snapshot {
     type: left_outer
     sql_on: ${education_services.student_key} = ${special_ed_snapshot.student_key}
     and ${education_services.school_year_date} = ${special_ed_snapshot.school_year_date}
-    and ${education_services.district_key} = ${special_ed_snapshot.district_key}
-    and ${education_services.location_key} = ${special_ed_snapshot.location_key}
     and ${education_services.svc_start_date} =${special_ed_snapshot.student_snapshot_date};;
   }
   join: locations {
@@ -534,9 +526,7 @@ explore: school_enroll {
   join: student_events {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${student_events.student_id = ${school_enroll.student_id} and
-            ${student_events.district_key} = ${student_consolidated_with_eoy.district_key} and
-            ${student_events.location_key} = ${student_consolidated_with_eoy.location_key}
+    sql_on: ${student_events.student_id = ${school_enroll.student_id}
          ;;
   }
 }
