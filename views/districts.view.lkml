@@ -159,17 +159,17 @@ view: districts {
     sql: ${TABLE}.District_Name ;;
   }
 
-  dimension: district_name_filter{
-    label: "District Name - Filter"
-    description: "Use this if you want a value of All Districts when not choosing a district in a filter"
-    type: string
-    sql: ${TABLE}.District_Name ;;
-    html: {% if districts.district_name._is_filtered %}
-          <a>{{rendered_value}} </a>
-          {% else %}
-          <a> All Districts </a>
-          {% endif %};;
-  }
+#  dimension: district_name_filter{
+#    label: "District Name - Filter"
+#    description: "Use this if you want a value of All Districts when not choosing a district in a filter"
+#    type: string
+#    sql: ${TABLE}.District_Name ;;
+#    html: {% if districts.district_name._is_filtered %}
+#          <a>{{rendered_value}} </a>
+#          {% else %}
+#          <a> All Districts </a>
+#          {% endif %};;
+#  }
 
   dimension: district_operational_status {
     type: string

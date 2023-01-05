@@ -493,7 +493,7 @@ explore: +special_ed_snapshot {
       dimensions: [education_services.educ_svc_long_desc, locations.location_name_full]
       measures: [student_snapshot.count]
       filters: [
-        districts.district_name_filter: "ALAMOGORDO",
+        districts.district_name: "ALAMOGORDO",
         education_services.educ_svc_code: "AU,SS,OT,PT,PS,SW,TRS,SECDEV,LIFT,NS,IHP",
         locations.charter_school: "No",
         period.school_year: "2021-2022",
@@ -789,7 +789,7 @@ explore: +programs_services_fact {
     query: filters{
       measures: [student_snapshot.count]
       filters: [
-        districts.district_name_filter: "ALBUQUERQUE",
+        districts.district_name: "ALBUQUERQUE",
         period.school_year: "2021-2022",
         period.snapshot_period: "EOY"
       ]

@@ -520,7 +520,12 @@ view: locations {
     sql: ${TABLE}.New_pgm_k5p ;;
   }
 
-
+  dimension: district_and_school_name {
+    type: string
+    label: "District and School Name"
+    description: "State charter name or state district and school name"
+    sql: case when ${district_code}>='500' then ${location_name_full} else ${districts.district_name} + ' - ' + ${location_name_full} end;;
+  }
 
   measure: count {
     type: count
