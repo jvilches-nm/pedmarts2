@@ -710,6 +710,38 @@ view: student_consolidated_with_eoy {
       else 0 end;;
   }
 
+  measure: asian_count {
+    type: sum
+    label: "asian count"
+    description: "Count of students who are Asian -  Race 1 is Asian"
+    sql: case when ${student_race_1_code}='A' then 1
+      else 0 end;;
+  }
+
+  measure: black_or_african_american_count {
+    type: sum
+    label: "Black or African American count"
+    description: "Count of students who are Black or African American - Race 1 is Black or African American"
+    sql: case when ${student_race_1_code}='B' then 1
+      else 0 end;;
+  }
+
+  measure: caucasian_count {
+    type: sum
+    label: "Caucasian count"
+    description: "Count of students who are Caucasian - Race 1 is Caucasian"
+    sql: case when ${student_race_1_code}='C' then 1
+      else 0 end;;
+  }
+
+  measure: native_hawaiian_or_other_pacific_islander_count {
+    type: sum
+    label: "Native Hawaiian or Other Pacific Islander count"
+    description: "Count of students who are Native Hawaiian or Other Pacific Islander - Race 1 is Native Hawaiian or Other Pacific Islander"
+    sql: case when ${student_race_1_code}='P' then 1
+      else 0 end;;
+  }
+
   measure: percent_of_student_count {
     type: percent_of_total
     sql: ${count} ;;
