@@ -742,6 +742,14 @@ view: student_consolidated_with_eoy {
       else 0 end;;
   }
 
+  measure: hispanic_count {
+    type: sum
+    label: "Hispanic count"
+    description: "Count of students who are Hispanic - Student Hispanic Indiactor is Yes"
+    sql: case when ${student_hispanic_indicator}='Yes' then 1
+      else 0 end;;
+  }
+
   measure: percent_of_student_count {
     type: percent_of_total
     sql: ${count} ;;
