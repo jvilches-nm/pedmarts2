@@ -539,12 +539,6 @@ explore: student_attendance {
     sql_on: ${student_attendance.student_key}= ${student_consolidated.student_key}
       and ${student_attendance.school_year_end_date}= ${student_consolidated.school_year_end_date};;
   }
-  join: period {
-    relationship: many_to_one
-    type: inner
-    sql_on: ${student_consolidated.school_year_end_date}=${period.school_year_end_date} and
-      ${student_consolidated.student_snapshot_date}=${period.period_start_date};;
-  }
   join: school_year {
     relationship: many_to_one
     type: inner
