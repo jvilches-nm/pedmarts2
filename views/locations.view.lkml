@@ -1,6 +1,6 @@
 view: locations {
   derived_table: {
-    sql: select l.*, le.eltp_school,le.K5P_school,le.new_pgm_eltp, le.new_pgm_k5p from stars.locations l
+    sql: select l.*, le.eltp_school,le.K5P_school,le.new_pgm_eltp, le.new_pgm_k5p, le.community_school from stars.locations l
          left outer join dbo.locations_extension le on cast(le.district_code as int) = cast(l.district_code as int) and cast(le.location_id as int) = cast(l.location_id as int)
         and cast(le.school_year as date) = cast(l.school_year as date)
         where l.Location_Organization_Type_Code not in ('BIA', 'Home School', 'Private')
@@ -518,6 +518,12 @@ view: locations {
     type: string
     label: "New K5P Program"
     sql: ${TABLE}.New_pgm_k5p ;;
+  }
+
+  dimension: community_school {
+    type: string
+    description: "School is a community school: Yes/No"
+    sql: ${TABLE}.community_school ;;
   }
 
   dimension: district_and_school_name {
