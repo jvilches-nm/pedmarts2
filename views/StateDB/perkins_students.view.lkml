@@ -9,168 +9,168 @@ view: perkins_students {
     sql: ${TABLE}.ID ;;
   }
 
-  dimension: car_indicator_1_s1_denominator {
-    type: number
+  measure: car_indicator_1_s1_denominator {
+    type: sum
     label: "CTE Four-Year Grad Rate - 1S1 Denominator"
     description: "Students who in the Reporting Year were Concentrators and were used in the Assessment Cohort graduation count."
     sql: ${TABLE}.CAR_Indicator_1S1_Denominator ;;
   }
 
-  dimension: car_indicator_1_s1_numerator {
-    type: number
+  measure: car_indicator_1_s1_numerator {
+    type: sum
     label: "CTE Four-Year Grad Rate - 1S1 Numerator"
     description: "Number of students who graduated, and who in the Reporting Year were Concentrators and were used in the Assessment Cohort graduation count."
     sql: ${TABLE}.CAR_Indicator_1S1_Numerator ;;
   }
 
-  dimension: car_indicator_1_s2_denominator {
-    type: number
+  measure: car_indicator_1_s2_denominator {
+    type: sum
     label: "CTE Extended Grad Rate - 1S2 Denominator"
     description: "Students who in the Reporting Year were Concentrators and were used in the Assessment Extended (6 year) Cohort graduation count."
     sql: ${TABLE}.CAR_Indicator_1S2_Denominator ;;
   }
 
-  dimension: car_indicator_1_s2_numerator {
-    type: number
+  measure: car_indicator_1_s2_numerator {
+    type: sum
     label: "CTE Extended Grad Rate - 1S2 Numerator"
     description: "Number of students who graduated, and who in the Reporting Year were Concentrators and were used in the Assessment Extended (6 year) Cohort graduation count."
     sql: ${TABLE}.CAR_Indicator_1S2_Numerator ;;
   }
 
-  dimension: car_indicator_2_s1_denominator {
-    type: number
+  measure: car_indicator_2_s1_denominator {
+    type: sum
     label: "Proficiency in Reading - CTE 2S1 Denominator"
     description: "Students who in the Reporting Year were Concentrators and took the Reading/Language proficiency test in 10th, 11th, or 12th grade."
     sql: ${TABLE}.CAR_Indicator_2S1_Denominator ;;
   }
 
-  dimension: car_indicator_2_s1_numerator {
-    type: number
+  measure: car_indicator_2_s1_numerator {
+    type: sum
     label: "Proficiency in Reading - CTE 2S1 Numerator"
     description: "Students who received a performance level of proficient, who in the Reporting Year were Concentrators and took the Reading/Language proficiency test in 10th, 11th, or 12th grade."
     sql: ${TABLE}.CAR_Indicator_2S1_Numerator ;;
   }
 
-  dimension: car_indicator_2_s2_denominator {
-    type: number
+  measure: car_indicator_2_s2_denominator {
+    type: sum
     label: "Proficiency in Mathematics - CTE 2S2 Denominator"
     description: "Students who in the Reporting Year were Concentrators and took the Math proficiency test in 10th, 11th, or 12th grade."
     sql: ${TABLE}.CAR_Indicator_2S2_Denominator ;;
   }
 
-  dimension: car_indicator_2_s2_numerator {
-    type: number
+  measure: car_indicator_2_s2_numerator {
+    type: sum
     label: "Proficiency in Mathematics - CTE 2S2 Numerator"
     description: "Students who received a performance level of proficient, and who in the Reporting Year were Concentrators and took the Math proficiency test in 10th, 11th, or 12th grade."
     sql: ${TABLE}.CAR_Indicator_2S2_Numerator ;;
   }
 
-  dimension: car_indicator_2_s3_denominator {
-    type: number
+  measure: car_indicator_2_s3_denominator {
+    type: sum
     label: "Proficiency in Science - CTE 2S3 Denominator"
     description: "Students who in the Reporting Year were Concentrators and took the Science proficiency test in 10th, 11th, or 12th grade."
     sql: ${TABLE}.CAR_Indicator_2S3_Denominator ;;
   }
 
-  dimension: car_indicator_2_s3_numerator {
-    type: number
+  measure: car_indicator_2_s3_numerator {
+    type: sum
     label: "Proficiency in Science - CTE 2S3 Numerator"
     description: "Students who received a performance level of proficient, and who in the Reporting Year were Concentrators and took the Science proficiency test in 10th, 11th, or 12th grade."
     sql: ${TABLE}.CAR_Indicator_2S3_Numerator ;;
   }
 
-  dimension: car_indicator_3_s1_denominator {
-    type: number
+  measure: car_indicator_3_s1_denominator {
+    type: sum
     label: "Post-Program Placement - CTE 3S1 Denominator"
     description: "Number of CTE concentrators who enrolled during the Lag year but not enrolled during the Reporting Year (i.e. exited during the reporting year)."
     sql: ${TABLE}.CAR_Indicator_3S1_Denominator ;;
   }
 
-  dimension: car_indicator_3_s1_numerator {
-    type: number
+  measure: car_indicator_3_s1_numerator {
+    type: sum
     label: "Post-Program Placement - CTE 3S1 Numerator"
     description: "Number of students who are identified as being placed in one or more categories [postsecondary enrollment, employment wages of at least 75% of full time minimum wage for the October thru December quarter, enrollment in the military, or placement in an approved service program], and who were not enrolled in the Reporting Year."
     sql: ${TABLE}.CAR_Indicator_3S1_Numerator ;;
   }
 
-  dimension: car_indicator_4_s1_denominator {
-    type: number
+  measure: car_indicator_4_s1_denominator {
+    type: sum
     label: "Non-traditional Concentration - CTE 4S1 Denominator"
     description: "Students who in the Reporting Year were CTE Concentrators and took one or more non-traditional courses."
     sql: ${TABLE}.CAR_Indicator_4S1_Denominator ;;
   }
 
-  dimension: car_indicator_4_s1_numerator {
-    type: number
+  measure: car_indicator_4_s1_numerator {
+    type: sum
     label: "Non-traditional Concentration - CTE 4S1 Numerator"
     description: "Number of students who took one or more courses in which their gender is the non-traditional gender for the course, and who in the Reporting Year were CTE Concentrators."
     sql: ${TABLE}.CAR_Indicator_4S1_Numerator ;;
   }
 
-  dimension: car_indicator_5_s1_denominator {
-    type: number
+  measure: car_indicator_5_s1_denominator {
+    type: sum
     label: "Attained Postsecondary Credentials - CTE 5S1 Denominator"
     description: "Students who in the Reporting Year were CTE Concentrators who graduated."
     sql: ${TABLE}.CAR_Indicator_5S1_Denominator ;;
   }
 
-  dimension: car_indicator_5_s1_numerator {
-    type: number
+  measure: car_indicator_5_s1_numerator {
+    type: sum
     label: "Attained Postsecondary Credentials - CTE 5S1 Numerator"
     description: "Number of students who earned a state-recognized CTE credential, and who in the Reporting Year were CTE Concentrators who graduated."
     sql: ${TABLE}.CAR_Indicator_5S1_Numerator ;;
   }
 
-  dimension: car_indicator_5_s2_denominator {
-    type: number
+  measure: car_indicator_5_s2_denominator {
+    type: sum
     label: "Attained Postsecondary Credits - CTE 5S2 Denominator"
     description: "Students who in the Reporting Year were CTE Concentrators who graduated."
     sql: ${TABLE}.CAR_Indicator_5S2_Denominator ;;
   }
 
-  dimension: car_indicator_5_s2_numerator {
-    type: number
+  measure: car_indicator_5_s2_numerator {
+    type: sum
     label: "Attained Postsecondary Credits - CTE 5S2 Numerator"
     description: "Number of students who enrolled in a dual credit course in the program in which they are concentrating, and who in the Reporting Year were CTE Concentrators who graduated."
     sql: ${TABLE}.CAR_Indicator_5S2_Numerator ;;
   }
 
-  dimension: car_indicator_5_s3_numerator {
-    type: number
+  measure: car_indicator_5_s3_numerator {
+    type: sum
     label: "Participated in Work Based Learning - CTE 5S3 Numerator"
     description: "Number of students who completed a course identified as work-based learning, and who in the Reporting Year were CTE Concentrators who graduated."
     sql: ${TABLE}.CAR_Indicator_5S3_Numerator ;;
   }
 
-  dimension: car_indicator_5_s4_numerator {
-    type: number
+  measure: car_indicator_5_s4_numerator {
+    type: sum
     label: "CTE Total Program Quality - 5S4 Numerator"
     description: "Number of unique students who demonstrated one or more indicators of program quality; either earning a state-recognized CTE credential, enrolled in a dual credit course or completing a course identified as work-based learning, and who in the Reporting Year were CTE Concentrators who graduated."
     sql: ${TABLE}.CAR_Indicator_5S4_Numerator ;;
   }
 
-  dimension: car_indicator_6_s1_denominator {
-    type: number
+  measure: car_indicator_6_s1_denominator {
+    type: sum
     label: "CTE Completers - 6S1 Denominator"
     description: "Students who in the Reporting Year were enrolled at the school."
     sql: ${TABLE}.CAR_Indicator_6S1_Denominator ;;
   }
 
-  dimension: car_indicator_6_s1_numerator {
-    type: number
+  measure: car_indicator_6_s1_numerator {
+    type: sum
     label: "CTE Completers - 6S1 Numerator"
     description: "Number of students who were CTE Completers (Concentrator + capstone course) during the reporting year."
     sql: ${TABLE}.CAR_Indicator_6S1_Numerator ;;
   }
 
-  dimension: car_indicator_6_s2_denominator {
-    type: number
+  measure: car_indicator_6_s2_denominator {
+    type: sum
     label: "CAR Indicator 6S2 Denominator"
     sql: ${TABLE}.CAR_Indicator_6S2_Denominator ;;
   }
 
-  dimension: car_indicator_6_s2_numerator {
-    type: number
+  measure: car_indicator_6_s2_numerator {
+    type: sum
     label: "CAR Indicator 6S2 Numerator"
     sql: ${TABLE}.CAR_Indicator_6S2_Numerator ;;
   }
