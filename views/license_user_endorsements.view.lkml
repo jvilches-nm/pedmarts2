@@ -14,24 +14,28 @@ view: license_user_endorsements {
   dimension: cert_area {
     type: string
     label: "Certification Area"
+    description: "License Endorsement - Language Arts, Science, Mathematics, etc"
     sql: ${TABLE}.certArea ;;
   }
 
   dimension: cert_area_code {
     type: string
     label: "Certification Area Code"
+    hidden: yes
     sql: ${TABLE}.certAreaCode ;;
   }
 
   dimension: cert_level {
     type: string
     label: "Certification Level"
+    description: "Detailed cert level: "
     sql: ${TABLE}.certLevel ;;
   }
 
   dimension: cert_level_cat {
     type: string
     label: "Certification Level Category"
+    description: "Level category: 0, 1, 2, 3"
     sql: ${TABLE}.certLevelCat ;;
   }
 
@@ -56,12 +60,14 @@ view: license_user_endorsements {
   dimension: cert_type {
     type: string
     label: "Certification Type"
+    description: "License type - ELEM: K-8, ADM: PK-12, SPECIALTY AREA, etc"
     sql: ${TABLE}.certType ;;
   }
 
   dimension: cert_type_cat {
     type: string
     label: "Certification Type Category"
+    description: "License type category - Teacher, Administrator, etc."
     sql: ${TABLE}.certTypeCat ;;
   }
 
@@ -95,6 +101,7 @@ view: license_user_endorsements {
 
   dimension: lic_discrepancy_index {
     type: string
+    label: "License Discrepancy Index"
     sql: ${TABLE}.LicDiscrepancyIndex ;;
   }
 
