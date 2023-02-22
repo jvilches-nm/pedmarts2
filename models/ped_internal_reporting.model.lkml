@@ -767,6 +767,20 @@ explore: programs_services_fact {
   }
 }
 
+explore: +student_snapshot {
+
+    query: 40D_Student_Count_for_2021-2022 {
+      dimensions: [student_race_1]
+      measures: [count]
+      filters: [
+        period.snapshot_period: "40D",
+        school_year.school_year: "2021-2022"
+      ]
+    }
+
+
+}
+
 
 # Place in `ped_internal_reporting` model
 
