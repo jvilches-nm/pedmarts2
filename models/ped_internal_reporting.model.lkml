@@ -767,6 +767,43 @@ explore: programs_services_fact {
   }
 }
 
+explore: +student_snapshot {
+
+    query: 40D_Student_Count_for_2021-2022 {
+      dimensions: [student_race_1]
+      measures: [count]
+      filters: [
+        period.snapshot_period: "40D",
+        school_year.school_year: "2021-2022"
+      ]
+      }
+  }
+
+explore: +student_snapshot {
+
+    query: Student_Enrollments_by_Gender_by_School_Years{
+      dimensions: [gender, school_year.school_year]
+      measures: [count]
+      filters: [period.snapshot_period: "80D"]
+    }
+
+  }
+
+explore: +student_snapshot {
+
+    query:Top_10_Districts_by_Student_Enrollment_2021-22 {
+
+      dimensions: [districts.district_name_legal]
+      measures: [count]
+      filters: [
+        period.snapshot_period: "80D",
+        school_year.school_year: "2021-2022"
+      ]
+    }
+
+}
+
+
 
 # Place in `ped_internal_reporting` model
 
