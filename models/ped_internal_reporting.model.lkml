@@ -36,19 +36,33 @@ explore: assessment_rea {
 
 explore: vehicle_snapshot {
   label: "Transportation"
-  #   join: districts {
-  #   relationship: many_to_one
-  #   type: inner
-  #   sql: ${vehicle_snapshot.district_key} = ${districts.district_key} and
-  #   ${vehicle_snapshot.school_year_date}=${districts.school_year_end_date};;
 
-  # }
+     join: districts {
+     relationship: many_to_one
+     type: inner
+     sql_on: ${vehicle_snapshot.district_key} = ${districts.district_key} and
+     ${vehicle_snapshot.school_year_date}=${districts.school_year_end_date};;
 
-  # join: period {
-  #   relationship: many_to_one
-  #   type: inner
-  #   sql: ${vehicle_snapshot.school_year_date}=${period.school_year_end_date} ;;
-  # }
+   }
+join: vehicle_mileage {
+  relationship: many_to_one
+  type: left_outer
+  sql_on: ${vehicle_snapshot.vehicle_snapshot_key} = ${vehicle_mileage.vehicle_snapshot_key}
+  and ${vehicle_snapshot.school_year_date} = ${vehicle_mileage.school_year_date}
+  and ${vehicle_snapshot.district_key} = ${vehicle_mileage.district_key};;
+}
+  join: period {
+     relationship: many_to_one
+     type: inner
+     sql_on: ${vehicle_snapshot.school_year_date}=${period.school_year_end_date}
+    and ${vehicle_snapshot.reporting_date} = ${period.period_start_date};;
+   }
+
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${vehicle_snapshot.school_year_date} = ${school_year.school_year_end_date} ;;
+  }
 
 }
 
