@@ -625,7 +625,15 @@ dimension: student_race_IED {
     else ${student_race_1} end;;
 }
 
-dimension: at_risk_economically_disadvantaged {
+dimension: student_race_with_hispanic {
+    type: string
+    label: "Race - Hispanic Definition"
+    description: "If the hispanic indicator is Yes then Hispanic, otherwise Race 1."
+    sql: case when ${student_hispanic_indicator}='Yes' then 'Hispanic'
+      else ${student_race_1} end;;
+}
+
+  dimension: at_risk_economically_disadvantaged {
   type: string
   suggestions: ["Yes", "No"]
   description: "Student is at-risk due to being economically disadvantaged - Yes/No"

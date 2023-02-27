@@ -2,46 +2,39 @@ view: course_instruct_staff_student_snapshot {
   sql_table_name: stars.course_instruct_staff_student_snapshot ;;
   label: "Course Enrollment Snapshot - Students & Staff"
 
-  dimension: advanced_course {
+  dimension: full_course_name {
     type: string
+    label: "Course Name - Full"
+    description: "Full course name - local"
+    sql: ${TABLE}."Full Course Name" ;;
+  }
+
+  dimension: semester {
+    type: string
+    description: "Corresponds to reporting period - 1=40D, 2=80D, 3=120D, 4=EOY, 9=Open Year Round"
     hidden: yes
-    sql: ${TABLE}."Advanced Course" ;;
+    sql: ${TABLE}.Semester ;;
   }
 
-  dimension: advanced_indicator {
+  dimension: course_id {
     type: string
-    label: "Advanced"
-    suggestions: ["Yes", "No"]
-    description: "Course is an advanced class - Yes/No"
-    sql: ${TABLE}."Advanced Indicator" ;;
+    label: "Course Code"
+    description: "Course Code"
+    sql: ${TABLE}."Course ID" ;;
   }
 
-  dimension: advanced_placement_course {
+  dimension: long_course_description {
     type: string
-    description: "Course is advanced placement - Yes/No"
-    hidden: yes
-    sql: ${TABLE}."Advanced Placement Course" ;;
+    label: "Course Description - Long"
+    description: "Long course description"
+    sql: ${TABLE}."Long Course Description" ;;
   }
 
-  dimension: advanced_placement_indicator {
+  dimension: class_period {
     type: string
-    label: "Advanced Placement"
-    suggestions: ["Yes", "No"]
-    description: "Course is advanced placement - Yes/No"
-    sql: ${TABLE}."Advanced Placement Indicator" ;;
-  }
-
-  dimension: alternate_course_id {
-    type: string
-    label: "Alternate Credit Course Code"
-    description: "If this course is being used as alternative credit, this is the code for the course being replaced."
-    sql: ${TABLE}."Alternate Course ID" ;;
-  }
-
-  dimension: alternate_credit_course_key {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."ALTERNATE CREDIT COURSE KEY" ;;
+    suggestions: ["AM", "PM", "FD", "SEM", "TRI", "YR", "BLK", "QTR", "SP", "PO"]
+    description: "Type of class period: AM - Morning / PM - Afternoon / FD - Full Day / SEM - Semester / TRI - Trimester / YR - Year-long / BLK - Block / QTR - Quarter / SP - Self-paced / PO - Pull-out"
+    sql: ${TABLE}."Class Period" ;;
   }
 
   dimension: alternate_instruction_language {
@@ -56,6 +49,65 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Alternate Instruction Language Code" ;;
   }
 
+  dimension: course_section_number {
+    type: string
+    description: "Local class section number"
+    sql: ${TABLE}."Course Section Number" ;;
+  }
+
+  dimension: course_special_program {
+    type: string
+    label: "Course Special Program"
+    suggestions: ["Concurrently Enrolled Student", "Dual Credit Course", "PEER"]
+    description: "Course is a Dual Credit or Concurrent Enrollment class"
+    sql: ${TABLE}."Course Special Program" ;;
+  }
+
+  dimension: course_special_program_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}."Course Special Program Code" ;;
+  }
+
+  dimension: honors_indicator {
+    type: string
+    suggestions: ["Yes", "No"]
+    description: "Course is an honors course: Yes/No"
+    sql: ${TABLE}."Honors Indicator" ;;
+  }
+
+  dimension: advanced_placement_indicator {
+    type: string
+    label: "Advanced Placement"
+    suggestions: ["Yes", "No"]
+    description: "Course is advanced placement - Yes/No"
+    sql: ${TABLE}."Advanced Placement Indicator" ;;
+  }
+
+  dimension: career_tech_indicator {
+    type: string
+    label: "Career Technical"
+    suggestions: ["Yes", "No"]
+    description: "Course is a career and technical education class - Yes/No"
+    sql: ${TABLE}."Career Tech Indicator" ;;
+  }
+
+  dimension: gifted_indicator {
+    type: string
+    label: "Gifted"
+    suggestions: ["Yes", "No"]
+    description: "Course is a gifted class: Yes/No"
+    sql: ${TABLE}."Gifted Indicator" ;;
+  }
+
+  dimension: remedial_indicator {
+    type: string
+    label: "Remedial"
+    suggestions: ["Yes", "No"]
+    description: "Course is a remedial class: Yes/No"
+    sql: ${TABLE}."Remedial Indicator" ;;
+  }
+
   dimension: basic_indicator {
     type: string
     label: "Basic/General"
@@ -63,6 +115,98 @@ view: course_instruct_staff_student_snapshot {
     description: "Course is a basic/general class: Yes/No"
     sql: ${TABLE}."Basic Indicator" ;;
   }
+
+
+  dimension: district_code {
+    type: string
+    hidden: yes
+    sql: ${TABLE}."District Code" ;;
+  }
+
+  dimension: district_key {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."DISTRICT KEY" ;;
+  }
+
+  dimension: location_id {
+    type: string
+    hidden: yes
+    sql: ${TABLE}."Location ID" ;;
+  }
+
+  dimension: location_key {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."LOCATION KEY" ;;
+  }
+
+  dimension_group: school_year {
+    type: time
+    hidden: yes
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."School Year" ;;
+  }
+
+  dimension: staff_id {
+    type: string
+    hidden: yes
+    sql: ${TABLE}."Staff ID" ;;
+  }
+
+  dimension: staff_key_other_instructor_1 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."STAFF KEY Other Instructor 1" ;;
+  }
+
+  dimension: staff_key_other_instructor_2 {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."STAFF KEY Other Instructor 2" ;;
+  }
+
+  dimension: staff_key_primary_instructor {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."STAFF KEY Primary Instructor" ;;
+  }
+
+  dimension: advanced_course {
+    type: string
+    hidden: yes
+    sql: ${TABLE}."Advanced Course" ;;
+  }
+
+  dimension: advanced_indicator {
+    type: string
+    label: "Advanced"
+    suggestions: ["Yes", "No"]
+    description: "Course is an advanced class - Yes/No"
+    sql: ${TABLE}."Advanced Indicator" ;;
+  }
+
+  dimension: alternate_course_id {
+    type: string
+    label: "Alternate Course Code"
+    description: "Local district course number."
+    sql: ${TABLE}."Alternate Course ID" ;;
+  }
+
+  dimension: alternate_credit_course_key {
+    type: number
+    hidden: yes
+    sql: ${TABLE}."ALTERNATE CREDIT COURSE KEY" ;;
+  }
+
 
   dimension: bilingual_course {
     type: string
@@ -82,13 +226,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Career and Technical Education Course" ;;
   }
 
-  dimension: career_tech_indicator {
-    type: string
-    label: "Career Technical"
-    suggestions: ["Yes", "No"]
-    description: "Course is a career and technical education class - Yes/No"
-    sql: ${TABLE}."Career Tech Indicator" ;;
-  }
 
   dimension: ci_course_special_program {
     type: string
@@ -102,13 +239,6 @@ view: course_instruct_staff_student_snapshot {
     suggestions: ["BEP"]
     description: "Indicates if course is part of a BEP (Bilingual Multicultural Education Program)"
     sql: ${TABLE}."CI Course Special Program Code" ;;
-  }
-
-  dimension: class_period {
-    type: string
-    suggestions: ["AM", "PM", "FD", "SEM", "TRI", "YR", "BLK", "QTR", "SP", "PO"]
-    description: "Type of class period: AM - Morning / PM - Afternoon / FD - Full Day / SEM - Semester / TRI - Trimester / YR - Year-long / BLK - Block / QTR - Quarter / SP - Self-paced / PO - Pull-out"
-    sql: ${TABLE}."Class Period" ;;
   }
 
   dimension: core_course {
@@ -140,13 +270,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Course Enrollment Effective Date" ;;
   }
 
-  dimension: course_id {
-    type: string
-    label: "Course Code"
-    description: "Course Code"
-    sql: ${TABLE}."Course ID" ;;
-  }
-
   dimension: course_instructor_snapshot_key {
     type: number
     hidden: yes
@@ -165,60 +288,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."COURSE KEY" ;;
   }
 
-  dimension: course_maximum_grade_level {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Course Maximum Grade Level" ;;
-  }
-
-  dimension: course_maximum_grade_level_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Course Maximum Grade Level Code" ;;
-  }
-
-  dimension: course_maximum_grade_level_order {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."Course Maximum Grade Level Order" ;;
-  }
-
-  dimension: course_minimum_grade_level {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Course Minimum Grade Level" ;;
-  }
-
-  dimension: course_minimum_grade_level_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Course Minimum Grade Level Code" ;;
-  }
-
-  dimension: course_minimum_grade_level_order {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."Course Minimum Grade Level Order" ;;
-  }
-
-  dimension: course_non_traditional_gender {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Course Non Traditional Gender" ;;
-  }
-
-  dimension: course_non_traditional_gender_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Course Non Traditional Gender Code" ;;
-  }
-
-  dimension: course_section_number {
-    type: string
-    description: "Local class section number"
-    sql: ${TABLE}."Course Section Number" ;;
-  }
-
   measure: count_course_sections {
     type: count_distinct
     label: "Total Classes"
@@ -229,20 +298,6 @@ view: course_instruct_staff_student_snapshot {
     type: number
     hidden: yes
     sql: ${TABLE}."Course Sequence Number" ;;
-  }
-
-  dimension: course_special_program {
-    type: string
-    label: "Course Special Program"
-    suggestions: ["Concurrently Enrolled Student", "Dual Credit Course", "PEER"]
-    description: "Course is a Dual Credit or Concurrent Enrollment class"
-    sql: ${TABLE}."Course Special Program" ;;
-  }
-
-  dimension: course_special_program_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Course Special Program Code" ;;
   }
 
   dimension: course_subject_area {
@@ -275,17 +330,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Distance Learning Course" ;;
   }
 
-  dimension: district_code {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."District Code" ;;
-  }
-
-  dimension: district_key {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."DISTRICT KEY" ;;
-  }
 
   dimension: dual_credit_course {
     type: string
@@ -330,28 +374,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Exclude From Evaluation Indicator" ;;
   }
 
-  dimension: full_course_name {
-    type: string
-    label: "Course Name - Full"
-    description: "Full course name - local"
-    sql: ${TABLE}."Full Course Name" ;;
-  }
-
-  dimension: gifted_indicator {
-    type: string
-    label: "Gifted"
-    suggestions: ["Yes", "No"]
-    description: "Course is a gifted class: Yes/No"
-    sql: ${TABLE}."Gifted Indicator" ;;
-  }
-
-  dimension: honors_indicator {
-    type: string
-    suggestions: ["Yes", "No"]
-    description: "Course is an honors course: Yes/No"
-    sql: ${TABLE}."Honors Indicator" ;;
-  }
-
   dimension: ib_course {
     type: string
     hidden: yes
@@ -372,25 +394,6 @@ view: course_instruct_staff_student_snapshot {
     suggestions: ["Yes", "No"]
     description: "Course has a lab component: Yes/No"
     sql: ${TABLE}."Lab Component Indicator" ;;
-  }
-
-  dimension: location_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Location ID" ;;
-  }
-
-  dimension: location_key {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."LOCATION KEY" ;;
-  }
-
-  dimension: long_course_description {
-    type: string
-    label: "Course Description - Long"
-    description: "Long course description"
-    sql: ${TABLE}."Long Course Description" ;;
   }
 
   dimension: marking_period {
@@ -521,12 +524,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Period Level Type" ;;
   }
 
-  dimension: pre_ap_course {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."PreAP Course" ;;
-  }
-
   dimension: primary_location_id {
     type: string
     hidden: yes
@@ -545,28 +542,7 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Remedial Course" ;;
   }
 
-  dimension: remedial_indicator {
-    type: string
-    label: "Remedial"
-    suggestions: ["Yes", "No"]
-    description: "Course is a remedial class: Yes/No"
-    sql: ${TABLE}."Remedial Indicator" ;;
-  }
 
-  dimension_group: school_year {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}."School Year" ;;
-  }
 
   dimension: school_year_designation {
     type: string
@@ -574,11 +550,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."School Year Designation" ;;
   }
 
-  dimension: semester {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.Semester ;;
-  }
 
   dimension: short_course_description {
     type: string
@@ -606,29 +577,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Staff eMail Address" ;;
   }
 
-  dimension: staff_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}."Staff ID" ;;
-  }
-
-  dimension: staff_key_other_instructor_1 {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."STAFF KEY Other Instructor 1" ;;
-  }
-
-  dimension: staff_key_other_instructor_2 {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."STAFF KEY Other Instructor 2" ;;
-  }
-
-  dimension: staff_key_primary_instructor {
-    type: number
-    hidden: yes
-    sql: ${TABLE}."STAFF KEY Primary Instructor" ;;
-  }
 
   dimension_group: staff_snapshot {
     type: time
