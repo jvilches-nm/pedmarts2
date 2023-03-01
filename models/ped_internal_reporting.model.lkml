@@ -617,13 +617,13 @@ explore: perkins_students {
   }
   join: locations {
     relationship: many_to_one
-    type: left_outer
-    sql_on: ${perkins_students.location_id} = ${locations.location_id}
-      and ${perkins_students.school_year_date} = ${locations.school_year_end_date};;
+    type: inner
+    sql_on: ${student_snapshot.location_key} = ${locations.location_key}
+      and ${student_snapshot.school_year_end_date} = ${locations.school_year_end_date};;
   }
   join: districts {
     relationship: many_to_one
-    type: left_outer
+    type: inner
     sql_on: ${perkins_students.district_code} = ${districts.district_code}
       and ${perkins_students.school_year_date} = ${districts.school_year_end_date};;
   }

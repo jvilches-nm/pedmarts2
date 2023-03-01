@@ -201,7 +201,7 @@ view: perkins_students {
     sql: ${TABLE}.Concentrator ;;
   }
 
-  dimension: concentrators {
+  measure: concentrators {
     type: number
     hidden: yes
     sql: case when ${TABLE}.Concentrator = 'Y' then 1
@@ -219,6 +219,12 @@ view: perkins_students {
   dimension: cte_student {
     type: string
     sql: ${TABLE}.CTE_Student ;;
+  }
+
+  measure: cte_student_count {
+    type: sum
+    label: "Count CTE"
+    sql: case when ${cte_student} = 'Y' then 1 else 0 end ;;
   }
 
   dimension: current_year_concentrator {
@@ -402,7 +408,7 @@ view: perkins_students {
 
   dimension: school_year {
     type: string
-    #hidden: yes
+  hidden: yes
     label: "School Year"
     description: "The two calendar years that the school year spans"
     sql: cast(YEAR(${TABLE}.School_Year)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.School_Year) as varchar) ;;
@@ -488,8 +494,9 @@ view: perkins_students {
   }
 
 measure: concentrator_count {
- type: count
-drill_fields: [concentrators]
+ type: sum
+ label: "Count Concentrator"
+ sql: case when ${concentrator} = 'Y' then 1 else 0 end ;;
 }
 
   measure: count {
