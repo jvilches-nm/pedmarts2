@@ -96,7 +96,7 @@ view: vehicle_snapshot {
   }
 
   measure: odometer_mileage {
-    type: number
+    type: sum
     sql: ${TABLE}.ODOMETER_MILEAGE ;;
   }
 
