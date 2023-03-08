@@ -6,8 +6,8 @@ view: vehicle_mileage {
     sql: ${TABLE}.DAILY_DURATION ;;
   }
 
-  dimension: daily_mileage {
-    type: number
+  measure: daily_mileage {
+    type: sum
     sql: ${TABLE}.DAILY_MILEAGE ;;
   }
 

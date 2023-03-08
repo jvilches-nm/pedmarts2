@@ -95,7 +95,7 @@ view: vehicle_snapshot {
     sql: ${TABLE}.MANUFACTURE_YEAR ;;
   }
 
-  dimension: odometer_mileage {
+  measure: odometer_mileage {
     type: number
     sql: ${TABLE}.ODOMETER_MILEAGE ;;
   }
