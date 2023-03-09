@@ -173,11 +173,12 @@ view: staff_assignment_snapshot {
     sql: ${TABLE}.Original_Hire_Date ;;
   }
 
-  dimension: percentage_of_time_assigned {
-    type: number
+  measure: percentage_of_time_assigned {
+    type: sum
     description: "Percentage of time allocated to this assignment"
     sql: ${TABLE}.Percentage_of_Time_Assigned ;;
   }
+
 
   dimension: period_key_for_assignment_date {
     type: number
