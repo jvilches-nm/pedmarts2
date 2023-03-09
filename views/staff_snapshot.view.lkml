@@ -544,4 +544,52 @@ view: staff_snapshot {
     sql: ${staff_id} ;;
     drill_fields: [staff_name_full]
   }
+
+  measure: staff_count_male {
+    type: sum
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${staff_gender} when'Male' then 1 else 0 end  ;;
+  }
+  measure: staff_count_female {
+    type: sum_distinct
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${staff_gender} when'Female' then 1 else 0 end  ;;
+  }
+
+  measure: staff_count_hispanic {
+    type: sum
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${rptg_race_ethnicity_desc} when'Hispanic' then 1 else 0 end  ;;
+  }
+  measure: staff_count_white {
+    type: sum_distinct
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${rptg_race_ethnicity_desc} when'Caucasian' then 1 else 0 end  ;;
+  }
+  measure: staff_count_black {
+    type: sum
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${rptg_race_ethnicity_desc} when'Black or African American' then 1 else 0 end  ;;
+  }
+  measure: staff_count_native_american {
+    type: sum_distinct
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${rptg_race_ethnicity_desc} when'American Indian/Alaskan Native' then 1 else 0 end  ;;
+  }
+  measure: staff_count_asian {
+    type: sum
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${rptg_race_ethnicity_desc} when'Asian' then 1 else 0 end  ;;
+  }
+  measure: staff_count_hawaiian {
+    type: sum_distinct
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${rptg_race_ethnicity_desc} when'Native Hawaiian or Other Pacific Islander' then 1 else 0 end  ;;
+  }
+  measure: staff_count_multiracial {
+    type: sum_distinct
+    sql_distinct_key:  ${staff_id} ;;
+    sql: case ${rptg_race_ethnicity_desc} when'Multiracial' then 1 else 0 end  ;;
+  }
+
 }

@@ -116,6 +116,46 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Basic Indicator" ;;
   }
 
+  dimension: special_ed_indicator {
+    type: string
+    suggestions: ["Yes", "No"]
+    description: "Course is a special education class: Yes/No"
+    sql: ${TABLE}."Special Ed Indicator" ;;
+  }
+
+  dimension: international_baccalaureate_indicator {
+    type: string
+    label: "International Baccalaureate"
+    suggestions: ["Yes", "No"]
+    description: "Course is an international baccalaureate (IB) class: Yes/No"
+    sql: ${TABLE}."International Baccalaureate Indicator" ;;
+  }
+
+  dimension: elective_indicator {
+    type: string
+    label: "Elective"
+    suggestions: ["Yes", "No"]
+    description: "Course is an elective class: Yes/No"
+    sql: ${TABLE}."Elective Indicator" ;;
+  }
+
+
+  dimension: lab_component_indicator {
+    type: string
+    label: "Lab Component"
+    suggestions: ["Yes", "No"]
+    description: "Course has a lab component: Yes/No"
+    sql: ${TABLE}."Lab Component Indicator" ;;
+  }
+
+  dimension: advanced_indicator {
+    type: string
+    label: "Advanced"
+    suggestions: ["Yes", "No"]
+    description: "Course is an advanced class - Yes/No"
+    sql: ${TABLE}."Advanced Indicator" ;;
+  }
+
 
   dimension: district_code {
     type: string
@@ -186,14 +226,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Advanced Course" ;;
   }
 
-  dimension: advanced_indicator {
-    type: string
-    label: "Advanced"
-    suggestions: ["Yes", "No"]
-    description: "Course is an advanced class - Yes/No"
-    sql: ${TABLE}."Advanced Indicator" ;;
-  }
-
   dimension: alternate_course_id {
     type: string
     label: "Alternate Course Code"
@@ -233,13 +265,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."CI Course Special Program" ;;
   }
 
-  dimension: ci_course_special_program_code {
-    type: string
-    label: "BEP Course"
-    suggestions: ["BEP"]
-    description: "Indicates if course is part of a BEP (Bilingual Multicultural Education Program)"
-    sql: ${TABLE}."CI Course Special Program Code" ;;
-  }
 
   dimension: core_course {
     type: string
@@ -339,14 +364,6 @@ view: course_instruct_staff_student_snapshot {
     sql: ${TABLE}."Dual Credit Course" ;;
   }
 
-  dimension: elective_indicator {
-    type: string
-    label: "Elective"
-    suggestions: ["Yes", "No"]
-    description: "Course is an elective class: Yes/No"
-    sql: ${TABLE}."Elective Indicator" ;;
-  }
-
   dimension_group: end {
     type: time
     hidden: yes
@@ -378,22 +395,6 @@ view: course_instruct_staff_student_snapshot {
     type: string
     hidden: yes
     sql: ${TABLE}."IB Course" ;;
-  }
-
-  dimension: international_baccalaureate_indicator {
-    type: string
-    label: "International Baccalaureate"
-    suggestions: ["Yes", "No"]
-    description: "Course is an international baccalaureate (IB) class: Yes/No"
-    sql: ${TABLE}."International Baccalaureate Indicator" ;;
-  }
-
-  dimension: lab_component_indicator {
-    type: string
-    label: "Lab Component"
-    suggestions: ["Yes", "No"]
-    description: "Course has a lab component: Yes/No"
-    sql: ${TABLE}."Lab Component Indicator" ;;
   }
 
   dimension: marking_period {
@@ -562,13 +563,6 @@ view: course_instruct_staff_student_snapshot {
     type: string
     hidden: yes
     sql: ${TABLE}."Special Ed Course" ;;
-  }
-
-  dimension: special_ed_indicator {
-    type: string
-    suggestions: ["Yes", "No"]
-    description: "Course is a special education class: Yes/No"
-    sql: ${TABLE}."Special Ed Indicator" ;;
   }
 
   dimension: staff_e_mail_address {
