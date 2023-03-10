@@ -52,11 +52,90 @@ view: student_snapshot {
     description: "If Pacific Islander was selected as any of the five race fields then count this record."
     sql: case when ${student_race_1_code}='P' OR ${student_race_2_code}='P' OR ${student_race_3_code}='P' OR ${student_race_4_code}='P' OR ${student_race_5_code}='P' then 1 else 0 end;;
   }
+
   measure: race_hispanic_selected {
     type: sum
     description: "If Hispanic was selected then count this record."
     sql: case when ${student_hispanic_indicator}='Yes' then 1 else 0 end;;
   }
+
+  measure: student_count_male {
+    type: sum
+    description: "If gender is male then count this record."
+    sql: case when ${gender}='Male' then 1 else 0 end;;
+  }
+
+  measure: student_count_female {
+    type: sum
+    description: "If gender is female then count this record."
+    sql: case when ${gender}='Female' then 1 else 0 end;;
+  }
+
+  measure: student_count_hispanic {
+    type: sum
+    description: "If the federal reporting value for race/ethnicity is Hispanic then count this record."
+    sql: case when ${student_race_ethnicity_derived}='Hispanic' then 1 else 0 end;;
+  }
+  measure: student_count_native_american {
+    type: sum
+    description: "If the federal reporting value for race/ethnicity is American Indian then count this record."
+    sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1 else 0 end;;
+  }
+  measure: student_count_white {
+    type: sum
+    description: "If the federal reporting value for race/ethnicity is Caucasian then count this record."
+    sql: case when ${student_race_ethnicity_derived}='Caucasian' then 1 else 0 end;;
+  }
+  measure: student_count_black {
+    type: sum
+    description: "If the federal reporting value for race/ethnicity is Black/African American then count this record."
+    sql: case when ${student_race_ethnicity_derived}='Black or African American' then 1 else 0 end;;
+  }
+  measure: student_count_hawaiian {
+    type: sum
+    description: "If the federal reporting value for race/ethnicity is Hawaiian/Pacific Islander then count this record."
+    sql: case when ${student_race_ethnicity_derived}='Native Hawaiian or Other Pacific Islander' then 1 else 0 end;;
+  }
+  measure: student_count_asian {
+    type: sum
+    description: "If the federal reporting value for race/ethnicity is Asian then count this record."
+    sql: case when ${student_race_ethnicity_derived}='Asian' then 1 else 0 end;;
+  }
+  measure: student_count_multiracial {
+    type: sum
+    description: "If the federal reporting value for race/ethnicity is Multiracial then count this record."
+    sql: case when ${student_race_ethnicity_derived}='Multiracial' then 1 else 0 end;;
+  }
+
+  measure: student_count_gifted {
+    type: sum
+    description: "Count of students who are participating in a gifted program."
+    sql: case when ${gifted_participation}='Yes' then 1
+              else 0 end;;
+  }
+  measure: student_count_FRL_eligible {
+    type: sum
+    description: "Count of students who are eligible for a free/reduced lunch program."
+    sql: case when ${food_program_eligibility_code}='F' then 1
+              when ${food_program_eligibility_code}='R' then 1
+              else 0 end;;
+  }
+  measure: student_count_FRL_participation {
+    type: sum
+    description: "Count of students who are participating in a free/reduced lunch program."
+    sql: case when ${food_program_participation_code}_code}='F' then 1
+              when ${food_program_participation_code}='R' then 1
+              else 0 end;;
+  }
+  measure: student_count_economically_disadvantaged{
+    type: sum
+    description: "Count of students who have an economically disadvantaged status."
+    sql: case when ${economically_disadvantaged_status_code}='1' then 1
+              when ${economically_disadvantaged_status_code}='2' then 1
+              when ${economically_disadvantaged_status_code}='3' then 1
+              else 0 end;;
+  }
+
 
   measure: student_count_504 {
     type: sum

@@ -179,6 +179,11 @@ view: staff_assignment_snapshot {
     sql: ${TABLE}.Percentage_of_Time_Assigned ;;
   }
 
+  measure: FTE {
+    type: sum
+    description: "FTE equivalent of time allocated to this assignment"
+    sql: (${TABLE}.Percentage_of_Time_Assigned/100.00) ;;
+  }
 
   dimension: period_key_for_assignment_date {
     type: number
