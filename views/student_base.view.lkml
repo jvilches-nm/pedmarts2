@@ -743,6 +743,22 @@ measure: american_indian_IED_count {
     else 0 end;;
 }
 
+  measure: race1_black_count {
+    type: sum
+    label: "Race1 Black Count"
+    description: "Count of students who are Black - Race 1 is Black"
+    sql: case when ${student_race_1_code}='B' then 1
+      else 0 end;;
+  }
+
+ measure: race1_black_multiracial {
+    type: sum
+    label: "Race1 Black Multiracial Count"
+    description: "Count of students who have Race 1 - Black and Race 2 - not null"
+    sql: case when ${student_race_1_code}='B' and ${student_race_2_code} is not null then 1
+      else 0 end;;
+  }
+
 measure: percent_of_student_count {
   type: percent_of_total
   sql: ${count} ;;
