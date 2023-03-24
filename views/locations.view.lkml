@@ -114,7 +114,7 @@ view: locations {
   dimension: location_address_full {
     type: string
     description: "Full street address, city, state, zip"
-    sql: ${TABLE}.location_street_address +", "+ ${TABLE}.Location_Address_City +', '+ ${TABLE}.Location_Address_State_Code +' '+${TABLE}.Location_Address_Zip_Code;;
+    sql: ${TABLE}.location_street_address +', '+ ${TABLE}.Location_Address_City +', '+ ${TABLE}.Location_Address_State_Code +' '+${TABLE}.Location_Address_Zip_Code;;
   }
 
   dimension: location_address_1 {
@@ -266,7 +266,7 @@ view: locations {
 
   dimension: location_mailing_address_full {
     type: string
-    sql: ${TABLE}.Location_Mailing_Address_1 +", "+ ${TABLE}.Location_Mailing_City +", "+ ${TABLE}.Location_Mailing_State_Code + " "+${TABLE}.Location_Mailing_Zip_Code;;
+    sql: ${TABLE}.Location_Mailing_Address_1 +', '+ ${TABLE}.Location_Mailing_City +', '+ ${TABLE}.Location_Mailing_State_Code + ' '+${TABLE}.Location_Mailing_Zip_Code;;
   }
 
   dimension: location_main_phone_number {
