@@ -781,6 +781,22 @@ explore: programs_services_fact {
   }
 }
 
+explore: locations {
+  label: "Schools"
+
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${locations.district_key} = ${districts.district_key} and
+            ${locations.school_year_end_date} = ${districts.school_year_end_date} ;;
+  }
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${locations.school_year_end_date}=${school_year.school_year_end_date} ;;
+  }
+}
+
 explore: +student_snapshot {
 
     query: 40D_Student_Count_for_2021-2022 {
