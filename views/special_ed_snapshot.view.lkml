@@ -219,6 +219,18 @@ view: special_ed_snapshot {
     sql: ${TABLE}.School_Year ;;
   }
 
+  dimension: primary_disability {
+    type: string
+    label: "Primary Disability"
+    sql: ${TABLE}.Primary_Disability ;;
+  }
+
+  dimension: primary_disability_code {
+    type: string
+    sql: ${TABLE}.Primary_Disability_Code ;;
+  }
+
+
   dimension: secondary_disability {
     type: string
     label: "Secondary Disability"
