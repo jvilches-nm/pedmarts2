@@ -64,7 +64,7 @@ view: discipline {
 
   dimension: discipline_response_category {
     type: string
-    hidden: no
+    hidden: yes
     sql: ${TABLE}.Discipline_Response_Category ;;
   }
 
