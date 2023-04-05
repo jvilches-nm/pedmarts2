@@ -59,12 +59,12 @@ view: discipline {
   dimension: discipline_response {
     type: string
     description: "Discipline response description"
-    sql: ${TABLE}.Discipline_Response ;;
+    sql: case when ${TABLE}.Discipline_Response is null then 'No Response' else ${TABLE}.Discipline_Response end;;
   }
 
   dimension: discipline_response_category {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.Discipline_Response_Category ;;
   }
 
