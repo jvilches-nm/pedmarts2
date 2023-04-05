@@ -235,6 +235,5 @@ view: discipline {
 
   measure: count {
     type: count
-    drill_fields: [student_name]
   }
 }

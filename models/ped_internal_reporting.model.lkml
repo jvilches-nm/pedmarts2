@@ -94,8 +94,8 @@ explore: programs_fact {
   join: period {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date}
-       and  ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+    sql_on: ${programs_fact.school_year_end_date}=${period.school_year_end_date}
+       and  ${programs_fact.program_start_date}=${period.period_start_date};;
   }
 
   join: districts {
@@ -277,7 +277,7 @@ explore: course_instruct_staff_student_snapshot {
   label: "Course Snapshot"
   join: staff_snapshot {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     view_label: "Primary Instructor"
     sql_on: ${course_instruct_staff_student_snapshot.staff_key_primary_instructor} = ${staff_snapshot.staff_key}
     and ${course_instruct_staff_student_snapshot.staff_snapshot_date} = ${staff_snapshot.snapshot_date};;
