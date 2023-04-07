@@ -92,6 +92,12 @@ view: discipline {
     sql: ${TABLE}.Discipline_Response_Duration ;;
   }
 
+  dimension: discipline_duration {
+    type: number
+    description: "Duration of the discipline response - number of days. Use dimension instead of measure to filter by duration."
+    sql: ${TABLE}.Discipline_Response_Duration ;;
+  }
+
   dimension: district_code {
     type: string
     hidden: yes
