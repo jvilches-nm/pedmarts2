@@ -94,8 +94,26 @@ view: discipline {
 
   dimension: discipline_duration {
     type: number
-    description: "Duration of the discipline response - number of days. Use dimension instead of measure to filter by duration."
-    sql: ${TABLE}.Discipline_Response_Duration ;;
+    description: "Duration of the discipline response - number of days rounded to the nearest whole day. Use dimension instead of measure to filter by duration."
+    sql: round(${TABLE}.Discipline_Response_Duration, 0) ;;
+  }
+
+  dimension: discipline_duration_band {
+    type: string
+    description: "Ranges of duration of the discipline response - number of days rounded to the nearest whole day in bands."
+    sql: case round(${TABLE}.Discipline_Response_Duration, 0)
+              when 0 then '0 - Less than a day'
+              when 1 then '1'
+              when 2 then '2'
+              when 3 then '3'
+              when 4 then '4'
+              when 5 then '5'
+              when 6 then '6 to 10'
+              when 7 then '6 to 10'
+              when 8 then '6 to 10'
+              when 9 then '6 to 10'
+              when 10 then '6 to 10'
+              else 'More than 10' end;;
   }
 
   dimension: district_code {
