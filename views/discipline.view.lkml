@@ -27,7 +27,7 @@ view: discipline {
 
   dimension: infraction_code {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.Discipline_Infraction_Code ;;
   }
 
