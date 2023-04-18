@@ -136,7 +136,7 @@ view: discipline {
 
   dimension: infraction_event_id {
     type: string
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}.Infraction_Event_ID ;;
   }
 
