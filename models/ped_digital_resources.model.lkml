@@ -7,7 +7,8 @@ explore: student_snapshot {
     relationship: one_to_one
     type: left_outer
     sql_on:${student_snapshot.student_key}=${student_digital_resources.student_key} and
-             ${student_snapshot.period_key}=${student_digital_resources.reporting_date_period_key} ;;
+             ${student_snapshot.period_key}=${student_digital_resources.reporting_date_period_key} and
+           ${student_snapshot.location_key}=${student_digital_resources.location_key}  ;;
   }
   join: locations {
     relationship: many_to_one
