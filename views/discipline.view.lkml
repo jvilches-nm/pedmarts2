@@ -27,7 +27,7 @@ view: discipline {
 
   dimension: infraction_code {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.Discipline_Infraction_Code ;;
   }
 
@@ -160,7 +160,7 @@ view: discipline {
 
   dimension: infraction_event_id {
     type: string
-    hidden: yes
+    #hidden: yes
     sql: ${TABLE}.Infraction_Event_ID ;;
   }
 
