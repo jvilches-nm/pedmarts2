@@ -123,7 +123,7 @@ view: student_snapshot {
   measure: student_count_FRL_participation {
     type: sum
     description: "Count of students who are participating in a free/reduced lunch program."
-    sql: case when ${food_program_participation_code}_code}='F' then 1
+    sql: case when ${food_program_participation_code}='F' then 1
               when ${food_program_participation_code}='R' then 1
               else 0 end;;
   }
