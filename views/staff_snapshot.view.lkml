@@ -122,9 +122,9 @@ view: staff_snapshot {
 
   dimension: local_contract {
     type: string
-    label: "National Certified"
-    description: "Teacher is national board certified: Y/N"
-    sql: ${TABLE}.LOCAL_CONTRACT ;;
+    label: "National Board Certified"
+    description: "Teacher is national board certified: Yes/No"
+    sql: case ${TABLE}.LOCAL_CONTRACT when 'Yes' then 'Yes' when 'y' then 'Yes' else 'No' end ;;
   }
 
   dimension: location_key {
