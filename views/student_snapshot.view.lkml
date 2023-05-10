@@ -113,6 +113,19 @@ view: student_snapshot {
     sql: case when ${gifted_participation}='Yes' then 1
               else 0 end;;
   }
+
+  measure: student_count_homeless {
+    type: sum
+    description: "Count of students who are homeless."
+    sql: case when ${homeless_status_code}='N' then 0 else 1 end;;
+  }
+
+  measure: student_count_military {
+    type: sum
+    description: "Count of students who belong to a military family."
+    sql: case when ${military_family_code} is null then 0 else 1 end;;
+  }
+
   measure: student_count_FRL_eligible {
     type: sum
     description: "Count of students who are eligible for a free/reduced lunch program."
