@@ -149,6 +149,12 @@ view: student_snapshot {
               else 0 end;;
   }
 
+  measure: student_count_direct_cert{
+    type: sum
+    description: "Count of students who have a SNAP Direct Cert status."
+    sql: case when ${economically_disadvantaged_status_code}='1' then 1
+              else 0 end;;
+  }
 
   measure: student_count_504 {
     type: sum
