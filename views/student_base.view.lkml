@@ -670,6 +670,14 @@ measure: at_risk_english_learner_count {
     else 0 end;;
 }
 
+#  measure: at_risk_english_learner_percent {
+#    type: number
+#    label: "Percent EL"
+#    description: "Count of students who are at-risk due to being English language learners"
+#    sql: ${at_risk_english_learner_count}/${count};;
+#  }
+
+
 dimension: at_risk_native {
   type: string
   suggestions: ["Yes", "No"]
@@ -769,4 +777,6 @@ measure: count {
   label: "Student Count"
   drill_fields: [districts.district_name_full, locations.location_name_full, grade_level]
 }
+
+
 }
