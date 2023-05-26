@@ -138,6 +138,12 @@ explore: student_snapshot {
     sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
             ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
   }
+  join: prior_student_location {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${student_snapshot.student_id}=${prior_student_location.student_id} and
+            ${student_snapshot.student_snapshot_date} = ${prior_student_location.student_snapshot_date};;
+  }
 }
 
 explore: discipline {
