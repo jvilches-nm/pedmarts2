@@ -453,7 +453,6 @@ explore: assessment {
 }
 
 explore: special_ed_snapshot {
-  sql_always_where: ${special_ed_snapshot.primary_area_of_exceptionality_code}!='G' ;;
   join: student_snapshot{
     #student_consolidated {
     relationship: many_to_one
