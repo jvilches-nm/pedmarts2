@@ -454,9 +454,8 @@ explore: assessment {
 
 explore: special_ed_snapshot {
   join: student_snapshot{
-    #student_consolidated {
     relationship: many_to_one
-    type: inner
+    type: left_outer
     sql_on: ${special_ed_snapshot.student_key}=${student_snapshot.student_key}
       and ${special_ed_snapshot.school_year_date} = ${student_snapshot.school_year_end_date}
       and ${special_ed_snapshot.student_snapshot_date} = ${student_snapshot.student_snapshot_date};;
