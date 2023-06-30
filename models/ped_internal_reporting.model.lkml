@@ -136,6 +136,19 @@ explore: student_snapshot {
     sql_on: ${student_snapshot.student_id}=${prior_student_location.student_id} and
             ${student_snapshot.student_snapshot_date} = ${prior_student_location.student_snapshot_date};;
   }
+  join: prior_snapshot_values {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${student_snapshot.student_id}=${prior_snapshot_values.student_id} and
+            ${student_snapshot.student_snapshot_date} = ${prior_snapshot_values.student_snapshot_date};;
+  }
+  join: special_ed_exit_date {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${student_snapshot.student_id}=${special_ed_exit_date.student_id} and
+            ${student_snapshot.student_snapshot_date} = ${special_ed_exit_date.student_snapshot_date};;
+  }
+
 }
 
 explore: discipline {
