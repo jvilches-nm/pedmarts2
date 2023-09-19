@@ -552,12 +552,6 @@ explore: school_enroll {
     sql_on: ${school_enroll.district_code} = ${districts.district_code}
       and ${school_enroll.school_year_end_date} = ${districts.school_year_end_date};;
   }
-  join: student_events {
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${student_events.student_id = ${school_enroll.student_id}
-         ;;
-  }
 }
 
 explore: student_attendance {
