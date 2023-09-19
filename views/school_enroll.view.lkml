@@ -21,7 +21,7 @@ view: school_enroll {
     hidden: yes
     type: string
     primary_key: yes
-    sql: ${TABLE}.DISTRICT_code + '-' + ${TABLE}.location_id + '-' + ${TABLE}.student_id + '-' + CONVERT(VARCHAR(8),school_enroll.effective_date, 112) ;;
+    sql: ${TABLE}.DISTRICT_code + '-' + ${TABLE}.location_id + '-' + ${TABLE}.student_id + '-' + CONVERT(VARCHAR(8),${TABLE}."effective date", 112) ;;
   }
   dimension: withdrawal {
     type: string
