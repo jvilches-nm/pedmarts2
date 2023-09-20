@@ -21,8 +21,9 @@ view: school_enroll {
     hidden: yes
     type: string
     primary_key: yes
-    sql: ${TABLE}.DISTRICT_code + '-' + ${TABLE}.location_id + '-' + ${TABLE}.student_id + '-' + CONVERT(VARCHAR(8),${TABLE}."effective date", 112) ;;
+    sql: ${TABLE}.DISTRICT_code + '-' + ${TABLE}.location_id + '-' + ${TABLE}.student_id + '-' + ${TABLE}."effective date" collate sql_latin1_general_cp1_ci_as;;
   }
+
   dimension: withdrawal {
     type: string
     sql: case when ${TABLE}.ENROLL_CODE in ('W1', 'W2', 'W4','W8', 'W11','W12','W13','W14','W15','W16','W17','W18', 'W21', 'W22', 'W24','W81','W3','W5', 'W6', 'W9','WD', 'WG','D1','D2')
