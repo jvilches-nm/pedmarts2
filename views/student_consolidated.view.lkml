@@ -383,6 +383,13 @@
     sql: ${TABLE}.Student_Gender_Code ;;
   }
 
+  dimension: gender_identity {
+    type: string
+    suggestions: ["Male", "Female", "Non-Binary"]
+    description: "Student's chosen gender identity - Male, Female, Non-Binary"
+    sql: case ${TABLE}.gender_identity when 'Male' then 'Male' when 'Female' then 'Female' when 'Non-Binary' then 'Non-Binary' else ${gender} end;;
+  }
+
   dimension: grade_level {
     type: string
     description: "Current grade level of the student at the time of the snapshot"
