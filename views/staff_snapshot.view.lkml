@@ -410,7 +410,7 @@ view: staff_snapshot {
 
   dimension: staff_key {
     type: number
-    hidden: yes
+    description: "Staff Key - IT USE ONLY for data exports"
     sql: ${TABLE}.STAFF_KEY ;;
   }
 
