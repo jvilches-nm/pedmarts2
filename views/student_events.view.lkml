@@ -75,6 +75,7 @@ view: student_events {
 
   dimension_group: modified_date_se_events {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,

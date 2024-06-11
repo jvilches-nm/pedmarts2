@@ -26,11 +26,13 @@ view: special_ed_snapshot {
 
   dimension: district_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.District_Code ;;
   }
 
   dimension: district_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.DISTRICT_KEY ;;
   }
 
@@ -139,6 +141,7 @@ view: special_ed_snapshot {
 
   dimension_group: modified_date_special_ed_snap {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -153,11 +156,13 @@ view: special_ed_snapshot {
 
   dimension: modified_indicator_special_ed_snap {
     type: string
+    hidden:  yes
     sql: ${TABLE}.modified_indicator_SPECIAL_ED_SNAP ;;
   }
 
   dimension: period_key_for_snapshot_date {
     type: number
+    hidden: yes
     sql: ${TABLE}.PERIOD_KEY_for_Snapshot_Date ;;
   }
 
@@ -272,6 +277,7 @@ view: special_ed_snapshot {
 
   dimension: staff_key_for_se_teacher_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.STAFF_KEY_for_SE_Teacher_ID ;;
   }
 

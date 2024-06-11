@@ -156,6 +156,7 @@ view: staff_development_activity {
   dimension_group: modified {
     type: time
     label: "Modified Date"
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -170,21 +171,25 @@ view: staff_development_activity {
 
   dimension: modified_indicator {
     type: string
+    hidden: yes
     sql: ${TABLE}.MODIFIED_INDICATOR ;;
   }
 
   dimension: objctv_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.OBJCTV_DESC ;;
   }
 
   dimension: part_level_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.PART_LEVEL_CODE ;;
   }
 
   dimension: part_level_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.PART_LEVEL_DESC ;;
   }
 
@@ -196,11 +201,13 @@ view: staff_development_activity {
 
   dimension: plan_execution_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.PLAN_EXECUTION_ID ;;
   }
 
   dimension: provider_name {
     type: string
+    hidden: yes
     sql: ${TABLE}.PROVIDER_NAME ;;
   }
 
@@ -216,11 +223,13 @@ view: staff_development_activity {
 
   dimension: relevance_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.RELEVANCE_CODE ;;
   }
 
   dimension: relevance_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.RELEVANCE_DESC ;;
   }
 
@@ -240,6 +249,7 @@ view: staff_development_activity {
 
   dimension: staff_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.STAFF_KEY ;;
   }
 
@@ -279,6 +289,7 @@ view: staff_development_activity {
 
   dimension: yr_lvl_staff_snapshot_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.YR_LVL_STAFF_SNAPSHOT_KEY ;;
   }
 

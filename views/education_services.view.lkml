@@ -64,11 +64,13 @@ view: education_services {
 
   dimension: se_services_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.SE_SERVICES_KEY ;;
   }
 
   dimension: stud_snapshot_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.STUD_SNAPSHOT_KEY ;;
   }
 
