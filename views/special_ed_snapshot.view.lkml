@@ -16,11 +16,13 @@ view: special_ed_snapshot {
 
   dimension: challenge_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.Challenge_Type ;;
   }
 
   dimension: challenge_type_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.Challenge_Type_Code ;;
   }
 

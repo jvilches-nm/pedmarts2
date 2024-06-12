@@ -3,16 +3,19 @@ view: programs_code {
 
   dimension: alt_programs_cat {
     type: string
+    hidden: yes
     sql: ${TABLE}.ALT_PROGRAMS_CAT ;;
   }
 
   dimension: batch_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.BATCH_ID ;;
   }
 
   dimension: district_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.DISTRICT_KEY ;;
   }
 
@@ -24,6 +27,7 @@ view: programs_code {
 
   dimension_group: modified {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -38,31 +42,37 @@ view: programs_code {
 
   dimension: modified_indicator {
     type: string
+    hidden: yes
     sql: ${TABLE}.MODIFIED_INDICATOR ;;
   }
 
   dimension: plan_execution_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.PLAN_EXECUTION_ID ;;
   }
 
   dimension: program_accredn {
     type: string
+    hidden: yes
     sql: ${TABLE}.PROGRAM_ACCREDN ;;
   }
 
   dimension: program_sponsor_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.PROGRAM_SPONSOR_CD ;;
   }
 
   dimension: program_sponsor_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.PROGRAM_SPONSOR_DESC ;;
   }
 
   dimension: programs_category {
     type: string
+    hidden: yes
     sql: ${TABLE}.PROGRAMS_CATEGORY ;;
   }
 
@@ -79,6 +89,7 @@ view: programs_code {
 
   dimension: programs_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.PROGRAMS_KEY ;;
   }
 
@@ -89,11 +100,13 @@ view: programs_code {
 
   dimension: programs_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.PROGRAMS_TYPE ;;
   }
 
   dimension: row_indicator {
     type: string
+    hidden: yes
     sql: ${TABLE}.ROW_INDICATOR ;;
   }
 
@@ -119,16 +132,19 @@ view: programs_code {
 
   dimension: state_program_code {
     type: string
+    hidden: yes
     sql: ${TABLE}.STATE_PROGRAM_CODE ;;
   }
 
   dimension: state_program_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.STATE_PROGRAM_DESC ;;
   }
 
   dimension: technical_program {
     type: string
+    hidden: yes
     sql: ${TABLE}.TECHNICAL_PROGRAM ;;
   }
 

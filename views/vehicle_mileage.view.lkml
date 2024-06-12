@@ -3,6 +3,7 @@ view: vehicle_mileage {
 
   dimension: daily_duration {
     type: number
+    hidden: yes
     sql: ${TABLE}.DAILY_DURATION ;;
   }
 
@@ -13,6 +14,7 @@ view: vehicle_mileage {
 
   dimension: district_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.DISTRICT_KEY ;;
   }
 
@@ -28,6 +30,7 @@ view: vehicle_mileage {
 
   dimension: reporting_date_period_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.REPORTING_DATE_PERIOD_KEY ;;
   }
 
@@ -43,11 +46,13 @@ view: vehicle_mileage {
 
   dimension: route_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.ROUTE_KEY ;;
   }
 
   dimension_group: school_year {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -62,6 +67,7 @@ view: vehicle_mileage {
 
   dimension: vehicle_snapshot_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.VEHICLE_SNAPSHOT_KEY ;;
   }
 

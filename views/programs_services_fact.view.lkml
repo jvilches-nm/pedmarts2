@@ -19,6 +19,7 @@ view: programs_services_fact {
 
   dimension: educ_svc_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.EDUC_SVC_KEY ;;
   }
 
@@ -40,6 +41,7 @@ view: programs_services_fact {
 
   dimension_group: modified {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -54,11 +56,13 @@ view: programs_services_fact {
 
   dimension: prim_staff_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.PRIM_STAFF_KEY ;;
   }
 
   dimension: prim_staff_snapshot_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.PRIM_STAFF_SNAPSHOT_KEY ;;
   }
 
@@ -70,6 +74,7 @@ view: programs_services_fact {
 
   dimension: reporting_date_period_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.REPORTING_DATE_PERIOD_KEY ;;
   }
 
@@ -118,6 +123,7 @@ view: programs_services_fact {
 
   dimension_group: svc_end {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -138,16 +144,19 @@ view: programs_services_fact {
 
   dimension: svc_gl_fund_source_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.SVC_GL_FUND_SOURCE_KEY ;;
   }
 
   dimension: svc_location_district_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.SVC_LOCATION_DISTRICT_KEY ;;
   }
 
   dimension: svc_location_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.SVC_LOCATION_KEY ;;
   }
 
@@ -216,11 +225,13 @@ view: programs_services_fact {
 
   dimension: svc_start_date_period_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.SVC_START_DATE_PERIOD_KEY ;;
   }
 
   dimension: tot_svc_units {
     type: number
+    hidden: yes
     sql: ${TABLE}.TOT_SVC_UNITS ;;
   }
 

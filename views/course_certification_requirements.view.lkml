@@ -15,6 +15,7 @@ view: course_certification_requirements {
   }
   dimension: certification_type_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.Certification_Type_Key ;;
   }
   dimension: course_assignment_required_certification_area {
