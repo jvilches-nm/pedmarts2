@@ -45,7 +45,6 @@ view: assignment_certification_requirements {
   # hidden fields useful to model
   dimension: assignment_key {
     type: number
-    primary_key: yes
     hidden: yes
     sql: ${TABLE}.ASSIGNMENT_KEY ;;
   }
