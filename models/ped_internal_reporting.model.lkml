@@ -665,7 +665,7 @@ explore: cluster_courses {
     relationship: many_to_one
     type: left_outer
     view_label: "Course Snapshot"
-    sql_on: ${cluster_courses.course_id} = ${course_instruct_staff_student_snapshot.state_course_course_id}
+    sql_on: ${cluster_courses.course_id} = ${course_instruct_staff_student_snapshot.course_id}
     and ${cluster_courses.school_year_date} = ${course_instruct_staff_student_snapshot.school_year_date};;
   }
 join: school_year {
