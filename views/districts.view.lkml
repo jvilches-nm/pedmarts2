@@ -107,13 +107,13 @@ view: districts {
   dimension: district_location_address_full {
     type: string
     description: "Full address of the district office location"
-    sql: ${TABLE}.District_Location_Address_1+", "+ ${TABLE}.District_Location_City+", "+ ${TABLE}.District_Location_State_Code+" "+${TABLE}.District_Location_Zip_Code;;
+    sql: ${TABLE}.District_Location_Address_1+', '+ ${TABLE}.District_Location_City+', '+ ${TABLE}.District_Location_State_Code+' '+${TABLE}.District_Location_Zip_Code;;
   }
 
   dimension: district_mailing_address_full {
     type: string
     description: "Full mailing address for the district"
-    sql: ${TABLE}.District_Mailing_Address_1+", "+ ${TABLE}.District_Mailing_City+", "+ ${TABLE}.District_Mailing_State_Code+" "+${TABLE}.District_Mailing_Zip_Code;;
+    sql: ${TABLE}.District_Mailing_Address_1+', '+ ${TABLE}.District_Mailing_City+', '+ ${TABLE}.District_Mailing_State_Code+' '+${TABLE}.District_Mailing_Zip_Code;;
   }
 
   dimension: district_mailing_address_1 {
