@@ -144,7 +144,7 @@ view: student_snapshot {
   dimension: foster_care {
     type: string
     suggestions: ["Yes", "No"]
-    description: "Student is in foster care - Yes/No"
+    description: "Student is in foster care - Yes/No (Not available for 23/24 school year)"
     sql: case ${TABLE}.FOSTER_CARE_IND when 'Y' then 'Yes' else 'No' end ;;
   }
 
@@ -344,7 +344,7 @@ view: student_snapshot {
     type: string
     suggestions: ["Students with disabilities", "Regular Education and Gifted only students"]
     description: "Student with disability (has a current IEP and is receiving IDEA 618, Part B services) or regular/gifted student: Students with disabilities / Regular Education and Gifted only students"
-    sql: ${TABLE}.Special_Ed_Status ;;
+    sql: case ${TABLE}.Special_Ed_Status when 'Yes' then 'Students with disabilities' when 'No' then 'Regular Education and Gifted only students' else ${TABLE}.Special_Ed_Status end ;;
   }
 
   dimension: special_ed_status_code {
@@ -380,21 +380,21 @@ view: student_snapshot {
   dimension: gender {
     type: string
     suggestions: ["Male", "Female"]
-    description: "Student's gender at the time of their birth: Male/Female"
+    description: "Student's gender at the time of their birth: Male/Female (N/D indidates no data submitted)"
     sql: ${TABLE}.Student_Gender ;;
   }
 
   dimension: gender_code {
     type: string
     hidden: yes
-    description: "Code for the student's gender at the time of their birth: M/F"
+    description: "Code for the student's gender at the time of their birth: M/F (N/D indidates no data submitted)"
     sql: ${TABLE}.Student_Gender_Code ;;
   }
 
   dimension: gender_identity {
     type: string
     suggestions: ["Male", "Female", "Non-Binary"]
-    description: "Student's chosen gender identity - Male, Female, Non-Binary"
+    description: "Student's chosen gender identity - Male, Female, Non-Binary (N/D indidates no data submitted)"
     sql: case ${TABLE}.gender_identity when 'Male' then 'Male' when 'Female' then 'Female' when 'Non-Binary' then 'Non-Binary' else ${gender} end;;
   }
 

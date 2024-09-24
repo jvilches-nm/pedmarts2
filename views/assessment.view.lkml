@@ -306,7 +306,7 @@ view: assessment {
     type: string
     sql: case ${TABLE}.Subtest_Language when 'E' then 'English'
                                         when 'S' then 'Spanish'
-                                        else ${TABLE}.Subtest_Language;;
+                                        else ${TABLE}.Subtest_Language end;;
   }
 
   dimension: subtest_subject_area {
