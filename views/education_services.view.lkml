@@ -34,6 +34,7 @@ view: education_services {
 
   dimension: location_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.LOCATION_KEY ;;
   }
 
@@ -45,11 +46,13 @@ view: education_services {
 
   dimension: programs_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.PROGRAMS_KEY ;;
   }
 
   dimension_group: school_year {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
