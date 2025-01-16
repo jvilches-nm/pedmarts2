@@ -361,9 +361,7 @@ explore: staff_development_activity {
     type: inner
     sql_on: ${staff_development_activity.staff_key} = ${staff_snapshot.staff_key}
     and ${staff_development_activity.school_year_date} = ${staff_snapshot.school_year_end_date}
-    and ${staff_development_activity.entry_date} = ${staff_snapshot.snapshot_date}
-
-      ;;
+    and ${staff_development_activity.entry_date} = ${staff_snapshot.snapshot_date}  ;;
   }
   join: districts {
     relationship: many_to_one
@@ -386,6 +384,11 @@ explore: staff_development_activity {
       ${staff_development_activity.entry_date}=${period.period_start_date}
 ;;
   }
+join: school_year {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${staff_development_activity.school_year_date}=${school_year.school_year_end_date} ;;
+}
 }
 
 explore: staff_assignment_snapshot {
@@ -431,8 +434,8 @@ explore: staff_assignment_snapshot {
 }
 
 explore: assessment {
-  label: "CCR Assessments"
-  description: "College and Career Readiness Assessments"
+  label: "Assessments"
+  description: "Assessments"
   join: student_snapshot{
   #student_consolidated {
     relationship: many_to_one
@@ -639,6 +642,7 @@ explore: perkins_students {
 }
 
 explore: cte_students_clusters {
+  label: "CTE Student Clusters"
   join: perkins_students {
     relationship: many_to_one
     type: left_outer
@@ -704,6 +708,41 @@ join: school_year {
   sql_on: ${attendance_summary.school_year_date}=${school_year.school_year_end_date} ;;
 }
 }
+
+explore: student_digital_resources  {
+  join: student_snapshot {
+  relationship: one_to_one
+  type: left_outer
+  sql_on:${student_snapshot.student_key}=${student_digital_resources.student_key} and
+             ${student_snapshot.period_key}=${student_digital_resources.reporting_date_period_key} and
+           ${student_snapshot.location_key}=${student_digital_resources.location_key}  ;;
+}
+join: locations {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${student_digital_resources.location_key} = ${locations.location_key} and
+    ${student_digital_resources.school_year_end_date} = ${locations.school_year_end_date} ;;
+}
+
+join: districts {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${student_digital_resources.district_key} = ${districts.district_key} and
+    ${student_digital_resources.school_year_end_date} = ${districts.school_year_end_date};;
+}
+join: period {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${student_digital_resources.school_year_end_date}=${period.school_year_end_date} and
+    ${student_digital_resources.reporting_date_period_key}=${period.period_key};;
+}
+join: school_year {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${student_digital_resources.school_year_end_date}=${school_year.school_year_end_date} ;;
+}
+}
+
 
 explore: student_events {
   join: student_consolidated_with_eoy {

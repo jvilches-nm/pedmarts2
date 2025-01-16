@@ -285,6 +285,7 @@ view: special_ed_snapshot {
 
   dimension: student_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_ID ;;
   }
 
@@ -296,6 +297,7 @@ view: special_ed_snapshot {
 
   dimension_group: student_snapshot {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,

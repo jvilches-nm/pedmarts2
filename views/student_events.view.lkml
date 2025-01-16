@@ -44,6 +44,7 @@ view: student_events {
 
   dimension: event_type_key_for_event_type_code {
     type: number
+    hidden: yes
     sql: ${TABLE}.EVENT_TYPE_KEY_for_event_type_code ;;
   }
 
@@ -120,6 +121,7 @@ view: student_events {
 
   dimension_group: school_year {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -134,16 +136,19 @@ view: student_events {
 
   dimension: student_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Student_ID ;;
   }
 
   dimension: student_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.STUDENT_KEY ;;
   }
 
   dimension: student_loc_key {
     type: number
+    hidden: yes
     sql: ${TABLE}.Student_Loc_Key ;;
   }
 

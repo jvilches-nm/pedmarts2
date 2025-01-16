@@ -244,6 +244,7 @@ view: districts {
     type: string
     label: "School Year"
     description: "The two years that the school year spans"
+    hidden: yes
     sql: cast(YEAR(${TABLE}.School_Year)-1 as varchar) +'-'+ cast(YEAR(${TABLE}.School_year) as varchar) ;;
   }
 

@@ -13,6 +13,7 @@ view: student_attendance {
 
   dimension: school_year_end_date {
     type: date
+    hidden: yes
     sql: ${TABLE}.School_Year ;;
   }
 
