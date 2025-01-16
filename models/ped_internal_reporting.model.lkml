@@ -435,7 +435,7 @@ explore: staff_assignment_snapshot {
 
 explore: assessment {
   label: "Assessments"
-  description: "Assessments"
+  description: "Assessments - for example CCR exams and Early Childhood assessments"
   join: student_snapshot{
   #student_consolidated {
     relationship: many_to_one
@@ -891,10 +891,6 @@ explore: +programs_services_fact {
 
     }
 
-}
-
-explore: grad_data {
-  label: "Graduation"
 }
 
 map_layer: my_neighborhood_layer {

@@ -33,11 +33,13 @@ view: homeschool_students {
 
   dimension: child_stars_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.Child_StarsId ;;
   }
 
   dimension_group: date_entered {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       date,
@@ -143,6 +145,7 @@ view: homeschool_students {
 
   dimension: parent_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.ParentId ;;
   }
 
@@ -183,6 +186,7 @@ view: homeschool_students {
 
   dimension: school_year {
     type: string
+    hidden: yes
     sql: ${TABLE}.School_Year ;;
   }
 
