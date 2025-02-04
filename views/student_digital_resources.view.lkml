@@ -142,6 +142,12 @@ view: student_digital_resources {
     sql: ${TABLE}.REPORTING_DATE_PERIOD_KEY ;;
   }
 
+  dimension: record_start_date {
+    type: date
+    hidden: yes
+    sql: ${TABLE}.RecordStartDateTime ;;
+  }
+
   dimension: school_provided_device {
     type: string
     description: "Student has a school-provided device - Yes/No"
