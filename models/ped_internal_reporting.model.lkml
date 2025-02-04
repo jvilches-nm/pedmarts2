@@ -734,7 +734,7 @@ join: period {
   relationship: many_to_one
   type: inner
   sql_on: ${student_digital_resources.school_year_end_date}=${period.school_year_end_date} and
-    ${student_digital_resources.reporting_date_period_key}=${period.period_key};;
+    ${student_digital_resources.record_start_date}=${period.period_start_date};;
 }
 join: school_year {
   relationship: many_to_one
