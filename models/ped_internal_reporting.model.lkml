@@ -692,21 +692,21 @@ explore: attendance_summary {
   join: locations {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${student_consolidated.location_key} = ${locations.location_key}
-      and ${student_consolidated.school_year_end_date} = ${locations.school_year_end_date}
-      and ${student_consolidated.district_key} = ${locations.district_key};;
+    sql_on: ${attendance_summary.location_id}= ${locations.location_id}
+      and ${attendance_summary.school_year_date} = ${locations.school_year_end_date}
+      and ${attendance_summary.district_code} = ${locations.district_code};;
   }
   join: districts {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${student_consolidated.district_key} = ${districts.district_key}
-      and ${student_consolidated.school_year_end_date} = ${districts.school_year_end_date};;
+    sql_on: ${attendance_summary.district_code} = ${districts.district_code}
+      and ${attendance_summary.school_year_date} = ${districts.school_year_end_date};;
   }
-join: school_year {
-  relationship: many_to_one
-  type: inner
-  sql_on: ${attendance_summary.school_year_date}=${school_year.school_year_end_date} ;;
-}
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${attendance_summary.school_year_date}=${school_year.school_year_end_date} ;;
+  }
 }
 
 explore: student_digital_resources  {
