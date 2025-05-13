@@ -22,7 +22,14 @@ view: discipline {
   dimension: infraction_category {
     type: string
     description: "Infraction category"
-    sql: ${TABLE}.Discipline_Infraction_Category ;;
+    sql: case when isnull(${TABLE}.Discipline_Infraction_Category,'')='' then
+                     case when len(${TABLE}.Discipline_Infraction_Code)=1 then 'Violence'
+                          when left(${TABLE}.Discipline_Infraction_Code,1)='1' then 'Violence'
+                          when left(${TABLE}.Discipline_Infraction_Code,1)='6' then 'Firearms'
+                          when left(${TABLE}.Discipline_Infraction_Code,1)='4' then 'Vandalism'
+                          when left(${TABLE}.Discipline_Infraction_Code,1)='5' then 'W/SA/Gang'
+                          when ${TABLE}.Discipline_Infraction_Code='70' then 'Attendance' else 'Unknown' end
+                else discipline_infraction_category end;;
   }
 
   dimension: infraction_code {
@@ -247,14 +254,15 @@ view: discipline {
 
   dimension: weapon_related {
     type: string
-    description: "Infraction involved a weapon - Yes/No"
-    sql: ${TABLE}.Weapon_Type ;;
+    description: "Infraction involved a weapon - Yes/No or No Data"
+    sql: case ${TABLE}.Weapon_Type when 'Yes' then 'Yes' when 'No' then 'No'
+                                  when 'N/D' then 'N/D' when null then 'N/D' else 'Yes' end;;
   }
 
-  dimension: weapon_type_code {
+  dimension: weapon_type {
     type: string
-    hidden: yes
-    sql: ${TABLE}.Weapon_Type_Code ;;
+    description: "Type of weapon involved in the infraction - Nova data only"
+    sql: ${TABLE}.Weapon_Type ;;
   }
 
   measure: count {
