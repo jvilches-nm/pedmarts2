@@ -9,11 +9,13 @@ view: programs_services_fact {
 
   dimension: educ_svc_category {
     type: string
+    label: "Service Category"
     sql: ${TABLE}.EDUC_SVC_CATEGORY ;;
   }
 
   dimension: educ_svc_code {
     type: string
+    label: "Service Code"
     sql: ${TABLE}.EDUC_SVC_CODE ;;
   }
 
@@ -25,17 +27,19 @@ view: programs_services_fact {
 
   dimension: educ_svc_long_desc {
     type: string
-    label: "Service"
+    label: "Service Description"
     sql: ${TABLE}.EDUC_SVC_LONG_DESC ;;
   }
 
   dimension: educ_svc_short_desc {
     type: string
+    label: "Service Type"
     sql: ${TABLE}.EDUC_SVC_SHORT_DESC ;;
   }
 
   dimension: educ_svc_type {
     type: string
+    hidden: yes
     sql: ${TABLE}.EDUC_SVC_TYPE ;;
   }
 
@@ -107,17 +111,19 @@ view: programs_services_fact {
 
   dimension: svc_cycle_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.SVC_CYCLE_CD ;;
   }
 
   dimension: svc_cycle_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.SVC_CYCLE_DESC ;;
   }
 
   dimension: svc_duration {
     type: number
-    label: "Duration"
+    label: "Service Duration"
     sql: ${TABLE}.SVC_DURATION ;;
   }
 
@@ -138,7 +144,7 @@ view: programs_services_fact {
 
   dimension: svc_frequency {
     type: number
-    label: "Frequency"
+    label: "Service Frequency"
     sql: ${TABLE}.SVC_FREQUENCY ;;
   }
 
@@ -162,11 +168,13 @@ view: programs_services_fact {
 
   dimension: svc_part_info_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.SVC_PART_INFO_CD ;;
   }
 
   dimension: svc_part_info_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.SVC_PART_INFO_DESC ;;
   }
 
@@ -178,6 +186,7 @@ view: programs_services_fact {
 
   dimension: svc_provider_type_cd {
     type: string
+    label: "Service Provider Type Code"
     sql: ${TABLE}.SVC_PROVIDER_TYPE_CD ;;
   }
 
@@ -189,22 +198,25 @@ view: programs_services_fact {
 
   dimension: svc_setting_cd {
     type: string
-    sql: ${TABLE}.SVC_SETTING_CD ;;
+    label: "Service Setting"
+    sql: coalesce(${TABLE}.SVC_SETTING_CD, ${TABLE}.SVC_SETTING_TYPE_CD) ;;
   }
 
   dimension: svc_setting_desc {
     type: string
-    label: "Setting Code"
+    hidden: yes
     sql: ${TABLE}.SVC_SETTING_DESC ;;
   }
 
   dimension: svc_setting_type_cd {
     type: string
+    hidden: yes
     sql: ${TABLE}.SVC_SETTING_TYPE_CD ;;
   }
 
   dimension: svc_setting_type_desc {
     type: string
+    hidden: yes
     sql: ${TABLE}.SVC_SETTING_TYPE_DESC ;;
   }
 
