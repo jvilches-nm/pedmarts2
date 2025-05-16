@@ -222,10 +222,9 @@ view: programs_services_fact {
 
   dimension_group: svc_start {
     type: time
-    label: "Service Date"
+    label: "Service"
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
