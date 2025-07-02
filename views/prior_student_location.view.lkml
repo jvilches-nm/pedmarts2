@@ -16,7 +16,8 @@ view: prior_student_location {
           ) x
           where rank=1
        ;;
-     datagroup_trigger: ped_bi_default_datagroup
+     interval_trigger: "24 hours"
+     #datagroup_trigger: ped_bi_default_datagroup
      indexes: ["student_id", "school_year", "student_snapshot_date"]
     }
 

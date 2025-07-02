@@ -1,7 +1,9 @@
 view: period {
   derived_table: {
     sql: select period_key, period_level, school_year, report_school_year, period_start_date, period_end_date, sort_seq from stars.period where district_key='35000999' and marking_period in ('40D', '80D', '120D', 'EOY');;
-  }
+    interval_trigger: "24 hours"
+    indexes: ["school_year", "report_school_year", "period_level"]
+    }
 
   measure: period_count {
     type: count

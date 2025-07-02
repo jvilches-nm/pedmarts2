@@ -5,7 +5,9 @@ view: locations {
         and cast(le.school_year as date) = cast(l.school_year as date)
         where l.Location_Organization_Type_Code not in ('BIA', 'Home School', 'Private')
          ;;
-  }
+    interval_trigger: "24 hours"
+    indexes: ["location_id", "location_name_full"]
+    }
 
   drill_fields: [nces_school_id,
       district_school_code,

@@ -4,7 +4,9 @@ view: districts {
           from stars.districts d
           left outer join dbo.districts_extension de on de.district_code=d.district_code
           where d.district_organization_type in ('State Charter', 'State District', 'State Supported') ;;
-  }
+    interval_trigger: "24 hours"
+    indexes: ["District_Name", "District_Code"]
+    }
   drill_fields: [nces_district_id, district_name]
 
   dimension: nces_district_id {

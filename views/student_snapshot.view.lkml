@@ -802,7 +802,7 @@ view: student_snapshot {
   measure: count {
     type: count
     label: "Student Count"
-    drill_fields: [districts.district_name_full, locations.location_name_full, grade_level]
+    drill_fields: [districts.district_name_full, locations.location_name_full, student_id, student_name_full, grade_level]
   }
 
   measure: race_asian_selected {

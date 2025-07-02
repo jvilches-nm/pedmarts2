@@ -1,7 +1,8 @@
 view: school_year {
   derived_table: {
     sql: select distinct year_number, school_year, report_school_year from stars.period where district_key='35000999' and marking_period in ('40D', '80D', '120D', 'EOY');;
-  }
+    interval_trigger: "24 hours"
+    indexes: ["school_year", "report_school_year"]}
 
   dimension: school_year {
     type: string

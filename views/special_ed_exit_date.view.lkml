@@ -6,7 +6,8 @@
           left join stars.student_events se on se.event_type_code=1 and se.student_id=ss.student_id and ss.student_snapshot_date>se.event_effective_date
           group by ss.student_id, ss.student_snapshot_date
        ;;
-    datagroup_trigger: ped_bi_default_datagroup
+    interval_trigger: "24 hours"
+    #datagroup_trigger: ped_bi_default_datagroup
     indexes: ["student_id", "student_snapshot_date"]
     }
 
