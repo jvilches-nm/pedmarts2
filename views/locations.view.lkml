@@ -6,7 +6,7 @@ view: locations {
         where l.Location_Organization_Type_Code not in ('BIA', 'Home School', 'Private')
          ;;
     interval_trigger: "24 hours"
-    indexes: ["location_id", "location_name_full"]
+    indexes: ["location_id"]
     }
 
   drill_fields: [nces_school_id,
