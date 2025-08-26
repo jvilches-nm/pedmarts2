@@ -77,7 +77,6 @@ view: discipline {
 
   dimension: discipline_response_code {
     type: string
-    hidden: yes
     sql: ${TABLE}.Discipline_Response_Code ;;
   }
 
