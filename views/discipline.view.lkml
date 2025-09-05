@@ -69,6 +69,12 @@ view: discipline {
     sql: case when ${TABLE}.Discipline_Response is null then 'No Response' else ${TABLE}.Discipline_Response end;;
   }
 
+  dimension: discipline_response_simplified {
+    type: string
+    description: "Discipline response description simplified to break out removal types from all other responses"
+    sql: case ${discipline.discipline_response_code} when '3' then 'Out of school suspension' when '2' then 'In school suspension' when '4' then 'Expulsion' when '5' then 'Modified Expulsion' else 'Other' end;;
+  }
+
   dimension: discipline_response_category {
     type: string
     hidden: yes
