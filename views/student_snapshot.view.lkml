@@ -709,13 +709,15 @@ view: student_snapshot {
     type: string
     suggestions: ["Yes", "No"]
     description: "Student is at-risk due to being Native American - Federal reporting definition - Yes/No"
-    sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes' else 'No' end;;
+    sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 'Yes'
+         case when ${student_race_ethnicity_derived}='American Indian or Alaskan Native' then 'Yes' else 'No' end;;
   }
 
   measure: at_risk_native_count {
     type: sum
     description: "Count of students who are at-risk due to being Native American"
     sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1
+         case when ${student_race_ethnicity_derived}='American Indian or Alaskan Native' then 1
       else 0 end;;
   }
 
@@ -861,7 +863,8 @@ view: student_snapshot {
   measure: student_count_native_american {
     type: sum
     description: "If the federal reporting value for race/ethnicity is American Indian then count this record."
-    sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1 else 0 end;;
+    sql: case when ${student_race_ethnicity_derived}='American Indian/Alaskan Native' then 1
+              when ${student_race_ethnicity_derived}='American Indian or Alaskan Native' then 1 else 0 end;;
   }
   measure: student_count_white {
     type: sum
@@ -886,7 +889,8 @@ view: student_snapshot {
   measure: student_count_multiracial {
     type: sum
     description: "If the federal reporting value for race/ethnicity is Multiracial then count this record."
-    sql: case when ${student_race_ethnicity_derived}='Multiracial' then 1 else 0 end;;
+    sql: case when ${student_race_ethnicity_derived}='Multiracial' then 1
+              when ${student_race_ethnicity_derived}='Multi-Racial' then 1 else 0 end;;
   }
 
   measure: student_count_gifted {
