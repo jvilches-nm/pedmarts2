@@ -1,6 +1,6 @@
 connection: "dm02"
 
-include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
+include: "/views/**/*.view.lkml"                # include all views in the views/ folder in this project
 
 explore: student_snapshot {
   join: student_digital_resources  {

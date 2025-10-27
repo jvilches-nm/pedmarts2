@@ -839,6 +839,322 @@ explore: locations {
   }
 }
 
+
+explore: area_assmt_access {
+  label:"AREA Assessment Access"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_access.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_access.school_year}=${districts.school_year}
+      and left(${area_assmt_access.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_access.school_year}=${locations.school_year}
+      and ${area_assmt_access.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_access.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_access.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_alt_access {label:"AREA Assessment Alt-Access"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_alt_access.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_alt_access.school_year}=${districts.school_year}
+      and left(${area_assmt_alt_access.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_alt_access.school_year}=${locations.school_year}
+      and ${area_assmt_alt_access.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_alt_access.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_alt_access.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_dlm_ela_math_science {label:"AREA Assessment DLM"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_dlm_ela_math_science.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_dlm_ela_math_science.school_year}=${districts.school_year}
+      and left(${area_assmt_dlm_ela_math_science.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_dlm_ela_math_science.school_year}=${locations.school_year}
+      and ${area_assmt_dlm_ela_math_science.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_dlm_ela_math_science.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_dlm_ela_math_science.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_early_dev_instr {label:"AREA Assessment EDI"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_early_dev_instr.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_early_dev_instr.school_year}=${districts.school_year}
+      and left(${area_assmt_early_dev_instr.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_early_dev_instr.school_year}=${locations.school_year}
+      and ${area_assmt_early_dev_instr.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_early_dev_instr.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_early_dev_instr.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_istation_ela {label:"AREA Assessment ISTATION ELA"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_ela.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_ela.school_year}=${districts.school_year}
+      and left(${area_assmt_istation_ela.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_ela.school_year}=${locations.school_year}
+      and ${area_assmt_istation_ela.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_istation_ela.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_istation_ela.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_istation_math {label:"AREA Assessment ISTATION Math"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_math.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_math.school_year}=${districts.school_year}
+      and left(${area_assmt_istation_math.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_math.school_year}=${locations.school_year}
+      and ${area_assmt_istation_math.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_istation_math.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_istation_math.school_year} = ${student_consolidated.school_year}COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_istation_rdg_spn {label:"AREA Assessment ISTATION Spanish"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_rdg_spn.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_rdg_spn.school_year}=${districts.school_year}
+      and left(${area_assmt_istation_rdg_spn.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_istation_rdg_spn.school_year}=${locations.school_year}
+      and ${area_assmt_istation_rdg_spn.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_istation_rdg_spn.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_istation_rdg_spn.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_nmasr_science {label:"AREA Assessment NMASR"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmasr_science.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmasr_science.school_year}=${districts.school_year}
+      and left(${area_assmt_nmasr_science.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmasr_science.school_year}=${locations.school_year}
+      and ${area_assmt_nmasr_science.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_nmasr_science.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_nmasr_science.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_nmmssa_ela {label:"AREA Assessment NMMSSA ELA"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmmssa_ela.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmmssa_ela.school_year}=${districts.school_year}
+      and left(${area_assmt_nmmssa_ela.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmmssa_ela.school_year}=${locations.school_year}
+      and ${area_assmt_nmmssa_ela.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_nmmssa_ela.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_nmmssa_ela.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_nmmssa_math {label:"AREA Assessment NMMSSA Math"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmmssa_math.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmmssa_math.school_year}=${districts.school_year}
+      and left(${area_assmt_nmmssa_math.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_nmmssa_math.school_year}=${locations.school_year}
+      and ${area_assmt_nmmssa_math.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_nmmssa_math.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_nmmssa_math.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_sat_ela_math {label:"AREA Assessment SAT"
+  join: school_year {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_sat_ela_math.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+  join: districts {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_sat_ela_math.school_year}=${districts.school_year}
+      and left(${area_assmt_sat_ela_math.school_number},3)=${districts.district_code};;
+  }
+  join: locations {
+    relationship: many_to_one
+    type: inner
+    sql_on: ${area_assmt_sat_ela_math.school_year}=${locations.school_year}
+      and ${area_assmt_sat_ela_math.school_number}=${locations.district_school_code};;
+  }
+  join: student_consolidated {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${area_assmt_sat_ela_math.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+      and ${area_assmt_sat_ela_math.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+  }
+}
+
+explore: area_assmt_sba_sla {label:"AREA Assessment SBA"
+join: school_year {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${area_assmt_sba_sla.school_year}=${school_year.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+}
+join: districts {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${area_assmt_sba_sla.school_year}=${districts.school_year}
+    and left(${area_assmt_sba_sla.school_number},3)=${districts.district_code};;
+}
+join: locations {
+  relationship: many_to_one
+  type: inner
+  sql_on: ${area_assmt_sba_sla.school_year}=${locations.school_year}
+    and ${area_assmt_sba_sla.school_number}=${locations.district_school_code};;
+}
+join: student_consolidated {
+  relationship: many_to_one
+  type: left_outer
+  sql_on: ${area_assmt_sba_sla.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
+    and ${area_assmt_sba_sla.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
+}
+}
+
+
+
 explore: +student_snapshot {
 
     query: 40D_Student_Count_for_2021-2022 {
