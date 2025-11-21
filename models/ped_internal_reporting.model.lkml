@@ -10,28 +10,7 @@ datagroup: ped_bi_default_datagroup {
 
 persist_with: ped_bi_default_datagroup
 
-#explore: assessment_rea {
-#  join: districts {
-#    relationship: many_to_one
-#    type: left_outer
-#    sql_on: format(${assessment_rea.dist_code}, '000') = ${districts.district_code}
-#      and ${assessment_rea.year} = year(${districts.school_year_end_date}) ;;
-#  }
-#  join: locations {
-#    relationship: many_to_one
-#    type: left_outer
-#    sql_on: format(${assessment_rea.dist_code},'000')=${locations.district_code}
-#          and format(${assessment_rea.schnumb}-(${assessment_rea.dist_code}*1000), '000')=${locations.location_id}
-#          and ${assessment_rea.year}=year(${locations.school_year_end_date});;
-#  }
-#  join: student_consolidated {
-#    relationship: many_to_one
-#    type: left_outer
-#    sql_on: ${assessment_rea.student_id} = ${student_consolidated.student_id}
-#      and ${assessment_rea.year} = year(${student_consolidated.school_year_end_date});;
-#  }
-#}
-
+### VEHICLE SUBJECT AREA
 explore: vehicle_snapshot {
   label: "Transportation"
   description: "Vehicle and Vehicle Mileage Information"
@@ -39,7 +18,7 @@ explore: vehicle_snapshot {
     relationship: many_to_one
     type: inner
     sql_on: ${vehicle_snapshot.district_key} = ${districts.district_key} and
-    ${vehicle_snapshot.school_year_date}=${districts.school_year_end_date};;
+            ${vehicle_snapshot.school_year_date} = ${districts.school_year_end_date};;
   }
   join: vehicle_mileage {
     relationship: many_to_one
@@ -51,7 +30,7 @@ explore: vehicle_snapshot {
   join: period {
     relationship: many_to_one
     type: inner
-    sql_on: ${vehicle_snapshot.school_year_date}=${period.school_year_end_date} and
+    sql_on: ${vehicle_snapshot.school_year_date} = ${period.school_year_end_date} and
             ${vehicle_snapshot.reporting_date} = ${period.period_start_date};;
   }
   join: school_year {
@@ -61,7 +40,7 @@ explore: vehicle_snapshot {
   }
 }
 
-
+# PROGRAM SUBJECT AREAS
 explore: programs_fact {
   label: "Programs"
   description: "Student program participation and associated education services."
@@ -86,8 +65,8 @@ explore: programs_fact {
   join: period {
     relationship: many_to_one
     type: inner
-    sql_on: ${programs_fact.school_year_end_date}=${period.school_year_end_date} and
-            ${programs_fact.program_start_date}=${period.period_start_date};;
+    sql_on: ${programs_fact.school_year_end_date} = ${period.school_year_end_date} and
+            ${programs_fact.program_start_date} = ${period.period_start_date};;
   }
   join: districts {
     relationship: many_to_one
@@ -122,30 +101,30 @@ explore: student_snapshot {
   join: school_year {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.school_year_end_date}=${school_year.school_year_end_date} ;;
+    sql_on: ${student_snapshot.school_year_end_date} = ${school_year.school_year_end_date} ;;
   }
   join: period {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
-            ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
+    sql_on: ${student_snapshot.school_year_end_date} = ${period.school_year_end_date} and
+            ${student_snapshot.student_snapshot_date} = ${period.period_start_date};;
   }
   join: prior_student_location {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${student_snapshot.student_id}=${prior_student_location.student_id} and
+    sql_on: ${student_snapshot.student_id} = ${prior_student_location.student_id} and
             ${student_snapshot.student_snapshot_date} = ${prior_student_location.student_snapshot_date};;
   }
   join: prior_snapshot_values {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${student_snapshot.student_id}=${prior_snapshot_values.student_id} and
+    sql_on: ${student_snapshot.student_id} = ${prior_snapshot_values.student_id} and
             ${student_snapshot.student_snapshot_date} = ${prior_snapshot_values.student_snapshot_date};;
   }
   join: special_ed_exit_date {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${student_snapshot.student_id}=${special_ed_exit_date.student_id} and
+    sql_on: ${student_snapshot.student_id} = ${special_ed_exit_date.student_id} and
             ${student_snapshot.student_snapshot_date} = ${special_ed_exit_date.student_snapshot_date};;
   }
 
@@ -440,18 +419,18 @@ explore: assessment {
   #student_consolidated {
     relationship: many_to_one
     type: inner
-    sql_on: ${assessment.student_key}=${student_snapshot.student_key}
+    sql_on: ${assessment.student_key} = ${student_snapshot.student_key}
       and ${assessment.school_year} = ${student_snapshot.school_year_end_date};;
   }
   join: school_year {
     relationship: many_to_one
     type: inner
-    sql_on: ${assessment.school_year}=${school_year.school_year_end_date} ;;
+    sql_on: ${assessment.school_year} = ${school_year.school_year_end_date} ;;
   }
   join: period {
     relationship: many_to_one
     type: inner
-    sql_on: ${student_snapshot.school_year_end_date}=${period.school_year_end_date} and
+    sql_on: ${assessment.school_year} = ${period.school_year_end_date} and
       ${student_snapshot.student_snapshot_date}=${period.period_start_date};;
   }
   join: locations {
@@ -936,12 +915,6 @@ explore: area_assmt_early_dev_instr {label:"AREA Assessment EDI"
     type: inner
     sql_on: ${area_assmt_early_dev_instr.school_year}=${locations.school_year}
       and ${area_assmt_early_dev_instr.school_number}=${locations.district_school_code};;
-  }
-  join: student_consolidated {
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${area_assmt_early_dev_instr.student_uniq_id} = ${student_consolidated.student_id} COLLATE SQL_Latin1_General_CP850_BIN
-      and ${area_assmt_early_dev_instr.school_year} = ${student_consolidated.school_year} COLLATE SQL_Latin1_General_CP850_BIN;;
   }
 }
 

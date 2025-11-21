@@ -152,6 +152,7 @@ view: area_assmt_early_dev_instr {
   }
   dimension: student_uniq_id {
     type: string
+    hidden: yes
     label: "Student ID"
     description: "Unique state student identifier"
     sql: ${TABLE}.StudentUniqId ;;
