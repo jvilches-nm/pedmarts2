@@ -910,12 +910,6 @@ explore: area_assmt_early_dev_instr {label:"AREA Assessment EDI"
     sql_on: ${area_assmt_early_dev_instr.school_year}=${districts.school_year}
       and left(${area_assmt_early_dev_instr.school_number},3)=${districts.district_code};;
   }
-  join: locations {
-    relationship: many_to_one
-    type: inner
-    sql_on: ${area_assmt_early_dev_instr.school_year}=${locations.school_year}
-      and ${area_assmt_early_dev_instr.school_number}=${locations.district_school_code};;
-  }
 }
 
 explore: area_assmt_istation_ela {label:"AREA Assessment ISTATION ELA"

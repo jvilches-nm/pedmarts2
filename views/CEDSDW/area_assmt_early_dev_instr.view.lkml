@@ -135,6 +135,7 @@ view: area_assmt_early_dev_instr {
     type: string
     label: "District-School Code"
     description: "Identifier code for the district and school location"
+    hidden: yes
     sql: left(${TABLE}.schoolnumber,3) + '-' + right(${TABLE}.schoolnumber,3) ;;
   }
   dimension: school_year {
