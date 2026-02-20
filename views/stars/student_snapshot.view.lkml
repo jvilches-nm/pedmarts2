@@ -489,7 +489,7 @@ view: student_snapshot {
     type: string
     label: "Race 1"
     description: "Student's first race identification"
-    sql: ${TABLE}.Student_Race_1_Ethnicity ;;
+    sql: replace(${TABLE}.Student_Race_1_Ethnicity, '/Alaskan', ' or Alaska') ;;
   }
 
   dimension: student_race_1_code {
@@ -502,7 +502,7 @@ view: student_snapshot {
     type: string
     label: "Race 2"
     description: "Student's second race identification"
-    sql: ${TABLE}.Student_Race_2 ;;
+    sql: replace(${TABLE}.Student_Race_2, '/Alaskan', ' or Alaska') ;;
   }
 
   dimension: student_race_2_code {
@@ -515,7 +515,7 @@ view: student_snapshot {
     type: string
     label: "Race 3"
     description: "Student's third race identification"
-    sql: ${TABLE}.Student_Race_3 ;;
+    sql: replace(${TABLE}.Student_Race_3, '/Alaskan', ' or Alaska') ;;
   }
 
   dimension: student_race_3_code {
@@ -528,7 +528,7 @@ view: student_snapshot {
     type: string
     label: "Race 4"
     description: "Student's fourth race identification"
-    sql: ${TABLE}.Student_Race_4 ;;
+    sql: replace(${TABLE}.Student_Race_4, , '/Alaskan', ' or Alaska') ;;
   }
 
   dimension: student_race_4_code {
@@ -541,7 +541,7 @@ view: student_snapshot {
     type: string
     label: "Race 5"
     description: "Student's fifth race identification"
-    sql: ${TABLE}.Student_Race_5 ;;
+    sql: replace(${TABLE}.Student_Race_5, , '/Alaskan', ' or Alaska') ;;
   }
 
   dimension: student_race_5_code {
@@ -554,7 +554,7 @@ view: student_snapshot {
     type: string
     label: "Race/Ethnicity Derived"
     description: "Derived race/ethnicity value for federal reporting"
-    sql: ${TABLE}.Student_Race_Ethnicity_Derived ;;
+    sql: replace(replace(${TABLE}.student_Race_ethnicity_derived, '/Alaskan', ' or Alaska'),'Multiracial', 'Multi-Racial');;
   }
 
   dimension: student_race_ethnicity_subgroup {
